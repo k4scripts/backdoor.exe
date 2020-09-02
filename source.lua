@@ -365,41 +365,7 @@ UserInputService.InputChanged:Connect(
         end
     end
 )
-loggedGames = { -- PlaceID : Path To Remote
-    "3362132792:Players." .. LocalPlayer.Name .. ".PlayerGui.ScreenGui.MainRemake.Execute.Execute",
-    "5410050059:ReplicatedStorage.Chat",
-    "5236457412:ReplicatedStorage.Chat",
-    "5236360542:ReplicatedStorage.RemoteEvent",
-    "5391230321:Players." .. LocalPlayer.Name .. ".PlayerGui.SakuraUI.Main.Executor.Execute.Remote",
-    "5156477689:ReplicatedStorage.RemoteEvent",
-    "5315313864:ReplicatedStorage.Chat",
-    "3218545909:ReplicatedStorage.Chat",
-    "3198108572:ReplicatedStorage.Chat",
-    "2950584074:ReplicatedStorage.RemoteEvent",
-    "4679386897:ReplicatedStorage.RemoteEvent",
-    "5211852647:ReplicatedStorage.Chat",
-    "3344152291:ReplicatedStorage.Chat",
-    "3238262471:ReplicatedStorage.Chat",
-    "5274887320:ReplicatedStorage.Chat",
-    "5233243374:ReplicatedStorage.Chat",
-    "5084119336:ReplicatedStorage.Chat"
-}
-loggedGame = false
-function logged(id)
-    for i, ids in pairs(loggedGames) do
-        PlaceId = string.split(ids, ":")[1]
-        PahtToRemote = string.split(ids, ":")[2]
-        if tostring(id) == PlaceId then
-            for _, loggedPart in pairs(game:GetDescendants()) do
-                if tostring(loggedPart:GetFullName()) == PahtToRemote then
-                    remote = loggedPart
-                    loggedGame = true
-                end
-            end
-            return true
-        end
-    end
-end
+
 checkDebounce = true
 function Attached()
     if workspace:FindFirstChild(valueName) then
@@ -483,11 +449,7 @@ AttachButton.MouseButton1Click:Connect(
                     break
                 end
             end
-            if logged(game.PlaceId) then
-                backdoor = remote:GetFullName()
-                Attached()
-            end
-            if game.ReplicatedStorage:FindFirstChild("Chat") and not logged then
+            if game.ReplicatedStorage:FindFirstChild("Chat") then
                 qrm = game.ReplicatedStorage:FindFirstChild("Chat")
                 qrm:FireServer(Script)
                 wait(0.15)
@@ -496,7 +458,7 @@ AttachButton.MouseButton1Click:Connect(
                 end
                 rsc = true
             end
-            if not cached and not loggedGame and not rsc then
+            if not cached and not rsc then
                 scan()
                 Adebounce = true
             end
