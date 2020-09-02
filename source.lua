@@ -18,16 +18,6 @@ for _, gui in pairs(game:GetService("CoreGui").RobloxGui:GetChildren()) do
     end
 end
 
--- to bypass/remove a few known anti-exploits 
-if game.ReplicatedStorage:FindFirstChild("Basic Admin Essentials") then
-    game.ReplicatedStorage["Basic Admin Essentials"]:Destroy()
-end
-if game:FindFirstChild("JointsService") then
-    for _, v in pairs(game.JointsService:GetChildren()) do
-        v:Destroy()
-    end
-end
-
 local backdoorexesource = Instance.new("ScreenGui")
 if syn then syn.protect_gui(backdoorexesource) end
 local Main = Instance.new("Frame")
