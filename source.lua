@@ -41,7 +41,7 @@ local R6Button = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
 local sourceEngine = Instance.new("TextLabel")
 
-backdoorexesource.Name = 
+backdoorexesource.Name =
 tostring(
     math.random(0, 9) ..
         math.random(0, 9) ..
@@ -399,11 +399,13 @@ function scan()
     source.TextEditable = false
     for _, rm in pairs(game:GetDescendants()) do
         if rm.ClassName == "RemoteEvent" and not found then
+            if rm.Parent ~= game:GetService("JointsService") then
             rm:FireServer(
                 "a = Instance.new('StringValue',workspace) a.Name = '" ..
                     valueName .. "' a.Value = '" .. rm:GetFullName() .. "'"
             )
             game:GetService("RunService").Stepped:Wait()
+            end
             if check() then
                 Attached()
                 backdoor = remote:GetFullName()
@@ -809,4 +811,3 @@ for i = 1, string.len(WelcomeString) do
     wait(.01)
     source.Text = string.sub(WelcomeString, 1, i)
 end
-
