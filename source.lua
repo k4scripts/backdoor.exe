@@ -41,17 +41,7 @@ local R6Button = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
 local sourceEngine = Instance.new("TextLabel")
 
-backdoorexesource.Name =
-tostring(
-    math.random(0, 9) ..
-        math.random(0, 9) ..
-            math.random(0, 9) ..
-                math.random(0, 9) ..
-                    math.random(0, 9) ..
-                        math.random(0, 9) ..
-                            math.random(0, 9) ..
-                                math.random(0, 9) .. math.random(0, 9) .. math.random(0, 9) .. math.random(0, 9) .. salt
-)
+backdoorexesource.Name = tostring(math.random(100000000,1000000000) .. salt)
 backdoorexesource.Parent = game.CoreGui.RobloxGui
 backdoorexesource.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 backdoorexesource.ResetOnSpawn = false
