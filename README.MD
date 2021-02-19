@@ -1,5 +1,4 @@
-# Backdoor.exe
-Its just https://github.com/iK4oS/backdoor.exe but I fixed getting kicked for nil <br />
+# Backdoor.exe Source
 Credits: <br />
 iK4oS#1755 Scripting <br />
 Scotty#6206 UI design <br />
