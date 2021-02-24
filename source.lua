@@ -40,6 +40,7 @@ local backdoorexe = Instance.new("TextLabel")
 local R6Button = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
 local sourceEngine = Instance.new("TextLabel")
+local Disc = Instance.new("TextButton")
 
 backdoorexesource.Name = tostring(math.random(100000000,1000000000) .. salt)
 backdoorexesource.Parent = game.CoreGui.RobloxGui
@@ -291,6 +292,18 @@ sourceEngine.Text = "Source λ"
 sourceEngine.TextColor3 = Color3.fromRGB(255, 134, 47)
 sourceEngine.TextSize = 18.000
 
+Disc.Name = "Discord"
+Disc.Parent = Main
+Disc.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+Disc.BorderSizePixel = 0
+Disc.Position = UDim2.new(0.552948735, 0, 0.0183475856, 0)
+Disc.Size = UDim2.new(0, 120, 0, 20)
+Disc.Font = Enum.Font.Gotham
+Disc.Text = " Disc: 4tRadfjY69"
+Disc.TextColor3 = Color3.fromRGB(255, 255, 255)
+Disc.TextSize = 15
+Disc.TextScaled = true
+
 verboseOutput = false
 instantScanMode = true
 local UserInputService = game:GetService("UserInputService")
@@ -456,6 +469,13 @@ clearButton.MouseButton1Click:Connect(
         source.TextEditable = true
     end
 )
+
+Disc.MouseButton1Click:Connect(
+    function()
+        setclipboard("https://discord.gg/4tRadfjY69")
+    end
+)
+
 closeButton.MouseButton1Click:Connect(
     function()
         Main:TweenPosition(UDim2.new(0, 0, -1, 0))
@@ -494,7 +514,7 @@ source.Changed:Connect(
 )
 
 -- [[ Syntax Highlight ]] -- Not made by me, I DO NOT TAKE CREDITS FOR THESE NOT IN THE SLIGHTEST IM NOT SMART ENOUGH FOR THIS SHIT
--- also amazing code and I could never come up with this, ALL credits go to the respectfull creator!
+-- also amazing code and I could never come up with this, ALL credits go to the respectfull creator! idk who... but +rep for them..
 local lua_keywords = {
     "and",
     "break",
