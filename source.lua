@@ -7,6 +7,6 @@ function notify(text)
 		}
 	)
 end
-notify("Taking down for Maintenance.")
+notify("Taken down for Maintenance.")
 notify("https://discord.com/invite/6HndYgC")
 setclipboard("https://discord.com/invite/6HndYgC")
