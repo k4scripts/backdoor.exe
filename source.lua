@@ -174,7 +174,6 @@ function scan()
 			
 			if check(VALUE_NAME) then
 				
-				print(settings.BackdoorRemote)
 				attach()
 				return
 			end
@@ -217,14 +216,17 @@ end
  -- ## EXECUTE BUTTONS ## --
 
 for _, button in pairs(EXECUTOR_BUTTONS:GetChildren()) do
-	if button.ClassName == "TextButton" and settings.Found then
+	if button.ClassName == "TextButton" then
 		button.MouseButton1Click:Connect(function()
-			if button.Name == "clearButton" then
-				SOURCE_SCRIPT.Text = ""
-			elseif button.Name == "executeButton" then
-				settings.BackdoorRemote:FireServer(SOURCE_SCRIPT.Text)
-			elseif button.Name == "R6Button" then
-				settings.BackdoorRemote:FireServer('require(3041175937):r6("' .. LocalPlayer.Name .. '")')
+			if settings.Found then
+				if button.Name == "clearButton" then
+					SOURCE_SCRIPT.Text = ""
+				elseif button.Name == "executeButton" then
+					print(SOURCE_SCRIPT.Text)
+					settings.BackdoorRemote:FireServer(SOURCE_SCRIPT.Text)
+				elseif button.Name == "R6Button" then
+					settings.BackdoorRemote:FireServer('require(3041175937):r6("' .. LocalPlayer.Name .. '")')
+				end
 			end
 		end)
 	end
