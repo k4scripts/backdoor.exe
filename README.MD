@@ -1,5 +1,5 @@
 # Backdoor.exe
-The best backdoor scanner there is. Our [Discord Server]("https://discord.com/invite/6HndYgC").
+The best backdoor scanner there is. Our [Discord Server](https://discord.com/invite/6HndYgC).
 ## Credits
 * iK4oS
 * Bubba
