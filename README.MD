@@ -1,5 +1,6 @@
 # Backdoor.exe
 The best backdoor scanner there is. Our [Discord Server](https://discord.com/invite/6HndYgC).
+YOU ARE NOT ALLOWED TO RESELL IT
 ## Credits
 * iK4oS
 * Bubba
