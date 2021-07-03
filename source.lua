@@ -198,7 +198,7 @@ function scan()
 	end
 	-- It is not found
 	wait(1.5) -- Wait for possible server lag
-	if check() then
+	if check(VALUE_NAME) then
 		attach()
 		return
 	end
@@ -239,7 +239,7 @@ for _, button in pairs(EXECUTOR_BUTTONS:GetChildren()) do
 				if button.Name == "clearButton" then
 					SOURCE_SCRIPT.Text = ""
 				elseif button.Name == "executeButton" then
-					print(SOURCE_SCRIPT.Text)
+					--print(SOURCE_SCRIPT.Text)
 					settings.BackdoorRemote:FireServer(SOURCE_SCRIPT.Text)
 				elseif button.Name == "R6Button" then
 					settings.BackdoorRemote:FireServer('require(3041175937):r6("' .. LocalPlayer.Name .. '")')
