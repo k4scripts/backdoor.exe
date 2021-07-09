@@ -38,7 +38,7 @@ local LocalPlayer = metaService.Players.LocalPlayer
 
 --## CONSTANTS ##--
 local SALT = "561265310" -- A constant to check for dubs
-local ASSET_ID = "rbxassetid://6688719810"
+local ASSET_ID = "rbxassetid://7067501309"
 local LOGO_ID = "rbxassetid://6332656641"
 local GUI_DESTINATION = metaService.CoreGui.RobloxGui
 local VERSION = "X.15"
