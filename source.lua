@@ -170,6 +170,30 @@ local function executeScript()
 	end
 end
 
+local function promtDicordInvite(invCode)
+
+    local httpService = game:GetService("HttpService")
+    local httpRequest = (syn and syn.request) or (httpService and httpService.request) or http_request
+
+    if not httpRequest then print("Exploit not supported. No HTTP found.") return end
+    
+    httpRequest({
+        Url = "http://127.0.0.1:6463/rpc?v=1",
+        Method = "POST",
+
+        Headers = {
+            ['Content-Type'] = 'application/json',
+            Origin = 'https://discord.com'
+        },
+
+        Body = httpService:JSONEncode({
+            cmd = 'INVITE_BROWSER',
+            nonce = httpService:GenerateGUID(false),
+            args = {code = invCode}
+        })
+        
+    })
+end
 
 -- Buttons
 closeButton.MouseButton1Click:Connect(function() GUI:Destroy() end)
@@ -177,7 +201,7 @@ scanButton.MouseButton1Click:Connect(scan)
 executeButton.MouseButton1Click:Connect(executeScript)
 clearButton.MouseButton1Click:Connect(function() source.Text = ""  end)
 hideButton.MouseButton1Click:Connect(function() sourceFrame.Visible = not sourceFrame.Visible end)
-inviteButton.MouseButton1Click:Connect(function() setclipboard("6HndYgC") end)
+inviteButton.MouseButton1Click:Connect(function() promtDicordInvite("6HndYgC") end)
 
 --	k4scripts
 --	.------.
