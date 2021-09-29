@@ -1,15 +1,13 @@
 # Backdoor.exe
 The best backdoor scanner there is. Our [Discord Server](https://discord.com/invite/6HndYgC).
 
-## Credits
-* iK4oS
-* Angus
-* Bubba
-* eeee
-* Redcarred2
-
 ## Information
 Backdoor.exe is script that scans for open backdoors in games in [Roblox](https://roblox.com/ "Roblox"). It does this by itterating through every Remote Event and firing a script of of them that creates an object. The scripts checks if the object is created, sees what Remote Event caused that to be created and stores it.
+### Script
+Using this will get you the most recent version of backdoor.exe.
+```lua
+loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/master/source.lua"))()
+```
 
 ### Opening a backdoor
 Get access to a game in Roblox Studio, create a script and paste the few lines of code below in the script.
