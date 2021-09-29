@@ -42,9 +42,7 @@ for _, ui in pairs(UI_PARENT:GetChildren()) do
 	end
 end
 
-
-local ASSET_ID = "rbxassetid://7062870440"
-local UI = game:GetObjects(ASSET_ID)[1]
+local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/master/ui.lua"))()
 if syn then syn.protect_gui(UI) end
 UI.Parent = UI_PARENT
 UI.Name = SALT..tostring(math.random(100000000,1000000000))
