@@ -200,12 +200,14 @@ end
 
 local function promtDicordInvite(invCode)
 
+	setclipboard(invCode)
+
     local httpService = game:GetService("HttpService")
     local httpRequest = (syn and syn.request) or (httpService and httpService.request) or http_request
 
-    if not httpRequest then notify("Invite code copied!"); setclipboard(invCode) return end
+    if not httpRequest then notify("Invite code copied!") return end
     
-    httpRequest({
+    local request = httpRequest({
         Url = "http://127.0.0.1:6463/rpc?v=1",
         Method = "POST",
 
@@ -220,6 +222,7 @@ local function promtDicordInvite(invCode)
             nonce = httpService:GenerateGUID(false)
         })
     })
+	if request.StatusCode ~= 200 then notify("Invite code copied!") return end
 	notify("You have been promted to join our Discord. Open your Discord.")
 end
 
