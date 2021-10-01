@@ -61,6 +61,7 @@ UI.Main.Draggable = true
 local closeButton = findObject("Close_Button","ImageButton")
 local statusText = findObject("Status","TextLabel")
 local statusColor = findObject("Status_Color","Frame")
+local r6Button = findObject("R6Button","ImageButton")
 
 -- Source Frame
 local sourceFrame = findObject("sourceFrame","ScrollingFrame")
@@ -179,22 +180,25 @@ local function scan()
 	statusText.Text = "Failed"
 end
 
-local function executeScript()
-	local function callback(text)
-		if text == "Yes" then
-			scan()
-			BackdoorUI.backdoorRemote:FireServer(source.Text)
-		elseif text == "No" then
-			return
-		end
-	end
-
-	local bf = Instance.new("BindableFunction"); bf.OnInvoke = callback
+local function executeScript(scrpt)
+	if not scrpt then scrpt = source.Text end
 
 	if not BackdoorUI.attached then
+
+		local function callback(text)
+			if text == "Yes" then
+				scan()
+				BackdoorUI.backdoorRemote:FireServer(scrpt)
+			elseif text == "No" then
+				return
+			end
+		end
+	
+		local bf = Instance.new("BindableFunction"); bf.OnInvoke = callback
+
 		notify("You're not attached.\nWould you like to attach now?", bf, "Yes", "No")
 	else
-		BackdoorUI.backdoorRemote:FireServer(source.Text)
+		BackdoorUI.backdoorRemote:FireServer(scrpt)
 	end
 end
 
@@ -230,6 +234,7 @@ end
 closeButton.MouseButton1Click:Connect(function() UI:Destroy() end)
 scanButton.MouseButton1Click:Connect(scan)
 executeButton.MouseButton1Click:Connect(executeScript)
+r6Button.MouseButton1Click:Connect(function() executeScript("require(3041175937):r6('"..localPlayer.Name.."')") end)
 clearButton.MouseButton1Click:Connect(function() source.Text = ""  end)
 hideButton.MouseButton1Click:Connect(function() sourceFrame.Visible = not sourceFrame.Visible end)
 inviteButton.MouseButton1Click:Connect(function() promtDicordInvite(INV_CODE) end)
