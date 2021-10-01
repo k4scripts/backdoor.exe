@@ -1,5 +1,5 @@
 <h1 align="center">Welcome to backdoor.exe 👋</h1>
-<p>
+<p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-6.6.5-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/kefranabg/readme-md-generator/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
@@ -9,7 +9,8 @@
   </a>
 </p>
 
-> The best backdoor scanner there is.
+> An in game interface/tool to scan every RemoteEvent for backdoors. </br>
+> This script was made to be ran on an exploit for Roblox.
 
 ### 🏠 [Homepage](https://github.com/iK4oS/backdoor.exe) 🔗 [Discord](https://discord.com/invite/6HndYgC)
 
