@@ -1,4 +1,4 @@
--- Gui to Lua 	Version: 3.2
+-- Gui to Lua	Version: 3.2
 
 local ScreenGui = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
@@ -15,6 +15,7 @@ local UICorner = Instance.new("UICorner")
 local Status_Color = Instance.new("Frame")
 local UICorner_2 = Instance.new("UICorner")
 local UIListLayout = Instance.new("UIListLayout")
+local R6Button = Instance.new("ImageButton")
 local sourceFrame = Instance.new("ScrollingFrame")
 local source = Instance.new("TextBox")
 local lines = Instance.new("TextLabel")
@@ -105,7 +106,7 @@ Status.Name = "Status"
 Status.Parent = Top_Bar
 Status.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Status.BackgroundTransparency = 1.000
-Status.Position = UDim2.new(0.687328637, 0, 0.0460526347, 0)
+Status.Position = UDim2.new(0.653402925, 0, 0.0460526347, 0)
 Status.Size = UDim2.new(0, 111, 0, 36)
 Status.Font = Enum.Font.Ubuntu
 Status.Text = "Unattached"
@@ -136,6 +137,16 @@ UIListLayout.Parent = Circle
 UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+
+R6Button.Name = "R6Button"
+R6Button.Parent = Top_Bar
+R6Button.BackgroundTransparency = 1.000
+R6Button.Position = UDim2.new(0.903069496, 0, 0.174999997, 0)
+R6Button.Size = UDim2.new(0, 25, 0, 25)
+R6Button.ZIndex = 2
+R6Button.Image = "rbxassetid://3926307971"
+R6Button.ImageRectOffset = Vector2.new(164, 124)
+R6Button.ImageRectSize = Vector2.new(36, 36)
 
 sourceFrame.Name = "sourceFrame"
 sourceFrame.Parent = Main
