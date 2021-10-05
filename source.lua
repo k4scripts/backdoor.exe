@@ -135,6 +135,7 @@ local function remoteCheck(rm)
 	if string.find(fullName, "DefaultChat") then return false end
 	if string.find(fullName, localPlayer.Name) then return false end
 	if rm:FindFirstChild("__FUNCTION") then return false end
+	if rm.Parent == game:GetService("JointsService") then return false end
 
 	if getgenv().blacklisted then
 		if table.find(getgenv().blacklisted, fullName) then return false end
