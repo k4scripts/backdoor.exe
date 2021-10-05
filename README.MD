@@ -1,7 +1,7 @@
 <h1 align="center">Welcome to backdoor.exe 👋</h1>
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-6.6.5-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/kefranabg/readme-md-generator/graphs/commit-activity" target="_blank">
+  <a href="https://github.com/iK4oS/backdoor.exe/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
   <a href="https://github.com/iK4oS/backdoor.exe/blob/master/LICENSE" target="_blank">
