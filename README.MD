@@ -21,7 +21,7 @@
 👤 **iK4oS**
 
 * Github: [@iK4oS](https://github.com/iK4oS)
-* Discord: K4izen#1755
+* Discord: K4oS#1755
 
 ## 🤝 Contributing
 
