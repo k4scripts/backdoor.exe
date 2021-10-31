@@ -10,7 +10,7 @@
 </p>
 
 > An in game interface/tool to scan every RemoteEvent for backdoors. </br>
-> This script was made to be ran on an exploit for Roblox.
+> Tool was made to find backdoors in your game.
 
 ### 🏠 [Homepage](https://github.com/iK4oS/backdoor.exe) 🔗 [Discord](https://discord.com/invite/6HndYgC)
 
