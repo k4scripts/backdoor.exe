@@ -25,7 +25,7 @@ local alternativeSS = {
 	emma = { [1] = "pwojr8hoc0-gr0yxohlgp-0feb7ncxed", [2] = ",,,,,,,,,,,,,,," },
 	helpme = { [1] = "helpme" },
 	pickett = { [1] = "cGlja2V0dA==" },
-	harked = "https://raw.githubusercontent.com/iK4oS/backdoor.exe/indev/harkedSS.lua"
+	harked = "https://raw.githubusercontent.com/iK4oS/backdoor.exe/master/harkedSS.lua"
 }
 
 local function notify(text)
