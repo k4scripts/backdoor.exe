@@ -17,7 +17,7 @@
 ]]
 
 local LocalPlayer = game:GetService("Players").LocalPlayer
-local requireScript = ("require(8458747773):k4scripts('%s')"):format(LocalPlayer.Name)
+local requireScript = ("require(8458747773):k4scripts('%s', true)"):format(LocalPlayer.Name) -- set true to false to disable logging
 local invCode = "6HndYgC"
 
 local alternativeSS = {
