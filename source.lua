@@ -85,7 +85,8 @@ local function harked()
 		backpack.HandlessSegway.RemoteEvents:FindFirstChild("DestroySegway")
 end
 local function emmaBackdoor(rm)
-	return rm.Name == "emma" and rm.Parent and rm.Parent.Name == "mynameemma"
+	local Parent = rm.Parent
+	return rm.Name == "emma" and Parent and Parent.Name == "mynameemma" and Parent.Parent == ReplicatedStorage
 end
 
 local function runBackdoor(rm)
