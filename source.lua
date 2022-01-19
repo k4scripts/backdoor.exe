@@ -168,7 +168,7 @@ local function Main()
 
 	scanGame()
 
-	if not attached(2) then
+	if not attached(3.5) then
 		notify("Unable to find backdoor.\nGame not backdoored?")
 	end
 end
