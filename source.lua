@@ -78,7 +78,7 @@ local function validRemote(rm)
 		if (Parent == ReplicatedStorage and rm:FindFirstChild("__FUNCTION")) or
         (rm.Name == "__FUNCTION" and Parent.ClassName == "RemoteEvent" and Parent.Parent == ReplicatedStorage) then return false end
 
-		if (Parent.ClassName == "Folder" and Parent.Name == "DefaultChatSystemChatEvents" and Parent.Parent == ReplicatedStorage) then return false end
+-- 		if (Parent.ClassName == "Folder" and Parent.Name == "DefaultChatSystemChatEvents" and Parent.Parent == ReplicatedStorage) then return false end
 	end
 
 	if rm:IsDescendantOf(RobloxReplicatedStorage) then return false end
