@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to backdoor.exe 👋</h1>
+<h1 align="center">Welcome to Frakture SS 👋</h1>
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-7.0.5-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/iK4oS/backdoor.exe/graphs/commit-activity" target="_blank">
@@ -12,30 +12,24 @@
 > An in game interface/tool to scan every RemoteEvent for backdoors. </br>
 > Tool was made to find backdoors in your game.
 
-### 🏠 [Homepage](https://github.com/iK4oS/backdoor.exe) 🔗 [Discord](https://discord.com/invite/6HndYgC)
+### 🏠 [Homepage](https://github.com/L1ghtingBolt/FraktureSS) 🔗 [Discord](https://discord.gg/w8SkzPz9qQ)
 
 <!--- ### ✨ [Demo](https://demo.url/) Comming soon ;) --->
 
 ## Author(s)
 
-👤 **iK4oS**
+👤 **L1ghtingBolt**
 
-* Github: [@iK4oS](https://github.com/iK4oS)
-* Discord: nullptr#1755
-
-👤 **hayper**
-* Github: [@xhayper](https://github.com/xhayper)
-* Discord: hayper#0001
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/iK4oS/backdoor.exe/issues).
+* Github: [@L1ghtingBolt](https://github.com/L1ghtingBolt)
+* Discord: L1ghtingBolt#8167
 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
 
 ## 📝 License
+
+*** BASED ON iK4oS's Backdoor.exe
 
 Copyright © 2021 [iK4oS](https://github.com/iK4oS).<br />
 This project is [GPL-3.0](https://github.com/iK4oS/backdoor.exe/blob/master/LICENSE) licensed.
