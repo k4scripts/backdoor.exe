@@ -56,12 +56,12 @@ local function attached(possibleWait)
 	if possibleWait then
 		local start = dateTimeNow().UnixTimestampMillis
 		local possibleWait = possibleWait * 1000
-		while PlayerGui and not PlayerGui:FindFirstChild("frakture.ss") and (possibleWait > dateTimeNow().UnixTimestampMillis - start) do
+		while PlayerGui and not PlayerGui:FindFirstChild("backdoor.exe") and (possibleWait > dateTimeNow().UnixTimestampMillis - start) do
 			taskWait()
 		end
 	end
 
-	return PlayerGui and PlayerGui:FindFirstChild("frakture.ss")
+	return PlayerGui and PlayerGui:FindFirstChild("backdoor.exe")
 end
 
 local function validRemote(rm)
