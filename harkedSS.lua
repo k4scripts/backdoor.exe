@@ -1,4 +1,5 @@
 -- I DID NOT MAKE THIS
+-- Me neither xdxd
 local main = Instance.new("ScreenGui")
 local top = Instance.new("Frame")
 local back = Instance.new("Frame")
@@ -91,7 +92,7 @@ credits.BackgroundTransparency = 1
 credits.Position = UDim2.new(0, 0, 1, 0)
 credits.Size = UDim2.new(0, 291, 0, 23)
 credits.Font = Enum.Font.SourceSansLight
-credits.Text = "Commands/Scripts by Dong , UI by Unverified"
+credits.Text = "Commands/Scripts by Dong, UI by Unverified"
 credits.TextColor3 = Color3.new(1, 1, 1)
 credits.TextSize = 17
 credits.TextWrapped = true
@@ -183,8 +184,6 @@ nolimbs.TextSize = 23
 
 for i, slaves in pairs(game:GetDescendants()) do
     if slaves.Name == "DestroySegway" then
-        print("no u")
-
         kill.MouseButton1Down:connect(
             function()
                 if string.lower(target.Text) == "all" then
@@ -199,9 +198,6 @@ for i, slaves in pairs(game:GetDescendants()) do
                                 game.Players:FindFirstChild(target.Text).Character.Head,
                                 {Value = game.Players:FindFirstChild(target.Text).Character.Head}
                             )
-                        else
-                            print("nibba who this")
-                        end
                     end
                 end
             end
