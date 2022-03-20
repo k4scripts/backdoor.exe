@@ -1,20 +1,3 @@
---[[
-    backdoor.exe, the best backdoor scanner in Roblox.
-    Copyright (C) 2021	iK4oS
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-]]
 
 local dateTimeNow = DateTime.now
 local tableFind = table.find
@@ -177,11 +160,3 @@ end
 if game:IsLoaded() then
 	pcall(Main)
 end
-
---	k4scripts (This is an edit).
---	.------.
---	|4.--. |
---	| :│/: |
---	| :│\: |
---	| '--'4|
---	`------'
