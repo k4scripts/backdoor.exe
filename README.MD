@@ -21,7 +21,7 @@
 👤 **iK4oS**
 
 * Github: [@iK4oS](https://github.com/iK4oS)
-* Discord: nullptr#1755
+* Discord: K4oS#1755
 
 👤 **hayper**
 * Github: [@xhayper](https://github.com/xhayper)
