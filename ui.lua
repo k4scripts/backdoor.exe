@@ -36,12 +36,6 @@ local UIListLayout_4 = Instance.new("UIListLayout")
 local AddScriptButton = Instance.new("TextButton")
 
 --Properties:
-
-backdoorexe.Name = "backdoor.exe"
-backdoorexe.Parent = game.Workspace.MainModule
-backdoorexe.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-backdoorexe.ResetOnSpawn = false
-
 Main.Name = "Main"
 Main.Parent = backdoorexe
 Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
