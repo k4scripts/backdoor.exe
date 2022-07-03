@@ -1,3 +1,5 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/v6/source.lua"))()
+
 --[[
     backdoor.exe, the best backdoor scanner in Roblox.
     Copyright (C) 2021	iK4oS
@@ -14,7 +16,7 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
-]]
+
 
 local dateTimeNow = DateTime.now
 local tableFind = table.find
@@ -218,3 +220,4 @@ end
 --	| :│\: |
 --	| '--'4|
 --	`------'
+]]
