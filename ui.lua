@@ -1,6 +1,6 @@
 Instance_new = Instance.new
 Color3_fromRGB = Color3.fromRGB
-UDim2_new = Dim2_new
+UDim2_new = Dim2.new
 
 local backdoorexe = Instance_new("ScreenGui")
 local Main = Instance_new("Frame")
