@@ -1048,7 +1048,7 @@ G2L["5b"]["Name"] = [[Variables]];
 -- Require G2L wrapper
 local G2L_REQUIRE = require;
 local G2L_MODULES = {};
-local function require(Module)
+local function require(Module:ModuleScript)
     local ModuleState = G2L_MODULES[Module];
     if ModuleState then
         if not ModuleState.Required then
@@ -1071,6 +1071,7 @@ local executorBottomBtns = executorFrame.BottomButtons
 
 
 return {
+	ScreenGUI = script.Parent,
 	TopButtons = {
 		CloseButton = topbar.RightOutline.CloseButton
 	},
