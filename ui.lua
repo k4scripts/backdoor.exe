@@ -10,7 +10,7 @@
 -- Instances: 91 | Scripts: 0 | Modules: 1
 local G2L = {};
 -- StarterGui.backdoor.exe v8
-G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+G2L["1"] = Instance.new("ScreenGui");
 G2L["1"]["Name"] = [[backdoor.exe v8]];
 
 -- StarterGui.backdoor.exe v8.Main
@@ -1071,7 +1071,6 @@ local executorBottomBtns = executorFrame.BottomButtons
 
 
 return {
-	ScreenGUI = script.Parent,
 	TopButtons = {
 		CloseButton = topbar.RightOutline.CloseButton
 	},
