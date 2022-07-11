@@ -13,7 +13,7 @@ local G2L = {};
 G2L["1"] = Instance.new("ScreenGui", game:GetService("CoreGui").RobloxGui);
 G2L["1"]["Name"] = [[backdoor.exe v8]];
 
--- StarterGui.backdoor.exe v8.Main
+--- StarterGui.backdoor.exe v8.Main
 G2L["2"] = Instance.new("Frame", G2L["1"]);
 G2L["2"]["ZIndex"] = -1;
 G2L["2"]["BorderSizePixel"] = 0;
@@ -286,7 +286,7 @@ G2L["1d"]["Size"] = UDim2.new(0.7229999899864197, 0, 0.7229999899864197, 0);
 G2L["1d"]["BackgroundTransparency"] = 1;
 G2L["1d"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
 
--- StarterGui.backdoor.exe v8.Main.Sidebar.Top.MenuButton
+-- StarterGui.backdoor.exe v8.Main.Sidebar.Top.MenuBtn
 G2L["1e"] = Instance.new("ImageButton", G2L["1a"]);
 G2L["1e"]["Active"] = false;
 G2L["1e"]["SliceCenter"] = Rect.new(100, 100, 100, 100);
@@ -298,11 +298,11 @@ G2L["1e"]["ImageColor3"] = Color3.fromRGB(35, 35, 35);
 G2L["1e"]["Selectable"] = false;
 G2L["1e"]["Image"] = [[rbxassetid://3570695787]];
 G2L["1e"]["Size"] = UDim2.new(0.6740000247955322, 0, 0.20000000298023224, 0);
-G2L["1e"]["Name"] = [[MenuButton]];
+G2L["1e"]["Name"] = [[MenuBtn]];
 G2L["1e"]["Position"] = UDim2.new(0.1837615966796875, 0, -0.014184395782649517, 0);
 G2L["1e"]["BackgroundTransparency"] = 1;
 
--- StarterGui.backdoor.exe v8.Main.Sidebar.Top.MenuButton.ImageLabel
+-- StarterGui.backdoor.exe v8.Main.Sidebar.Top.MenuBtn.ImageLabel
 G2L["1f"] = Instance.new("ImageLabel", G2L["1e"]);
 G2L["1f"]["ScaleType"] = Enum.ScaleType.Fit;
 G2L["1f"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
