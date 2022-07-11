@@ -1033,7 +1033,7 @@ return {
 		HomeButton = sidebar.Top.HomeBtn,
 		MenuButton = sidebar.Top.MenuBtn,
 		SettingsButton = sidebar.Top.SettingsBtn,
-		InviteButton = sidebar.Bottom.Invite
+		InviteButton = sidebar.Bottom.InviteBtn
 	},
 	Frames = {
 		ExecutorFrame = {
