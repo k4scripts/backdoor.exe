@@ -78,7 +78,7 @@ G2L["8"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
 G2L["8"]["Size"] = UDim2.new(0.02082030475139618, 0, 0.4779999852180481, 0);
 G2L["8"]["LayoutOrder"] = 2;
 G2L["8"]["Name"] = [[MinimizeButton]];
-G2L["8"]["Text"] = [[-]];
+G2L["8"]["Text"] = [[x]];
 G2L["8"]["Position"] = UDim2.new(0.9895898103713989, 0, 0.5, 0);
 
 -- StarterGui.backdoor.exe v8.Main.Topbar.RightOutline.MinimizeButton.TextLabel
@@ -90,7 +90,7 @@ G2L["9"]["TextSize"] = 16;
 G2L["9"]["TextColor3"] = Color3.fromRGB(34, 34, 34);
 G2L["9"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
 G2L["9"]["Size"] = UDim2.new(0, 14, 0, 14);
-G2L["9"]["Text"] = [[-]];
+G2L["9"]["Text"] = [[x]];
 G2L["9"]["Font"] = Enum.Font.Roboto;
 G2L["9"]["BackgroundTransparency"] = 1;
 G2L["9"]["Position"] = UDim2.new(0.49277785420417786, 0, 0.5076672434806824, 0);
@@ -218,7 +218,7 @@ G2L["17"]["HorizontalAlignment"] = Enum.HorizontalAlignment.Center;
 G2L["17"]["Padding"] = UDim.new(0, 15);
 G2L["17"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
 
--- StarterGui.backdoor.exe v8.Main.Sidebar.Bottom.Invite
+-- StarterGui.backdoor.exe v8.Main.Sidebar.Bottom.Frame
 G2L["18"] = Instance.new("ImageButton", G2L["16"]);
 G2L["18"]["Active"] = false;
 G2L["18"]["SliceCenter"] = Rect.new(100, 100, 100, 100);
@@ -229,11 +229,11 @@ G2L["18"]["ImageColor3"] = Color3.fromRGB(35, 35, 35);
 G2L["18"]["Selectable"] = false;
 G2L["18"]["Image"] = [[rbxassetid://3570695787]];
 G2L["18"]["Size"] = UDim2.new(0.6741434335708618, 0, 0.19954127073287964, 0);
-G2L["18"]["Name"] = [[Invite]];
+G2L["18"]["Name"] = [[Frame]];
 G2L["18"]["Position"] = UDim2.new(0.16292838752269745, 0, 0, 0);
 G2L["18"]["BackgroundTransparency"] = 1;
 
--- StarterGui.backdoor.exe v8.Main.Sidebar.Bottom.Invite.ImageLabel
+-- StarterGui.backdoor.exe v8.Main.Sidebar.Bottom.Frame.ImageLabel
 G2L["19"] = Instance.new("ImageLabel", G2L["18"]);
 G2L["19"]["ScaleType"] = Enum.ScaleType.Fit;
 G2L["19"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
@@ -286,7 +286,7 @@ G2L["1d"]["Size"] = UDim2.new(0.7229999899864197, 0, 0.7229999899864197, 0);
 G2L["1d"]["BackgroundTransparency"] = 1;
 G2L["1d"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
 
--- StarterGui.backdoor.exe v8.Main.Sidebar.Top.MenuBtn
+-- StarterGui.backdoor.exe v8.Main.Sidebar.Top.MenuButton
 G2L["1e"] = Instance.new("ImageButton", G2L["1a"]);
 G2L["1e"]["Active"] = false;
 G2L["1e"]["SliceCenter"] = Rect.new(100, 100, 100, 100);
@@ -298,11 +298,11 @@ G2L["1e"]["ImageColor3"] = Color3.fromRGB(35, 35, 35);
 G2L["1e"]["Selectable"] = false;
 G2L["1e"]["Image"] = [[rbxassetid://3570695787]];
 G2L["1e"]["Size"] = UDim2.new(0.6740000247955322, 0, 0.20000000298023224, 0);
-G2L["1e"]["Name"] = [[MenuBtn]];
+G2L["1e"]["Name"] = [[MenuButton]];
 G2L["1e"]["Position"] = UDim2.new(0.1837615966796875, 0, -0.014184395782649517, 0);
 G2L["1e"]["BackgroundTransparency"] = 1;
 
--- StarterGui.backdoor.exe v8.Main.Sidebar.Top.MenuBtn.ImageLabel
+-- StarterGui.backdoor.exe v8.Main.Sidebar.Top.MenuButton.ImageLabel
 G2L["1f"] = Instance.new("ImageLabel", G2L["1e"]);
 G2L["1f"]["ScaleType"] = Enum.ScaleType.Fit;
 G2L["1f"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
@@ -443,7 +443,6 @@ G2L["2b"]["Name"] = [[Source]];
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.Source.Source.SourceBox
 G2L["2c"] = Instance.new("TextBox", G2L["2b"]);
-G2L["2c"]["CursorPosition"] = -1;
 G2L["2c"]["ZIndex"] = 2;
 G2L["2c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["2c"]["TextXAlignment"] = Enum.TextXAlignment.Left;
@@ -454,7 +453,6 @@ G2L["2c"]["BackgroundColor3"] = Color3.fromRGB(31, 31, 31);
 G2L["2c"]["LayoutOrder"] = 5;
 G2L["2c"]["MultiLine"] = true;
 G2L["2c"]["BackgroundTransparency"] = 1;
-G2L["2c"]["PlaceholderText"] = [[-- script here]];
 G2L["2c"]["Size"] = UDim2.new(0, 505, 0, 225);
 G2L["2c"]["Text"] = [[]];
 G2L["2c"]["Position"] = UDim2.new(0.05382976308465004, 0, 0, 0);
@@ -529,7 +527,6 @@ G2L["32"]["TextSize"] = 16;
 G2L["32"]["BackgroundColor3"] = Color3.fromRGB(26, 26, 26);
 G2L["32"]["TextColor3"] = Color3.fromRGB(171, 171, 171);
 -- G2L["32"]["FontFace"] = ;
-G2L["32"]["Visible"] = false;
 G2L["32"]["Size"] = UDim2.new(0, 98, 0, 18);
 G2L["32"]["Name"] = [[Template]];
 G2L["32"]["Text"] = [[N/A]];
@@ -571,7 +568,6 @@ G2L["34"]["Position"] = UDim2.new(0, 0, -0.13034147024154663, 0);
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.Scripthub.TextBox.TextBox
 G2L["35"] = Instance.new("TextBox", G2L["34"]);
-G2L["35"]["CursorPosition"] = -1;
 G2L["35"]["PlaceholderColor3"] = Color3.fromRGB(126, 126, 126);
 G2L["35"]["ZIndex"] = 2;
 G2L["35"]["BorderSizePixel"] = 0;
@@ -664,7 +660,7 @@ G2L["3b"]["Font"] = Enum.Font.SourceSans;
 G2L["3b"]["Position"] = UDim2.new(1, 0, 0.5, 0);
 G2L["3b"]["BackgroundTransparency"] = 1;
 
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.OpenScripts.AddTabBtn
+-- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.OpenScripts.addTabBtn
 G2L["3c"] = Instance.new("ImageButton", G2L["37"]);
 G2L["3c"]["Active"] = false;
 G2L["3c"]["ZIndex"] = 2;
@@ -677,11 +673,11 @@ G2L["3c"]["Selectable"] = false;
 G2L["3c"]["LayoutOrder"] = 500;
 G2L["3c"]["Image"] = [[rbxassetid://3570695787]];
 G2L["3c"]["Size"] = UDim2.new(0, 24, 0, 23);
-G2L["3c"]["Name"] = [[AddTabBtn]];
+G2L["3c"]["Name"] = [[addTabBtn]];
 G2L["3c"]["Position"] = UDim2.new(0.1694599688053131, 0, 0, 0);
 G2L["3c"]["BackgroundTransparency"] = 1;
 
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.OpenScripts.AddTabBtn.TextLabel
+-- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.OpenScripts.addTabBtn.TextLabel
 G2L["3d"] = Instance.new("TextButton", G2L["3c"]);
 G2L["3d"]["TextWrapped"] = true;
 G2L["3d"]["Active"] = false;
@@ -698,83 +694,81 @@ G2L["3d"]["Text"] = [[+]];
 G2L["3d"]["Font"] = Enum.Font.SourceSans;
 G2L["3d"]["BackgroundTransparency"] = 1;
 
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.OpenScripts.Template
-G2L["3e"] = Instance.new("ImageButton", G2L["37"]);
-G2L["3e"]["Active"] = false;
-G2L["3e"]["ZIndex"] = 2;
-G2L["3e"]["SliceCenter"] = Rect.new(100, 100, 100, 100);
-G2L["3e"]["ScaleType"] = Enum.ScaleType.Slice;
-G2L["3e"]["SliceScale"] = 0.029999999329447746;
-G2L["3e"]["BackgroundColor3"] = Color3.fromRGB(26, 26, 26);
-G2L["3e"]["ImageColor3"] = Color3.fromRGB(26, 26, 26);
-G2L["3e"]["Selectable"] = false;
-G2L["3e"]["Image"] = [[rbxassetid://3570695787]];
-G2L["3e"]["Size"] = UDim2.new(0, 86, 0, 23);
-G2L["3e"]["Name"] = [[Template]];
-G2L["3e"]["Visible"] = false;
-G2L["3e"]["BackgroundTransparency"] = 1;
-
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.OpenScripts.Template.tab1Text
-G2L["3f"] = Instance.new("TextButton", G2L["3e"]);
-G2L["3f"]["Active"] = false;
-G2L["3f"]["ZIndex"] = 2;
-G2L["3f"]["TextSize"] = 15;
-G2L["3f"]["TextXAlignment"] = Enum.TextXAlignment.Left;
-G2L["3f"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["3f"]["TextColor3"] = Color3.fromRGB(222, 222, 222);
--- G2L["3f"]["FontFace"] = ;
-G2L["3f"]["Selectable"] = false;
-G2L["3f"]["Size"] = UDim2.new(0.6395349502563477, 0, 1, 0);
-G2L["3f"]["Name"] = [[tab1Text]];
-G2L["3f"]["Text"] = [[Script 1]];
-G2L["3f"]["Font"] = Enum.Font.SourceSansBold;
-G2L["3f"]["Position"] = UDim2.new(0.151162788271904, 0, 0, 0);
-G2L["3f"]["BackgroundTransparency"] = 1;
-
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.OpenScripts.Template.X
-G2L["40"] = Instance.new("TextButton", G2L["3e"]);
-G2L["40"]["ZIndex"] = 2;
-G2L["40"]["TextSize"] = 16;
-G2L["40"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["40"]["TextColor3"] = Color3.fromRGB(62, 62, 62);
--- G2L["40"]["FontFace"] = ;
-G2L["40"]["AnchorPoint"] = Vector2.new(1, 0.5);
-G2L["40"]["Size"] = UDim2.new(0, 20, 0, 20);
-G2L["40"]["Name"] = [[X]];
-G2L["40"]["Text"] = [[x]];
-G2L["40"]["Font"] = Enum.Font.SourceSans;
-G2L["40"]["Position"] = UDim2.new(1, 0, 0.5, 0);
-G2L["40"]["BackgroundTransparency"] = 1;
-
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons
-G2L["41"] = Instance.new("Frame", G2L["29"]);
-G2L["41"]["ZIndex"] = 2;
-G2L["41"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["41"]["BackgroundTransparency"] = 1;
-G2L["41"]["Size"] = UDim2.new(0, 541, 0, 24);
-G2L["41"]["Position"] = UDim2.new(0.014782843180000782, 0, 0.8977634906768799, 0);
-G2L["41"]["Name"] = [[BottomButtons]];
+G2L["3e"] = Instance.new("Frame", G2L["29"]);
+G2L["3e"]["ZIndex"] = 2;
+G2L["3e"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["3e"]["BackgroundTransparency"] = 1;
+G2L["3e"]["Size"] = UDim2.new(0, 541, 0, 24);
+G2L["3e"]["Position"] = UDim2.new(0.014782843180000782, 0, 0.8977634906768799, 0);
+G2L["3e"]["Name"] = [[BottomButtons]];
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.UIListLayout
-G2L["42"] = Instance.new("UIListLayout", G2L["41"]);
-G2L["42"]["VerticalAlignment"] = Enum.VerticalAlignment.Center;
-G2L["42"]["FillDirection"] = Enum.FillDirection.Horizontal;
-G2L["42"]["Padding"] = UDim.new(0, 5);
-G2L["42"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+G2L["3f"] = Instance.new("UIListLayout", G2L["3e"]);
+G2L["3f"]["VerticalAlignment"] = Enum.VerticalAlignment.Center;
+G2L["3f"]["FillDirection"] = Enum.FillDirection.Horizontal;
+G2L["3f"]["Padding"] = UDim.new(0, 5);
+G2L["3f"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+
+-- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.ClearBtn
+G2L["40"] = Instance.new("ImageButton", G2L["3e"]);
+G2L["40"]["Active"] = false;
+G2L["40"]["ZIndex"] = 2;
+G2L["40"]["SliceCenter"] = Rect.new(100, 100, 100, 100);
+G2L["40"]["ScaleType"] = Enum.ScaleType.Slice;
+G2L["40"]["SliceScale"] = 0.029999999329447746;
+G2L["40"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["40"]["ImageColor3"] = Color3.fromRGB(26, 26, 26);
+G2L["40"]["Selectable"] = false;
+G2L["40"]["LayoutOrder"] = 1;
+G2L["40"]["Image"] = [[rbxassetid://3570695787]];
+G2L["40"]["Size"] = UDim2.new(0, 131, 0, 24);
+G2L["40"]["Name"] = [[ClearBtn]];
+G2L["40"]["Position"] = UDim2.new(0, 0, -1.5833333730697632, 0);
+G2L["40"]["BackgroundTransparency"] = 1;
+
+-- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.ClearBtn.ImageButton
+G2L["41"] = Instance.new("ImageButton", G2L["40"]);
+G2L["41"]["ZIndex"] = 2;
+G2L["41"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["41"]["ImageColor3"] = Color3.fromRGB(171, 171, 171);
+G2L["41"]["AnchorPoint"] = Vector2.new(0, 0.5);
+G2L["41"]["Image"] = [[http://www.roblox.com/asset/?id=6022668885]];
+G2L["41"]["Size"] = UDim2.new(0.16030533611774445, 0, 1, 0);
+G2L["41"]["Position"] = UDim2.new(0.023000000044703484, 0, 0.5, 0);
+G2L["41"]["BackgroundTransparency"] = 1;
+
+-- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.ClearBtn.TextLabel
+G2L["42"] = Instance.new("TextButton", G2L["40"]);
+G2L["42"]["Active"] = false;
+G2L["42"]["ZIndex"] = 2;
+G2L["42"]["TextSize"] = 18;
+G2L["42"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["42"]["TextColor3"] = Color3.fromRGB(171, 171, 171);
+-- G2L["42"]["FontFace"] = ;
+G2L["42"]["Selectable"] = false;
+G2L["42"]["Size"] = UDim2.new(0, 130, 0, 24);
+G2L["42"]["LayoutOrder"] = 2;
+G2L["42"]["Name"] = [[TextLabel]];
+G2L["42"]["Text"] = [[Clear]];
+G2L["42"]["Font"] = Enum.Font.SourceSans;
+G2L["42"]["BackgroundTransparency"] = 1;
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.ExecuteBtn
-G2L["43"] = Instance.new("ImageLabel", G2L["41"]);
+G2L["43"] = Instance.new("ImageButton", G2L["3e"]);
+G2L["43"]["Active"] = false;
 G2L["43"]["ZIndex"] = 2;
 G2L["43"]["SliceCenter"] = Rect.new(100, 100, 100, 100);
 G2L["43"]["ScaleType"] = Enum.ScaleType.Slice;
+G2L["43"]["SliceScale"] = 0.029999999329447746;
 G2L["43"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["43"]["ImageColor3"] = Color3.fromRGB(26, 26, 26);
-G2L["43"]["SliceScale"] = 0.029999999329447746;
+G2L["43"]["Selectable"] = false;
 G2L["43"]["Image"] = [[rbxassetid://3570695787]];
 G2L["43"]["Size"] = UDim2.new(0, 131, 0, 24);
 G2L["43"]["Name"] = [[ExecuteBtn]];
-G2L["43"]["BackgroundTransparency"] = 1;
 G2L["43"]["Position"] = UDim2.new(0, 0, -1.5833333730697632, 0);
+G2L["43"]["BackgroundTransparency"] = 1;
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.ExecuteBtn.ImageButton
 G2L["44"] = Instance.new("ImageButton", G2L["43"]);
@@ -802,33 +796,35 @@ G2L["45"]["Text"] = [[Execute]];
 G2L["45"]["Font"] = Enum.Font.SourceSans;
 G2L["45"]["BackgroundTransparency"] = 1;
 
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.ClearBtn
-G2L["46"] = Instance.new("ImageLabel", G2L["41"]);
+-- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.SaveBtn
+G2L["46"] = Instance.new("ImageButton", G2L["3e"]);
+G2L["46"]["Active"] = false;
 G2L["46"]["ZIndex"] = 2;
 G2L["46"]["SliceCenter"] = Rect.new(100, 100, 100, 100);
 G2L["46"]["ScaleType"] = Enum.ScaleType.Slice;
+G2L["46"]["SliceScale"] = 0.029999999329447746;
 G2L["46"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["46"]["ImageColor3"] = Color3.fromRGB(26, 26, 26);
-G2L["46"]["SliceScale"] = 0.029999999329447746;
+G2L["46"]["Selectable"] = false;
+G2L["46"]["LayoutOrder"] = 3;
 G2L["46"]["Image"] = [[rbxassetid://3570695787]];
-G2L["46"]["LayoutOrder"] = 1;
 G2L["46"]["Size"] = UDim2.new(0, 131, 0, 24);
-G2L["46"]["Name"] = [[ClearBtn]];
-G2L["46"]["BackgroundTransparency"] = 1;
+G2L["46"]["Name"] = [[SaveBtn]];
 G2L["46"]["Position"] = UDim2.new(0, 0, -1.5833333730697632, 0);
+G2L["46"]["BackgroundTransparency"] = 1;
 
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.ClearBtn.ImageButton
+-- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.SaveBtn.ImageButton
 G2L["47"] = Instance.new("ImageButton", G2L["46"]);
 G2L["47"]["ZIndex"] = 2;
 G2L["47"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["47"]["ImageColor3"] = Color3.fromRGB(171, 171, 171);
 G2L["47"]["AnchorPoint"] = Vector2.new(0, 0.5);
-G2L["47"]["Image"] = [[http://www.roblox.com/asset/?id=6022668885]];
-G2L["47"]["Size"] = UDim2.new(0.16030533611774445, 0, 1, 0);
+G2L["47"]["Image"] = [[http://www.roblox.com/asset/?id=6035067857]];
+G2L["47"]["Size"] = UDim2.new(0.18320611119270325, 0, 1, 0);
 G2L["47"]["Position"] = UDim2.new(0.023000000044703484, 0, 0.5, 0);
 G2L["47"]["BackgroundTransparency"] = 1;
 
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.ClearBtn.TextLabel
+-- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.SaveBtn.TextLabel
 G2L["48"] = Instance.new("TextButton", G2L["46"]);
 G2L["48"]["Active"] = false;
 G2L["48"]["ZIndex"] = 2;
@@ -838,26 +834,28 @@ G2L["48"]["TextColor3"] = Color3.fromRGB(171, 171, 171);
 -- G2L["48"]["FontFace"] = ;
 G2L["48"]["Selectable"] = false;
 G2L["48"]["Size"] = UDim2.new(0, 130, 0, 24);
-G2L["48"]["LayoutOrder"] = 2;
+G2L["48"]["LayoutOrder"] = 3;
 G2L["48"]["Name"] = [[TextLabel]];
-G2L["48"]["Text"] = [[Clear]];
+G2L["48"]["Text"] = [[Save Script]];
 G2L["48"]["Font"] = Enum.Font.SourceSans;
 G2L["48"]["BackgroundTransparency"] = 1;
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.HideBtn
-G2L["49"] = Instance.new("ImageLabel", G2L["41"]);
+G2L["49"] = Instance.new("ImageButton", G2L["3e"]);
+G2L["49"]["Active"] = false;
 G2L["49"]["ZIndex"] = 2;
 G2L["49"]["SliceCenter"] = Rect.new(100, 100, 100, 100);
 G2L["49"]["ScaleType"] = Enum.ScaleType.Slice;
+G2L["49"]["SliceScale"] = 0.029999999329447746;
 G2L["49"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["49"]["ImageColor3"] = Color3.fromRGB(26, 26, 26);
-G2L["49"]["SliceScale"] = 0.029999999329447746;
-G2L["49"]["Image"] = [[rbxassetid://3570695787]];
+G2L["49"]["Selectable"] = false;
 G2L["49"]["LayoutOrder"] = 3;
+G2L["49"]["Image"] = [[rbxassetid://3570695787]];
 G2L["49"]["Size"] = UDim2.new(0, 131, 0, 24);
 G2L["49"]["Name"] = [[HideBtn]];
-G2L["49"]["BackgroundTransparency"] = 1;
 G2L["49"]["Position"] = UDim2.new(0, 0, -1.5833333730697632, 0);
+G2L["49"]["BackgroundTransparency"] = 1;
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.HideBtn.ImageButton
 G2L["4a"] = Instance.new("ImageButton", G2L["49"]);
@@ -885,165 +883,123 @@ G2L["4b"]["Text"] = [[Hide]];
 G2L["4b"]["Font"] = Enum.Font.SourceSans;
 G2L["4b"]["BackgroundTransparency"] = 1;
 
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.SaveBtn
-G2L["4c"] = Instance.new("ImageLabel", G2L["41"]);
-G2L["4c"]["ZIndex"] = 2;
+-- StarterGui.backdoor.exe v8.Main.BodyClipping.Games
+G2L["4c"] = Instance.new("ImageLabel", G2L["24"]);
+G2L["4c"]["ZIndex"] = 0;
 G2L["4c"]["SliceCenter"] = Rect.new(100, 100, 100, 100);
 G2L["4c"]["ScaleType"] = Enum.ScaleType.Slice;
-G2L["4c"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["4c"]["ImageColor3"] = Color3.fromRGB(26, 26, 26);
+G2L["4c"]["BackgroundColor3"] = Color3.fromRGB(16, 16, 16);
+G2L["4c"]["ImageColor3"] = Color3.fromRGB(14, 14, 14);
 G2L["4c"]["SliceScale"] = 0.029999999329447746;
+G2L["4c"]["Visible"] = false;
 G2L["4c"]["Image"] = [[rbxassetid://3570695787]];
-G2L["4c"]["LayoutOrder"] = 3;
-G2L["4c"]["Size"] = UDim2.new(0, 131, 0, 24);
-G2L["4c"]["Name"] = [[SaveBtn]];
+G2L["4c"]["Size"] = UDim2.new(0, 667, 0, 313);
+G2L["4c"]["Name"] = [[Games]];
 G2L["4c"]["BackgroundTransparency"] = 1;
-G2L["4c"]["Position"] = UDim2.new(0, 0, -1.5833333730697632, 0);
-
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.SaveBtn.ImageButton
-G2L["4d"] = Instance.new("ImageButton", G2L["4c"]);
-G2L["4d"]["ZIndex"] = 2;
-G2L["4d"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["4d"]["ImageColor3"] = Color3.fromRGB(171, 171, 171);
-G2L["4d"]["AnchorPoint"] = Vector2.new(0, 0.5);
-G2L["4d"]["Image"] = [[http://www.roblox.com/asset/?id=6035067857]];
-G2L["4d"]["Size"] = UDim2.new(0.18320611119270325, 0, 1, 0);
-G2L["4d"]["Position"] = UDim2.new(0.023000000044703484, 0, 0.5, 0);
-G2L["4d"]["BackgroundTransparency"] = 1;
-
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.SaveBtn.TextLabel
-G2L["4e"] = Instance.new("TextButton", G2L["4c"]);
-G2L["4e"]["Active"] = false;
-G2L["4e"]["ZIndex"] = 2;
-G2L["4e"]["TextSize"] = 18;
-G2L["4e"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["4e"]["TextColor3"] = Color3.fromRGB(171, 171, 171);
--- G2L["4e"]["FontFace"] = ;
-G2L["4e"]["Selectable"] = false;
-G2L["4e"]["Size"] = UDim2.new(0, 130, 0, 24);
-G2L["4e"]["LayoutOrder"] = 3;
-G2L["4e"]["Name"] = [[TextLabel]];
-G2L["4e"]["Text"] = [[Save Script]];
-G2L["4e"]["Font"] = Enum.Font.SourceSans;
-G2L["4e"]["BackgroundTransparency"] = 1;
-
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Games
-G2L["4f"] = Instance.new("ImageLabel", G2L["24"]);
-G2L["4f"]["ZIndex"] = 0;
-G2L["4f"]["SliceCenter"] = Rect.new(100, 100, 100, 100);
-G2L["4f"]["ScaleType"] = Enum.ScaleType.Slice;
-G2L["4f"]["BackgroundColor3"] = Color3.fromRGB(16, 16, 16);
-G2L["4f"]["ImageColor3"] = Color3.fromRGB(14, 14, 14);
-G2L["4f"]["SliceScale"] = 0.029999999329447746;
-G2L["4f"]["Visible"] = false;
-G2L["4f"]["Image"] = [[rbxassetid://3570695787]];
-G2L["4f"]["Size"] = UDim2.new(0, 667, 0, 313);
-G2L["4f"]["Name"] = [[Games]];
-G2L["4f"]["BackgroundTransparency"] = 1;
-G2L["4f"]["Position"] = UDim2.new(0.00032929747248999774, 0, -0.0029999851249158382, 0);
+G2L["4c"]["Position"] = UDim2.new(0.00032929747248999774, 0, -0.0029999851249158382, 0);
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Games.Borders
-G2L["50"] = Instance.new("Folder", G2L["4f"]);
-G2L["50"]["Name"] = [[Borders]];
+G2L["4d"] = Instance.new("Folder", G2L["4c"]);
+G2L["4d"]["Name"] = [[Borders]];
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Games.Borders.Frame
-G2L["51"] = Instance.new("Frame", G2L["50"]);
-G2L["51"]["BorderSizePixel"] = 0;
-G2L["51"]["BackgroundColor3"] = Color3.fromRGB(14, 14, 14);
-G2L["51"]["Size"] = UDim2.new(0, 9, 0, 313);
-G2L["51"]["Position"] = UDim2.new(-9.136999779002508e-08, 0, 0, 0);
+G2L["4e"] = Instance.new("Frame", G2L["4d"]);
+G2L["4e"]["BorderSizePixel"] = 0;
+G2L["4e"]["BackgroundColor3"] = Color3.fromRGB(14, 14, 14);
+G2L["4e"]["Size"] = UDim2.new(0, 9, 0, 313);
+G2L["4e"]["Position"] = UDim2.new(-9.136999779002508e-08, 0, 0, 0);
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Games.Borders.Frame
-G2L["52"] = Instance.new("Frame", G2L["50"]);
-G2L["52"]["BorderSizePixel"] = 0;
-G2L["52"]["BackgroundColor3"] = Color3.fromRGB(14, 14, 14);
-G2L["52"]["Size"] = UDim2.new(0, 663, 0, 6);
-G2L["52"]["Position"] = UDim2.new(-4.5963965078499314e-08, 0, 0, 0);
+G2L["4f"] = Instance.new("Frame", G2L["4d"]);
+G2L["4f"]["BorderSizePixel"] = 0;
+G2L["4f"]["BackgroundColor3"] = Color3.fromRGB(14, 14, 14);
+G2L["4f"]["Size"] = UDim2.new(0, 663, 0, 6);
+G2L["4f"]["Position"] = UDim2.new(-4.5963965078499314e-08, 0, 0, 0);
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Games.InnerBody
-G2L["53"] = Instance.new("Frame", G2L["4f"]);
-G2L["53"]["ZIndex"] = 0;
-G2L["53"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["53"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-G2L["53"]["BackgroundTransparency"] = 1;
-G2L["53"]["LayoutOrder"] = 5;
-G2L["53"]["Size"] = UDim2.new(0, 668, 0, 313);
-G2L["53"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
-G2L["53"]["Name"] = [[InnerBody]];
+G2L["50"] = Instance.new("Frame", G2L["4c"]);
+G2L["50"]["ZIndex"] = 0;
+G2L["50"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["50"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["50"]["BackgroundTransparency"] = 1;
+G2L["50"]["LayoutOrder"] = 5;
+G2L["50"]["Size"] = UDim2.new(0, 668, 0, 313);
+G2L["50"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
+G2L["50"]["Name"] = [[InnerBody]];
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Games.InnerBody.TextLabel
-G2L["54"] = Instance.new("TextLabel", G2L["53"]);
-G2L["54"]["RichText"] = true;
-G2L["54"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
--- G2L["54"]["FontFace"] = ;
-G2L["54"]["TextSize"] = 14;
-G2L["54"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["54"]["Size"] = UDim2.new(0, 200, 0, 50);
-G2L["54"]["Text"] = [[I have no idea what to put here]];
-G2L["54"]["Font"] = Enum.Font.SourceSans;
-G2L["54"]["BackgroundTransparency"] = 1;
-G2L["54"]["Position"] = UDim2.new(0.3502993881702423, 0, 0.41853034496307373, 0);
+G2L["51"] = Instance.new("TextLabel", G2L["50"]);
+G2L["51"]["RichText"] = true;
+G2L["51"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+-- G2L["51"]["FontFace"] = ;
+G2L["51"]["TextSize"] = 14;
+G2L["51"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["51"]["Size"] = UDim2.new(0, 200, 0, 50);
+G2L["51"]["Text"] = [[I have no idea what to put here]];
+G2L["51"]["Font"] = Enum.Font.SourceSans;
+G2L["51"]["BackgroundTransparency"] = 1;
+G2L["51"]["Position"] = UDim2.new(0.3502993881702423, 0, 0.41853034496307373, 0);
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Settings
-G2L["55"] = Instance.new("ImageLabel", G2L["24"]);
-G2L["55"]["ZIndex"] = 2;
-G2L["55"]["SliceCenter"] = Rect.new(100, 100, 100, 100);
-G2L["55"]["ScaleType"] = Enum.ScaleType.Slice;
-G2L["55"]["BackgroundColor3"] = Color3.fromRGB(16, 16, 16);
-G2L["55"]["ImageColor3"] = Color3.fromRGB(14, 14, 14);
-G2L["55"]["SliceScale"] = 0.029999999329447746;
-G2L["55"]["Visible"] = false;
-G2L["55"]["Image"] = [[rbxassetid://3570695787]];
-G2L["55"]["Size"] = UDim2.new(0, 668, 0, 313);
-G2L["55"]["Name"] = [[Settings]];
-G2L["55"]["BackgroundTransparency"] = 1;
-G2L["55"]["Position"] = UDim2.new(0, 0, -0.003000000026077032, 0);
+G2L["52"] = Instance.new("ImageLabel", G2L["24"]);
+G2L["52"]["ZIndex"] = 2;
+G2L["52"]["SliceCenter"] = Rect.new(100, 100, 100, 100);
+G2L["52"]["ScaleType"] = Enum.ScaleType.Slice;
+G2L["52"]["BackgroundColor3"] = Color3.fromRGB(16, 16, 16);
+G2L["52"]["ImageColor3"] = Color3.fromRGB(14, 14, 14);
+G2L["52"]["SliceScale"] = 0.029999999329447746;
+G2L["52"]["Visible"] = false;
+G2L["52"]["Image"] = [[rbxassetid://3570695787]];
+G2L["52"]["Size"] = UDim2.new(0, 668, 0, 313);
+G2L["52"]["Name"] = [[Settings]];
+G2L["52"]["BackgroundTransparency"] = 1;
+G2L["52"]["Position"] = UDim2.new(0, 0, -0.003000000026077032, 0);
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Settings.Borders
-G2L["56"] = Instance.new("Folder", G2L["55"]);
-G2L["56"]["Name"] = [[Borders]];
+G2L["53"] = Instance.new("Folder", G2L["52"]);
+G2L["53"]["Name"] = [[Borders]];
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Settings.Borders.Frame
-G2L["57"] = Instance.new("Frame", G2L["56"]);
-G2L["57"]["BorderSizePixel"] = 0;
-G2L["57"]["BackgroundColor3"] = Color3.fromRGB(14, 14, 14);
-G2L["57"]["Size"] = UDim2.new(0, 9, 0, 313);
-G2L["57"]["Position"] = UDim2.new(-9.136999779002508e-08, 0, 0, 0);
+G2L["54"] = Instance.new("Frame", G2L["53"]);
+G2L["54"]["BorderSizePixel"] = 0;
+G2L["54"]["BackgroundColor3"] = Color3.fromRGB(14, 14, 14);
+G2L["54"]["Size"] = UDim2.new(0, 9, 0, 313);
+G2L["54"]["Position"] = UDim2.new(-9.136999779002508e-08, 0, 0, 0);
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Settings.Borders.Frame
-G2L["58"] = Instance.new("Frame", G2L["56"]);
-G2L["58"]["BorderSizePixel"] = 0;
-G2L["58"]["BackgroundColor3"] = Color3.fromRGB(14, 14, 14);
-G2L["58"]["Size"] = UDim2.new(0, 663, 0, 6);
-G2L["58"]["Position"] = UDim2.new(-4.5963965078499314e-08, 0, 0, 0);
+G2L["55"] = Instance.new("Frame", G2L["53"]);
+G2L["55"]["BorderSizePixel"] = 0;
+G2L["55"]["BackgroundColor3"] = Color3.fromRGB(14, 14, 14);
+G2L["55"]["Size"] = UDim2.new(0, 663, 0, 6);
+G2L["55"]["Position"] = UDim2.new(-4.5963965078499314e-08, 0, 0, 0);
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Settings.InnerBody
-G2L["59"] = Instance.new("Frame", G2L["55"]);
-G2L["59"]["ZIndex"] = 2;
-G2L["59"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["59"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-G2L["59"]["BackgroundTransparency"] = 1;
-G2L["59"]["LayoutOrder"] = 5;
-G2L["59"]["Size"] = UDim2.new(0, 668, 0, 313);
-G2L["59"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
-G2L["59"]["Name"] = [[InnerBody]];
+G2L["56"] = Instance.new("Frame", G2L["52"]);
+G2L["56"]["ZIndex"] = 2;
+G2L["56"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["56"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["56"]["BackgroundTransparency"] = 1;
+G2L["56"]["LayoutOrder"] = 5;
+G2L["56"]["Size"] = UDim2.new(0, 668, 0, 313);
+G2L["56"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
+G2L["56"]["Name"] = [[InnerBody]];
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Settings.InnerBody.TextLabel
-G2L["5a"] = Instance.new("TextLabel", G2L["59"]);
-G2L["5a"]["ZIndex"] = 3;
-G2L["5a"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
--- G2L["5a"]["FontFace"] = ;
-G2L["5a"]["TextSize"] = 20;
-G2L["5a"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["5a"]["Size"] = UDim2.new(0, 200, 0, 50);
-G2L["5a"]["Text"] = [[Work in Progress]];
-G2L["5a"]["Font"] = Enum.Font.SourceSans;
-G2L["5a"]["BackgroundTransparency"] = 1;
-G2L["5a"]["Position"] = UDim2.new(0.3502993881702423, 0, 0.37380191683769226, 0);
+G2L["57"] = Instance.new("TextLabel", G2L["56"]);
+G2L["57"]["ZIndex"] = 3;
+G2L["57"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+-- G2L["57"]["FontFace"] = ;
+G2L["57"]["TextSize"] = 20;
+G2L["57"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["57"]["Size"] = UDim2.new(0, 200, 0, 50);
+G2L["57"]["Text"] = [[Work in Progress]];
+G2L["57"]["Font"] = Enum.Font.SourceSans;
+G2L["57"]["BackgroundTransparency"] = 1;
+G2L["57"]["Position"] = UDim2.new(0.3502993881702423, 0, 0.37380191683769226, 0);
 
 -- StarterGui.backdoor.exe v8.Variables
-G2L["5b"] = Instance.new("ModuleScript", G2L["1"]);
-G2L["5b"]["Name"] = [[Variables]];
+G2L["58"] = Instance.new("ModuleScript", G2L["1"]);
+G2L["58"]["Name"] = [[Variables]];
 
 -- Require G2L wrapper
 local G2L_REQUIRE = require;
@@ -1060,15 +1016,13 @@ local function require(Module:ModuleScript)
     return G2L_REQUIRE(Module);
 end
 
-G2L_MODULES[G2L["5b"]] = {
+G2L_MODULES[G2L["58"]] = {
     Closure = function()
         local topbar = script.Parent.Main.Topbar
 local sidebar = script.Parent.Main.Sidebar
 
 local executorFrame = script.Parent.Main.BodyClipping.Executor.InnerBody
 local executorBottomBtns = executorFrame.BottomButtons
-
-
 
 return {
 	TopButtons = {
@@ -1082,6 +1036,7 @@ return {
 	},
 	Frames = {
 		ExecutorFrame = {
+			Frame = script.Parent.Main.BodyClipping.Executor,
 			Buttons = {
 				ExecuteButton = executorBottomBtns.ExecuteBtn,
 				ClearButton = executorBottomBtns.ClearBtn,
@@ -1089,22 +1044,19 @@ return {
 				SaveButton = executorBottomBtns.SaveBtn,
 				AddScript = executorFrame.OpenScripts.AddTabBtn
 			},
-			SourceBox = {
-				Source = executorFrame.Source.Source
-			},
+			Source = executorFrame.Source.Source,
 			Templates = {
 				OpenScript = executorFrame.OpenScripts.Template,
 				ScriptHub = executorFrame.Scripthub.Scripts.Template
-				
+
 			}
 		}
 	}
-	
-}
 
+}
     end;
 };
-getfenv(G2L_MODULES[G2L["5b"]].Closure)["script"] = G2L["5b"];
+getfenv(G2L_MODULES[G2L["58"]].Closure)["script"] = G2L["58"];
 
 return require(G2L["1"].Variables)
 
