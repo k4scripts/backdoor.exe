@@ -21,7 +21,7 @@ local localPlayer = game:GetService("Players").LocalPlayer
 local randID = tostring(localPlayer.UserId * 2)..tostring(math.random(100000000,1000000000))
 
 local UI_PARENT = game:GetService("CoreGui").RobloxGui
-local INV_CODE = "6HndYgC"
+local INV_CODE = "xJHCqm84cW"
 
 local function notify(text,cb,b1,b2)
 	game:GetService("StarterGui"):SetCore(
