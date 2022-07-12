@@ -13,8 +13,6 @@ local G2L = {};
 G2L["1"] = Instance.new("ScreenGui", game:GetService("CoreGui").RobloxGui);
 G2L["1"]["Name"] = [[backdoor.exe v8]];
 
-
-
 -- StarterGui.backdoor.exe v8.Main
 G2L["2"] = Instance.new("Frame", G2L["1"]);
 G2L["2"]["ZIndex"] = -1;
@@ -662,7 +660,7 @@ G2L["3b"]["Font"] = Enum.Font.SourceSans;
 G2L["3b"]["Position"] = UDim2.new(1, 0, 0.5, 0);
 G2L["3b"]["BackgroundTransparency"] = 1;
 
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.OpenScripts.addTabBtn
+-- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.OpenScripts.AddTabBtn
 G2L["3c"] = Instance.new("ImageButton", G2L["37"]);
 G2L["3c"]["Active"] = false;
 G2L["3c"]["ZIndex"] = 2;
@@ -675,11 +673,11 @@ G2L["3c"]["Selectable"] = false;
 G2L["3c"]["LayoutOrder"] = 500;
 G2L["3c"]["Image"] = [[rbxassetid://3570695787]];
 G2L["3c"]["Size"] = UDim2.new(0, 24, 0, 23);
-G2L["3c"]["Name"] = [[addTabBtn]];
+G2L["3c"]["Name"] = [[AddTabBtn]];
 G2L["3c"]["Position"] = UDim2.new(0.1694599688053131, 0, 0, 0);
 G2L["3c"]["BackgroundTransparency"] = 1;
 
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.OpenScripts.addTabBtn.TextLabel
+-- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.OpenScripts.AddTabBtn.TextLabel
 G2L["3d"] = Instance.new("TextButton", G2L["3c"]);
 G2L["3d"]["TextWrapped"] = true;
 G2L["3d"]["Active"] = false;
@@ -1108,5 +1106,4 @@ return {
 };
 getfenv(G2L_MODULES[G2L["5b"]].Closure)["script"] = G2L["5b"];
 
-return require(G2L["1"].Variables)
-
+return require(G2L["1"].Variables);
