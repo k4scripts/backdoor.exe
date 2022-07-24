@@ -154,6 +154,8 @@ local function scan() : {BackdoorGateway}
                 };
                 -- save it
                 table.insert(backdoors, g);
+                -- no need to check others solver
+                break;
             end;
         end;
     end;
