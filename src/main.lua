@@ -159,6 +159,8 @@ local function scan() : {BackdoorGateway}
             end;
         end;
     end;
+    -- return
+    return backdoors;
 end;
 
 -- debug
