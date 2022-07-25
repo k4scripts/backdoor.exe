@@ -70,7 +70,7 @@ local function runRemote(r:LikelyBackdoor, ...) : any?
         local res;
         taskSpawnWithTimeout(function(...)
             res = r:InvokeServer(...);
-        end, 800, ...);
+        end, 0.800, ...);
         return res;
     end
 end;
