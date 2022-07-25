@@ -18,7 +18,7 @@
 
 
 --// TYPES \\--
-export type LikelyBackdoor = RemoteEvent|RemoteFunction;
+--[[ export type LikelyBackdoor = RemoteEvent|RemoteFunction;
 export type MakeDummy = (LikelyBackdoor, string) -> nil;
 export type ExecuteBackdoor = (BackdoorGateway, ...any) -> any;
 
@@ -35,12 +35,15 @@ export type BackdoorSolver = {
 export type BackdoorGateway = {
     b: LikelyBackdoor,                          -- backdoor
     Execute: (BackdoorGateway, ...any) -> any
-};
+};]]
+
+--// SERVICES \\--
+local ServerScript = game:GetService("ServerScriptService");
 
 --// GLOBALS \\--
 
-local BACKDOOR_SOLVER : {BackdoorSolver} = {};
-local URSTRING_TO_BACKDOOR : {[string]:BackdoorGateway} = {};
+local BACKDOOR_SOLVER = {};
+local URSTRING_TO_BACKDOOR = {};
 local ALPHABET = {
     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
     "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
@@ -52,18 +55,16 @@ local ALPHABET = {
 
 -- task.spawn with a max timeout in msc
 local function taskSpawnWithTimeout(func, timeout, ...)
-    local args = {...};
-    local thread = coroutine.wrap(function()
-        func(args);
-    end);
+    local thread = coroutine.create(func);
     local start = tick();
-    while coroutine.status(thread) == "Running" and (timeout > tick() - start) do
+    coroutine.resume(thread, ...);
+    while coroutine.status(thread) == "running" and (timeout > tick() - start) do
         task.wait();
     end;
 end;
 
 -- fire RemoteEvent/RemoteFunction with the given arguments
-local function runRemote(r:LikelyBackdoor, ...) : any?
+local function runRemote(r, ...)
     if r:IsA("RemoteEvent") then
         return r:FireServer(...)
     elseif r:IsA("RemoteFunction") then
@@ -76,7 +77,7 @@ local function runRemote(r:LikelyBackdoor, ...) : any?
 end;
 
 -- generate an unique random string name inside the passed parent
-local function urString(len:number, parent:Instance?)
+local function urString(len, parent)
     local name = "";
     local r = Random.new(tick());
     while true do
@@ -95,7 +96,7 @@ local function urString(len:number, parent:Instance?)
 end;
 
 -- wrap to make a BackdoorGateway
-local function makeGateway(r:LikelyBackdoor, s:BackdoorSolver) : BackdoorGateway
+local function makeGateway(r, s)
     return {
         b = r,
         Execute = s.Execute
@@ -108,20 +109,25 @@ end;
 -- @detection by performing a remote run and instanciating a dummy instance
 -- @execution_param code:string
 BACKDOOR_SOLVER[1] = {
-    makeDummy = function(r:LikelyBackdoor, dummyName:string)
+    makeDummy = function(r, dummyName)
+        --[[ check if loadstring is disabled | sobly not work
+        if gethiddenproperty(ServerScript, "LoadStringEnabled") == false then
+            URSTRING_TO_BACKDOOR[dummyName] = nil;
+            return;
+        end;]]
         local src = ('local d = Instance.new("BoolValue",workspace);d.Name = "%s";'):format(
             dummyName
         );
         runRemote(r, src);
     end,
-    Execute = function(g:BackdoorGateway, code:string)
+    Execute = function(g, code)
         return runRemote(g.b, code);
     end
 };
 
 --// CORE \\--
 
-local function getRemotes() : {LikelyBackdoor}
+local function getRemotes()
     local remotes = {};
     for i, r in next, game:GetDescendants() do
         if r:IsA("RemoteEvent") or r:IsA("RemoteFunction") then
@@ -141,7 +147,7 @@ local function getRemotes() : {LikelyBackdoor}
 end;
 
 -- scan all game remotes and return all backdoors found
-local function scan() : {BackdoorGateway}
+local function scan()
     -- retrive remotes
     local remotes = getRemotes();
     local backdoors = {};
