@@ -38,7 +38,9 @@ export type BackdoorGateway = {
 };]]
 
 --// SERVICES \\--
-local ServerScript = game:GetService("ServerScriptService");
+local serverScript = game:GetService("ServerScriptService");
+local players = game:GetService("Players");
+local localPlayer = players.LocalPlayer;
 
 --// GLOBALS \\--
 
@@ -54,25 +56,21 @@ local ALPHABET = {
 --// UTILS \\--
 
 -- task.spawn with a max timeout in msc
-local function taskSpawnWithTimeout(func, timeout, ...)
+--[[local function taskSpawnWithTimeout(func, timeout, ...)
     local thread = coroutine.create(func);
     local start = tick();
     coroutine.resume(thread, ...);
     while coroutine.status(thread) == "running" and (timeout > tick() - start) do
         task.wait();
     end;
-end;
+end;]]
 
--- fire RemoteEvent/RemoteFunction with the given arguments
+-- fire RemoteEvent/RemoteFunction with the given arguments in a new thread
 local function runRemote(r, ...)
     if r:IsA("RemoteEvent") then
-        return r:FireServer(...)
+        return task.spawn(r.FireServer, r, ...);
     elseif r:IsA("RemoteFunction") then
-        local res;
-        taskSpawnWithTimeout(function(...)
-            res = r:InvokeServer(...);
-        end, 0.800, ...);
-        return res;
+        return task.spawn(r.InvokeServer, r, ...);
     end
 end;
 
@@ -115,7 +113,7 @@ BACKDOOR_SOLVER[1] = {
             URSTRING_TO_BACKDOOR[dummyName] = nil;
             return;
         end;]]
-        local src = ('local d = Instance.new("BoolValue",workspace);d.Name = "%s";'):format(
+        local src = ('local d = Instance.new("BoolValue");d.Name = "%s";d.Parent = workspace;'):format(
             dummyName
         );
         runRemote(r, src);
@@ -177,15 +175,21 @@ local function scan()
             s.makeDummy(r, dummyName);
         end;
     end;
-    task.wait(0.800); -- wait 800 ms for a possible dummy detection
+    task.wait(localPlayer:GetNetworkPing() * #remotes); -- wait latency product in seconds for safe detections
     connection:Disconnect();
     table.clear(URSTRING_TO_BACKDOOR); -- clear URSTRING_TO_BACKDOOR
     -- return
     return backdoors;
 end;
 
--- debug
-local backdoors = scan();
-table.foreach(backdoors, function(i, g)
-    print("Backdoor: " .. g.b:GetFullName());
-end);
+
+-- perform a scan and print out the time taken and the found backdoors
+local function debugScan()
+    local start = tick();
+    local backdoors = scan();
+    local endTime = tick();
+    print("Backdoors found: " .. #backdoors);
+    print("Time taken: " .. (endTime - start) .. "ms");
+end;
+
+debugScan();
