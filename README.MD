@@ -11,16 +11,16 @@
   </a>
 </h2>
 
-An in game interface/tool to scan every remote for backdoors. </br>
+An in-game interface/tool to scan every remote for backdoors. </br>
 **Tool was made to find backdoors in your game.**
 
 
-<!--- ### ✨ [Demo](https://demo.url/) Comming soon ;) --->
+<!--- ### ✨ [Demo](https://demo.url/) Comming soon 😉 --->
 
 
 # Contributing
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/iK4oS/backdoor.exe/issues).
-* Undetected backdoors reports are appreciate as contribute to provide the best updated backdoor scanner out there.
+Contributions, issues, and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/iK4oS/backdoor.exe/issues).
+* Undetected backdoors reports are appreciated as contribute to providing the best-updated backdoor scanner out there.
 
 # Show your support
 Give a ⭐️ if this project helped you or join our [Discord](https://discord.com/invite/xJHCqm84cW) !
