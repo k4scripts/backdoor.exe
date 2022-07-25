@@ -90,6 +90,7 @@ local function urString(len:number, parent:Instance?)
         -- rare but still possible :o
         name = "";
     end
+    return name;
 end;
 
 --// SOLVERS \\--
