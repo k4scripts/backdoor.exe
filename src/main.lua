@@ -127,7 +127,7 @@ BACKDOOR_SOLVER[1] = {
 
 local function getRemotes()
     local remotes = {};
-    for i, r in next, game:GetDescendants() do
+    for i, r in ipairs(game:GetDescendants()) do
         if r:IsA("RemoteEvent") or r:IsA("RemoteFunction") then
             table.insert(remotes, r);
         end
@@ -136,7 +136,7 @@ local function getRemotes()
     if getnilinstances == nil then
         return remotes;
     end
-    for i, r in next, getnilinstances() do
+    for i, r in ipairs(getnilinstances()) do
         if r:IsA("RemoteEvent") or r:IsA("RemoteFunction") then
             table.insert(remotes, r);
         end;
@@ -162,9 +162,9 @@ local function scan()
         end;
     end);
     -- loop all remotes
-    for i, r in next, remotes do
+    for i, r in ipairs(remotes) do
         -- loop solvers
-        for j, s in next, BACKDOOR_SOLVER do
+        for j, s in ipairs(BACKDOOR_SOLVER) do
             -- create a new backdoor gateway
             local g = makeGateway(r, s);
             -- this will ensure we generate an unique string inside URSTRING_TO_BACKDOOR and workspace
