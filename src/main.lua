@@ -77,7 +77,7 @@ end;
 -- generate an unique random string name inside the passed parent
 local function urString(len, parent)
     local name = "";
-    local r = Random.new(tick());
+    local r = Random.new();
     while true do
         for i = 1, len do
             local idx = r:NextInteger(1, #ALPHABET);
