@@ -45,6 +45,7 @@ local localPlayer = players.LocalPlayer;
 --// GLOBALS \\--
 
 local BACKDOOR_SOLVER = {};
+local BACKDOOR_FILTER = {};
 local URSTRING_TO_BACKDOOR = {};
 local ALPHABET = {
     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
@@ -123,23 +124,39 @@ BACKDOOR_SOLVER[1] = {
     end
 };
 
+--// FILTERS \\--
+-- I suggest registering filters in the order of priority, and they must be thread safe.
+
+-- [[COMMON BACKDOOR FILTER]]
+-- @filter ClassName check the passed instance
+BACKDOOR_FILTER[1] = function(r)
+    return r:IsA("RemoteEvent") or r:IsA("RemoteFunction");
+end;
+
+
 --// CORE \\--
+
+local function filterRemote(r, remotes)
+    for _, filter in ipairs(BACKDOOR_FILTER) do
+        if filter(r) == false then
+            return false; -- remote is not a backdoor
+        end;
+    end;
+    table.insert(remotes, r);
+    return true;
+end
 
 local function getRemotes()
     local remotes = {};
     for i, r in ipairs(game:GetDescendants()) do
-        if r:IsA("RemoteEvent") or r:IsA("RemoteFunction") then
-            table.insert(remotes, r);
-        end
+        filterRemote(r, remotes);
     end;
     -- check getnilinstances support
     if getnilinstances == nil then
         return remotes;
     end
     for i, r in ipairs(getnilinstances()) do
-        if r:IsA("RemoteEvent") or r:IsA("RemoteFunction") then
-            table.insert(remotes, r);
-        end;
+        filterRemote(r, remotes);
     end;
     return remotes;
 end;
