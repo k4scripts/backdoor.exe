@@ -138,7 +138,7 @@ end;
 
 local function filterRemote(r, remotes)
     for _, filter in ipairs(BACKDOOR_FILTER) do
-        if filter(r) == false then
+        if not filter(r) then
             return false; -- remote is not a backdoor
         end;
     end;
