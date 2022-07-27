@@ -37,6 +37,9 @@ local STRING_VALUE_NAME = mathRandom(1000000, 9999999);
 if RobloxGui:FindFirstChild("V6") then RobloxGui:FindFirstChild("V6"):Destroy(); print("Refreshed"); end
 local Variables = loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/indev/ui.lua"))()
 
+Variables.UI.Main.Active = true
+Variables.UI.Main.Draggable = true
+
 local function notify(text,cb,b1,b2)
 	game:GetService("StarterGui"):SetCore(
 		"SendNotification",{
