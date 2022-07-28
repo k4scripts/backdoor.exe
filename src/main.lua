@@ -232,7 +232,7 @@ local function execute(code, gateway, canDebug)
         connection = workspace.ChildAdded:Connect(function(child)
             if child.Name == token then
                 -- alert to user
-                alertLib.Error(ui, 'backdoor.exe', 'Execution error in console.')
+                alertLib.Error(screenGui, 'backdoor.exe', 'Execution error in console.')
                 -- stdout err in the console
                 if not child.Value then
                     task.spawn(error, child:GetAttribute("err"));
@@ -270,4 +270,4 @@ btns.execBtn.MouseButton1Click:Connect(function()
     execute(code, backdoors[1], true);
 end);
 
-alertLib.Success(ui, 'backdoor.exe', 'Backdoor scanner successfully loaded.')
+alertLib.Success(screenGui, 'backdoor.exe', 'Backdoor scanner successfully loaded.')
