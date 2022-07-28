@@ -38,6 +38,7 @@ export type BackdoorGateway = {
 };]]
 
 --// SERVICES \\--
+
 local serverScript = game:GetService("ServerScriptService");
 local players = game:GetService("Players");
 local localPlayer = players.LocalPlayer;
@@ -53,6 +54,19 @@ local ALPHABET = {
     "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
     "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", "[", "]", "{", "}", "|", ";", ":", ",", ".", "?", "/", "`", "~"
 };
+
+-- // CONSTANTS \\--
+local EXEC_DEBUG = [[
+local int, err = pcall(function() %s end);
+local bool = Instance.new("BoolValue");
+bool.Name = "%s";
+bool.Value = int;
+if not int then
+    bool:SetAttribute("err", err);
+end;
+bool.Parent = workspace;
+game:GetService("Debris"):AddItem(bool, 3);
+]];
 
 --// UTILS \\--
 
@@ -199,6 +213,34 @@ local function scan()
     return backdoors;
 end;
 
+local function execute(code, gateway, canDebug)
+    assert(code and gateway, "missing code or gateway");
+    if canDebug then
+        -- pcall wrapper
+        local token = urString(5, workspace);
+        code = EXEC_DEBUG:format(code, token);
+        -- listen for error instance
+        local connection;
+        connection = workspace.ChildAdded:Connect(function(child)
+            if child.Name == token then
+                -- alert to user TODO
+                -- stdout err in the console
+                if not child.Value then
+                    task.spawn(error, child:GetAttribute("err"));
+                end;
+                -- disconnect
+                connection:Disconnect();
+            end
+        end);
+        -- force disconnect after 3 seconds
+        task.delay(3 + localPlayer:GetNetworkPing(), function()
+            connection:Disconnect();
+        end);
+    end;
+    -- execute code
+    return gateway:Execute(code);
+end;
+
 
 -- perform a scan and print out the time taken and the found backdoors
 local function debugScan()
@@ -207,6 +249,11 @@ local function debugScan()
     local endTime = tick();
     print("Backdoors found: " .. #backdoors);
     print("Time taken: " .. (endTime - start) .. "ms");
+    return backdoors;
 end;
 
-debugScan();
+local backdoors = debugScan();
+
+if #backdoors > 0 then
+    execute("undef_call()", backdoors[1], true);
+end
