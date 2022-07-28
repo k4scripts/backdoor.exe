@@ -270,4 +270,5 @@ btns.execBtn.MouseButton1Click:Connect(function()
     execute(code, backdoors[1], true);
 end);
 
-alertLib.Success(screenGui, 'backdoor.exe', 'Backdoor scanner successfully loaded.')
+alertLib.Success(screenGui, 'backdoor.exe', 'Backdoor scanner successfully loaded.');
+alertLib.Success(screenGui, 'backdoor.exe', 'RightShift to toggle ui.', 4);
