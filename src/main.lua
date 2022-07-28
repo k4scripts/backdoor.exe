@@ -139,7 +139,7 @@ BACKDOOR_SOLVER[1] = {
 };
 
 --// FILTERS \\--
--- I suggest registering filters in the order of priority, and they must be thread safe.
+-- I suggest registering filters in priority order, and they must be thread safe.
 
 -- [[COMMON BACKDOOR FILTER]]
 -- @filter ClassName check the passed instance
