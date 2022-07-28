@@ -185,6 +185,7 @@ end;
 
 -- scan all game remotes and return all backdoors found
 local function scan()
+    alertLib.Info(screenGui, 'backdoor.exe', 'Scan started.', 4);
     -- retrive remotes
     local remotes = getRemotes();
     local backdoors = {};
@@ -231,11 +232,13 @@ local function execute(code, gateway, canDebug)
         local connection;
         connection = workspace.ChildAdded:Connect(function(child)
             if child.Name == token then
-                -- alert to user
-                alertLib.Error(screenGui, 'backdoor.exe', 'Execution error in console.')
                 -- stdout err in the console
                 if not child.Value then
+                     -- alert to user
+                    alertLib.Error(screenGui, 'backdoor.exe', 'Execution error in console.')
                     task.spawn(error, child:GetAttribute("err"));
+                else
+                    alertLib.Success(screenGui, 'backdoor.exe', 'Script successfully executed.')
                 end;
                 -- disconnect
                 connection:Disconnect();
@@ -271,4 +274,4 @@ btns.execBtn.MouseButton1Click:Connect(function()
 end);
 
 alertLib.Success(screenGui, 'backdoor.exe', 'Backdoor scanner successfully loaded.');
-alertLib.Success(screenGui, 'backdoor.exe', 'RightShift to toggle ui.', 4);
+alertLib.Info(screenGui, 'backdoor.exe', 'RightShift to toggle ui.', 4);
