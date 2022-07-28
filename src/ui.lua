@@ -400,7 +400,6 @@ G2L["27"]["Name"] = [[Source]];
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.SourceBg.Source.SourceBox
 G2L["28"] = Instance.new("TextBox", G2L["27"]);
-G2L["28"]["CursorPosition"] = -1;
 G2L["28"]["ZIndex"] = 2;
 G2L["28"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["28"]["TextXAlignment"] = Enum.TextXAlignment.Left;
@@ -527,7 +526,6 @@ G2L["30"]["Position"] = UDim2.new(0, 0, 0, -30);
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.Scripthub.TextBox.TextBox
 G2L["31"] = Instance.new("TextBox", G2L["30"]);
-G2L["31"]["CursorPosition"] = -1;
 G2L["31"]["PlaceholderColor3"] = Color3.fromRGB(126, 126, 126);
 G2L["31"]["ZIndex"] = 2;
 G2L["31"]["BorderSizePixel"] = 0;
@@ -1088,8 +1086,9 @@ local function require(Module:ModuleScript)
 end
 
 G2L_MODULES[G2L["3c"]] = {
-    Closure = function()
-        -- this module is responsible to return the current code tab text
+Closure = function()
+    local script = G2L["3c"];
+-- this module is responsible to return the current code tab text
 -- and handle the tab system
 
 -- globals
@@ -1185,12 +1184,12 @@ return {
 		return IDX_SRC[cTab]; -- easy peasy lemon squisy ;D
 	end,
 };
-    end;
+end;
 };
-getfenv(G2L_MODULES[G2L["3c"]].Closure)["script"] = G2L["3c"];
 G2L_MODULES[G2L["5f"]] = {
-    Closure = function()
-        -- services
+Closure = function()
+    local script = G2L["5f"];
+-- services
 local players = game:GetService("Players");
 
 -- globals
@@ -1280,12 +1279,12 @@ local utils = {
 
 return utils;
 
-    end;
+end;
 };
-getfenv(G2L_MODULES[G2L["5f"]].Closure)["script"] = G2L["5f"];
 G2L_MODULES[G2L["60"]] = {
-    Closure = function()
-        
+Closure = function()
+    local script = G2L["60"];
+
 -- uis
 local executor = script.Parent.Main.BodyClipping.Executor;
 local execBtns = executor.InnerBody.BottomButtons;
@@ -1296,12 +1295,11 @@ return {
 		execBtn = execBtns.ExecuteBtn.Hitbox
 	}
 }
-    end;
+end;
 };
-getfenv(G2L_MODULES[G2L["60"]].Closure)["script"] = G2L["60"];
 -- StarterGui.backdoor.exe v8.Main.Sidebar.Bottom.InviteBtn.handler
 local function C_15()
-    local script = G2L["15"];
+local script = G2L["15"];
 	-- services
 	local tweenService = game:GetService("TweenService");
 	
@@ -1341,7 +1339,7 @@ end;
 task.spawn(C_15);
 -- StarterGui.backdoor.exe v8.Main.Sidebar.handler
 local function C_1e()
-    local script = G2L["1e"];
+local script = G2L["1e"];
 	-- services
 	local tweenService = game:GetService("TweenService");
 	local players = game:GetService("Players");
@@ -1416,7 +1414,7 @@ end;
 task.spawn(C_1e);
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.Scripthub.TextBox.handler
 local function C_33()
-    local script = G2L["33"];
+local script = G2L["33"];
 	-- services
 	local tweenService = game:GetService("TweenService");
 	
@@ -1478,7 +1476,7 @@ end;
 task.spawn(C_33);
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.HideBtn.handler
 local function C_4b()
-    local script = G2L["4b"];
+local script = G2L["4b"];
 	local sourceFrame = script.Parent.Parent.Parent.SourceBg.Source;
 	
 	script.Parent.Hitbox.MouseButton1Click:Connect(function()
@@ -1488,7 +1486,7 @@ end;
 task.spawn(C_4b);
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.ExecuteBtn.LocalScript
 local function C_4e()
-    local script = G2L["4e"];
+local script = G2L["4e"];
 	script.Parent.Activated:Connect(function()
 		print("k")
 	end)
@@ -1496,7 +1494,7 @@ end;
 task.spawn(C_4e);
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.handler
 local function C_51()
-    local script = G2L["51"];
+local script = G2L["51"];
 	-- services
 	local tweenService = game:GetService("TweenService");
 	
@@ -1553,7 +1551,7 @@ end;
 task.spawn(C_51);
 -- StarterGui.backdoor.exe v8.Main.drag
 local function C_5e()
-    local script = G2L["5e"];
+local script = G2L["5e"];
 	-- services
 	local runService = game:GetService("RunService");
 	local tweenService = game:GetService("TweenService");
