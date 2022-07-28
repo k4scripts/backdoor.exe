@@ -37,6 +37,14 @@ export type BackdoorGateway = {
     Execute: (BackdoorGateway, ...any) -> any
 };]]
 
+--// UI \\--
+local screenGui, uiRequire = loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/v8/src/ui.lua"))()
+local alertLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/uniquadev/GuiToLuaConverter/main/PluginPlace/src/alerts.lua"))()
+
+local ui = uiRequire(screenGui.main);
+local btns = ui.btns;
+local editor = ui.editor;
+
 --// SERVICES \\--
 
 local serverScript = game:GetService("ServerScriptService");
@@ -223,7 +231,8 @@ local function execute(code, gateway, canDebug)
         local connection;
         connection = workspace.ChildAdded:Connect(function(child)
             if child.Name == token then
-                -- alert to user TODO
+                -- alert to user
+                alertLib.Error(ui, 'backdoor.exe', 'Execution error in console.')
                 -- stdout err in the console
                 if not child.Value then
                     task.spawn(error, child:GetAttribute("err"));
@@ -252,8 +261,13 @@ local function debugScan()
     return backdoors;
 end;
 
-local backdoors = debugScan();
+local backdoors;
+btns.execBtn.MouseButton1Click:Connect(function()
+    if backdoors == nil or #backdoors == 0 then
+        backdoors = debugScan();
+    end;
+    local code = editor.getCode();
+    execute(code, backdoors[1], true);
+end);
 
-if #backdoors > 0 then
-    execute("undef_call()", backdoors[1], true);
-end
+alertLib.Success(ui, 'backdoor.exe', 'Backdoor scanner successfully loaded.')
