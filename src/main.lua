@@ -53,6 +53,7 @@ local localPlayer = players.LocalPlayer;
 
 --// GLOBALS \\--
 
+local TITLE = "backdoor.exe - v8.0.0";
 local BACKDOOR_SOLVER = {};
 local BACKDOOR_FILTER = {};
 local URSTRING_TO_BACKDOOR = {};
@@ -185,7 +186,8 @@ end;
 
 -- scan all game remotes and return all backdoors found
 local function scan()
-    alertLib.Info(screenGui, 'backdoor.exe', 'Scan started.', 4);
+    alertLib.Info(screenGui, TITLE, 'Scan started.', 4);
+    ui.title.Text = TITLE .. "[Scanning]";
     -- retrive remotes
     local remotes = getRemotes();
     local backdoors = {};
@@ -201,6 +203,7 @@ local function scan()
             table.insert(backdoors, gateway);
         end;
     end);
+    ui.title.Text = TITLE .. "[Testing]";
     -- loop all remotes
     for i, r in ipairs(remotes) do
         -- loop solvers
@@ -222,8 +225,11 @@ local function scan()
     return backdoors;
 end;
 
+local executing = false;
 local function execute(code, gateway, canDebug)
     assert(code and gateway, "missing code or gateway");
+    executing = true;
+    ui.title.Text = TITLE .. "[Executing]";
     if canDebug then
         -- pcall wrapper
         local token = urString(5, workspace);
@@ -235,10 +241,10 @@ local function execute(code, gateway, canDebug)
                 -- stdout err in the console
                 if not child.Value then
                      -- alert to user
-                    alertLib.Error(screenGui, 'backdoor.exe', 'Execution error in console.')
+                    alertLib.Error(screenGui, TITLE, 'Execution error in console.')
                     task.spawn(error, child:GetAttribute("err"));
                 else
-                    alertLib.Success(screenGui, 'backdoor.exe', 'Script successfully executed.')
+                    alertLib.Success(screenGui, TITLE, 'Script successfully executed.')
                 end;
                 -- disconnect
                 connection:Disconnect();
@@ -249,6 +255,7 @@ local function execute(code, gateway, canDebug)
             connection:Disconnect();
         end);
     end;
+    executing = false;
     -- execute code
     return gateway:Execute(code);
 end;
@@ -266,12 +273,21 @@ end;
 
 local backdoors;
 btns.execBtn.MouseButton1Click:Connect(function()
+    -- avoid multiple executions
+    if executing then
+        return;
+    end
     if backdoors == nil or #backdoors == 0 then
         backdoors = debugScan();
     end;
     local code = editor.getCode();
     execute(code, backdoors[1], true);
+    -- reset title
+    ui.title.Text = TITLE;
 end);
 
-alertLib.Success(screenGui, 'backdoor.exe', 'Backdoor scanner successfully loaded.');
-alertLib.Info(screenGui, 'backdoor.exe', 'RightShift to toggle ui.', 4);
+-- set title
+ui.title.Text = TITLE;
+
+alertLib.Success(screenGui, TITLE, 'Backdoor scanner successfully loaded.');
+alertLib.Info(screenGui, TITLE, 'RightShift to toggle ui.', 4);
