@@ -134,6 +134,9 @@ local function scanGame()
         notify("Backdoor Found!")
         Variables.Topbar.Status.Text = "Attached"
         Variables.Topbar.Status.Circle.Status_Color.BackgroundColor3 = Color3.fromRGB(95, 185, 47)
+    else
+        notify("Unable to find backdoor!")
+        Variables.Topbar.Status.Text = "Failed"
     end
 
 	return found;
@@ -142,8 +145,9 @@ local function executeScript(script)
     if not attached then
         local function callback(text)
 			if text == "Yes" then
-				scanGame()
-				executeScript(script)
+				if scanGame() then
+				    executeScript(script)
+				end
 			elseif text == "No" then
 				return
 			end
