@@ -187,7 +187,7 @@ end;
 -- scan all game remotes and return all backdoors found
 local function scan()
     alertLib.Info(screenGui, TITLE, 'Scan started.', 4);
-    ui.title.Text = TITLE .. "[Scanning]";
+    ui.title.Text = TITLE .. " [Scanning]";
     -- retrive remotes
     local remotes = getRemotes();
     local backdoors = {};
@@ -203,7 +203,7 @@ local function scan()
             table.insert(backdoors, gateway);
         end;
     end);
-    ui.title.Text = TITLE .. "[Testing]";
+    ui.title.Text = TITLE .. " [Testing]";
     -- loop all remotes
     for i, r in ipairs(remotes) do
         -- loop solvers
@@ -229,7 +229,7 @@ local executing = false;
 local function execute(code, gateway, canDebug)
     assert(code and gateway, "missing code or gateway");
     executing = true;
-    ui.title.Text = TITLE .. "[Executing]";
+    ui.title.Text = TITLE .. " [Executing]";
     if canDebug then
         -- pcall wrapper
         local token = urString(5, workspace);
