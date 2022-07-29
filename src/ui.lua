@@ -1833,6 +1833,7 @@ end
 
 local function newTab()
 	TOP = TOP + 1;
+	if TOP > 5 then return end
 	local tab = template:Clone();
 	tab.Name = tostring(TOP);
 	setupTab(tab);
