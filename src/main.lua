@@ -280,6 +280,10 @@ btns.execBtn.MouseButton1Click:Connect(function()
     if backdoors == nil or #backdoors == 0 then
         backdoors = debugScan();
     end;
+    if backdoors[1] == nil then
+        alertLib.Error(screenGui, TITLE, 'No backdoor found.')
+        return;
+    end
     local code = editor.getCode();
     execute(code, backdoors[1], true);
     -- reset title
