@@ -47,6 +47,7 @@ local editor = ui.editor;
 
 --// SERVICES \\--
 
+local httpService = game:GetService("HttpService");
 local serverScript = game:GetService("ServerScriptService");
 local players = game:GetService("Players");
 local localPlayer = players.LocalPlayer;
@@ -66,12 +67,30 @@ local ALPHABET = {
 
 -- // CONSTANTS \\--
 local EXEC_DEBUG = [[
+local stdout = {};
+local print = function(...)
+    table.insert(stdout, {
+        value = {...}
+    });
+end;
+local warn = function(...)
+    table.insert(stdout, {
+        warn = true,
+        value = {...}
+    });
+end;
 local int, err = pcall(function() %s end);
 local bool = Instance.new("BoolValue");
 bool.Name = "%s";
 bool.Value = int;
 if not int then
     bool:SetAttribute("err", err);
+end;
+if #stdout > 0 then
+    bool:SetAttribute(
+        "stdout",
+        game:GetService("HttpService"):JSONEncode(stdout)
+    );
 end;
 bool.Parent = workspace;
 game:GetService("Debris"):AddItem(bool, 3);
@@ -228,7 +247,6 @@ end;
 local executing = false;
 local function execute(code, gateway, canDebug)
     assert(code and gateway, "missing code or gateway");
-    executing = true;
     ui.title.Text = TITLE .. " [Executing]";
     if canDebug then
         -- pcall wrapper
@@ -238,6 +256,20 @@ local function execute(code, gateway, canDebug)
         local connection;
         connection = workspace.ChildAdded:Connect(function(child)
             if child.Name == token then
+                -- stdout print, warn
+                local stdout = child:GetAttribute("stdout");
+                if typeof(stdout) == "string" then
+                    local integrity, parsed = pcall(httpService.JSONDecode, game, stdout);
+                    if integrity then
+                        for i, out in next, parsed do
+                            if out.warn then
+                                warn(table.unpack(out.value));
+                            else
+                                print(table.unpack(out.value));
+                            end
+                        end
+                    end
+                end
                 -- stdout err in the console
                 if not child.Value then
                      -- alert to user
@@ -255,7 +287,6 @@ local function execute(code, gateway, canDebug)
             connection:Disconnect();
         end);
     end;
-    executing = false;
     -- execute code
     return gateway:Execute(code);
 end;
@@ -277,6 +308,7 @@ btns.execBtn.MouseButton1Click:Connect(function()
     if executing then
         return;
     end
+    executing = true;
     if backdoors == nil or #backdoors == 0 then
         backdoors = debugScan();
     end;
@@ -286,6 +318,7 @@ btns.execBtn.MouseButton1Click:Connect(function()
     end
     local code = editor.getCode();
     execute(code, backdoors[1], true);
+    executing = false;
     -- reset title
     ui.title.Text = TITLE;
 end);
