@@ -45,6 +45,18 @@ local ui = uiRequire(screenGui.main);
 local btns = ui.btns;
 local editor = ui.editor;
 
+-- // CHECK IF RUNNING \\ --
+local renv = getrenv();
+if renv.backdoorexe then
+    renv.backdoorexe.screenGui:Destroy();
+end
+
+-- // START SESSION \\ --
+renv.backdoorexe = {
+    screenGui = screenGui,
+    ui = ui
+};
+
 --// SERVICES \\--
 
 local httpService = game:GetService("HttpService");
@@ -259,7 +271,7 @@ local function execute(code, gateway, canDebug)
                 -- stdout print, warn
                 local stdout = child:GetAttribute("stdout");
                 if typeof(stdout) == "string" then
-                    local integrity, parsed = pcall(httpService.JSONDecode, game, stdout);
+                    local integrity, parsed = pcall(httpService.JSONDecode, httpService, stdout);
                     if integrity then
                         for i, out in next, parsed do
                             if out.warn then

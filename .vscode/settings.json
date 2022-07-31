@@ -1,6 +1,8 @@
 {
     "robloxLsp.diagnostics.globals": [
         "getnilinstances",
-        "gethiddenproperty"
+        "gethiddenproperty",
+        "getrenv",
+        "getrenv"
     ]
 }

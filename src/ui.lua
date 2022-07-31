@@ -1282,7 +1282,7 @@ local function render()
 	linesLab.Text = text;
 	-- set CanvasSize
 	local canvas = textService:GetTextSize(code, textbox.TextSize, textbox.Font, Vector2.new());
-	scrolling.CanvasSize = UDim2.new(0, canvas.X + textbox.TextSize, 0, canvas.Y + textbox.TextSize);
+	scrolling.CanvasSize = UDim2.new(0, canvas.X + textbox.TextSize + 24, 0, canvas.Y + textbox.TextSize);
 end
 
 
@@ -1302,6 +1302,8 @@ G2L_MODULES[G2L["30"]] = {
 Closure = function()
     local script = G2L["30"];
 local Lexer = require(script.lexer)
+
+local TextService = game:GetService("TextService");
 
 local TokenColors = table.create(7)
 local TokenFormats = table.create(7)
@@ -1355,9 +1357,9 @@ local function highlight(textObject, src)
 			lineLabel.TextColor3 = TokenColors.iden
 			lineLabel.Font = textObject.Font
 			lineLabel.TextSize = textSize
+			lineLabel.Text = ""
 			lineLabel.Size = UDim2.new(1, 0, 0, textSize)
 			lineLabel.Position = UDim2.fromOffset(0, (textSize * textObject.LineHeight) * (i - 1))
-			lineLabel.Text = ""
 
 			lineLabel.Parent = textObject
 			lineLabels[i] = lineLabel
@@ -1374,8 +1376,10 @@ local function highlight(textObject, src)
 			lineLabel.TextColor3 = TokenColors.iden
 			lineLabel.Font = textObject.Font
 			lineLabel.TextSize = textSize
-			lineLabel.Size = UDim2.new(1, 0, 0, textSize)
-			lineLabel.Position = UDim2.fromOffset(0, (textSize * textObject.LineHeight) * (i - 1))
+			
+			local size = TextService:GetTextSize(" ", lineLabel.TextSize, lineLabel.Font, Vector2.new());
+			lineLabel.Size = UDim2.new(1, 0, 0, size.Y)
+			lineLabel.Position = UDim2.fromOffset(0, size.Y * textObject.LineHeight * (i - 1))
 			lineLabel.Text = ""
 
 			lineLabel.Parent = textObject
