@@ -3,6 +3,7 @@
         "getnilinstances",
         "gethiddenproperty",
         "getrenv",
-        "getrenv"
+        "getrenv",
+        "getgenv"
     ]
 }

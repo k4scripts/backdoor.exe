@@ -46,13 +46,13 @@ local btns = ui.btns;
 local editor = ui.editor;
 
 -- // CHECK IF RUNNING \\ --
-local renv = getrenv();
-if renv.backdoorexe then
-    renv.backdoorexe.screenGui:Destroy();
+local genv = getgenv();
+if genv.backdoorexe then
+    genv.backdoorexe.screenGui:Destroy();
 end
 
 -- // START SESSION \\ --
-renv.backdoorexe = {
+genv.backdoorexe = {
     screenGui = screenGui,
     ui = ui
 };
