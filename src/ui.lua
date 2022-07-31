@@ -1357,9 +1357,11 @@ local function highlight(textObject, src)
 			lineLabel.TextColor3 = TokenColors.iden
 			lineLabel.Font = textObject.Font
 			lineLabel.TextSize = textSize
+			
+			local size = TextService:GetTextSize("", lineLabel.TextSize, lineLabel.Font, Vector2.new());
+			lineLabel.Size = UDim2.new(1, 0, 0, size.Y)
+			lineLabel.Position = UDim2.fromOffset(0, size.Y * textObject.LineHeight * (i - 1))
 			lineLabel.Text = ""
-			lineLabel.Size = UDim2.new(1, 0, 0, textSize)
-			lineLabel.Position = UDim2.fromOffset(0, (textSize * textObject.LineHeight) * (i - 1))
 
 			lineLabel.Parent = textObject
 			lineLabels[i] = lineLabel
@@ -1377,7 +1379,7 @@ local function highlight(textObject, src)
 			lineLabel.Font = textObject.Font
 			lineLabel.TextSize = textSize
 			
-			local size = TextService:GetTextSize(" ", lineLabel.TextSize, lineLabel.Font, Vector2.new());
+			local size = TextService:GetTextSize("", lineLabel.TextSize, lineLabel.Font, Vector2.new());
 			lineLabel.Size = UDim2.new(1, 0, 0, size.Y)
 			lineLabel.Position = UDim2.fromOffset(0, size.Y * textObject.LineHeight * (i - 1))
 			lineLabel.Text = ""
