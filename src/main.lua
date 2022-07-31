@@ -314,6 +314,16 @@ local function debugScan()
     return backdoors;
 end;
 
+-- macros solver
+local function applyMacros(code:string)
+    return 
+    code:gsub(
+        "%%username%%", localPlayer.Name
+    ):gsub(
+        "%%userid%%", localPlayer.UserId
+    );
+end;
+
 local backdoors;
 btns.execBtn.MouseButton1Click:Connect(function()
     -- avoid multiple executions
@@ -328,7 +338,7 @@ btns.execBtn.MouseButton1Click:Connect(function()
         alertLib.Error(screenGui, TITLE, 'No backdoor found.')
         return;
     end
-    local code = editor.getCode();
+    local code = applyMacros(editor.getCode());
     execute(code, backdoors[1], true);
     executing = false;
     -- reset title
