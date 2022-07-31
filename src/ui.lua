@@ -1307,7 +1307,7 @@ local TokenColors = table.create(7)
 local TokenFormats = table.create(7)
 local ActiveLabels = table.create(3)
 
-local function SanitizeRichText(s: string): string
+local function SanitizeRichText(s)
 	return string.gsub(string.gsub(string.gsub(string.gsub(string.gsub(s,
 		"&", "&amp;"),
 		"<", "&lt;"),
@@ -1317,15 +1317,15 @@ local function SanitizeRichText(s: string): string
 	)
 end
 
-local function SanitizeTabs(s: string): string
+local function SanitizeTabs(s)
 	return string.gsub(s, "\t", "    ")
 end
 
-local function SanitizeControl(s: string): string
+local function SanitizeControl(s)
 	return string.gsub(s, "[\0\1\2\3\4\5\6\7\8\11\12\13\14\15\16\17\18\19\20\21\22\23\24\25\26\27\28\29\30\31]+", "")
 end
 
-local function highlight(textObject: TextBox, src: string?)
+local function highlight(textObject, src)
 	src = SanitizeTabs(SanitizeControl(src or textObject.Text))
 
 	textObject.RichText = false
@@ -1437,7 +1437,8 @@ local function highlight(textObject: TextBox, src: string?)
 	end
 end
 
-export type HighlighterColors = {
+-- ty synapse
+--[[export type HighlighterColors = {
 	background: Color3?,
 	iden: Color3?,
 	keyword: Color3?,
@@ -1446,7 +1447,7 @@ export type HighlighterColors = {
 	number: Color3?,
 	comment: Color3?,
 	operator: Color3?
-}
+}]]
 
 TokenColors = {
 	background = Color3.fromRGB(47, 47, 47),
@@ -1482,7 +1483,7 @@ return setmetatable({
 	UpdateColors = updateColors,
 	Highlight = highlight
 }, {
-	__call = function(_, textObject: TextBox|Instance, src: string?)
+	__call = function(_, textObject, src)
 		return highlight(textObject, src)
 	end
 })
@@ -1582,7 +1583,7 @@ local lua_matches = {
 --- Create a plain token iterator from a string.
 -- @tparam string s a string.
 
-function lexer.scan(s: string)
+function lexer.scan(s)
 	-- local startTime = os.clock()
 	lexer.finished = false
 
