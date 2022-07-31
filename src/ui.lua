@@ -7,7 +7,7 @@
  Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER
 ]=]
 
--- Instances: 114 | Scripts: 11 | Modules: 10
+-- Instances: 111 | Scripts: 11 | Modules: 10
 local G2L = {};
 
 -- StarterGui.backdoor.exe v8
@@ -1037,166 +1037,147 @@ G2L["5d"]["ScaleType"] = Enum.ScaleType.Slice;
 G2L["5d"]["BackgroundColor3"] = Color3.fromRGB(16, 16, 16);
 G2L["5d"]["ImageColor3"] = Color3.fromRGB(14, 14, 14);
 G2L["5d"]["SliceScale"] = 0.029999999329447746;
-G2L["5d"]["Visible"] = false;
 G2L["5d"]["Image"] = [[rbxassetid://3570695787]];
 G2L["5d"]["Size"] = UDim2.new(1, 0, 1, 0);
 G2L["5d"]["Name"] = [[Games]];
 G2L["5d"]["BackgroundTransparency"] = 1;
 G2L["5d"]["Position"] = UDim2.new(0.00032929747248999774, 0, -0.0029999851249158382, 0);
 
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Games.Borders
-G2L["5e"] = Instance.new("Folder", G2L["5d"]);
-G2L["5e"]["Name"] = [[Borders]];
-
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Games.Borders.Frame
-G2L["5f"] = Instance.new("Frame", G2L["5e"]);
-G2L["5f"]["BorderSizePixel"] = 0;
-G2L["5f"]["BackgroundColor3"] = Color3.fromRGB(14, 14, 14);
-G2L["5f"]["Size"] = UDim2.new(0, 9, 0, 313);
-G2L["5f"]["Position"] = UDim2.new(-9.136999779002508e-08, 0, 0, 0);
-
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Games.Borders.Frame
-G2L["60"] = Instance.new("Frame", G2L["5e"]);
-G2L["60"]["BorderSizePixel"] = 0;
-G2L["60"]["BackgroundColor3"] = Color3.fromRGB(14, 14, 14);
-G2L["60"]["Size"] = UDim2.new(0, 663, 0, 6);
-G2L["60"]["Position"] = UDim2.new(-4.5963965078499314e-08, 0, 0, 0);
-
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Games.InnerBody
-G2L["61"] = Instance.new("Frame", G2L["5d"]);
-G2L["61"]["ZIndex"] = 0;
-G2L["61"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["61"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-G2L["61"]["BackgroundTransparency"] = 1;
-G2L["61"]["LayoutOrder"] = 5;
-G2L["61"]["Size"] = UDim2.new(0, 668, 0, 313);
-G2L["61"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
-G2L["61"]["Name"] = [[InnerBody]];
+G2L["5e"] = Instance.new("Frame", G2L["5d"]);
+G2L["5e"]["ZIndex"] = 0;
+G2L["5e"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["5e"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["5e"]["BackgroundTransparency"] = 1;
+G2L["5e"]["LayoutOrder"] = 5;
+G2L["5e"]["Size"] = UDim2.new(1, 0, 1, 0);
+G2L["5e"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
+G2L["5e"]["Name"] = [[InnerBody]];
 
--- StarterGui.backdoor.exe v8.Main.BodyClipping.Games.InnerBody.TextLabel
-G2L["62"] = Instance.new("TextLabel", G2L["61"]);
-G2L["62"]["RichText"] = true;
-G2L["62"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
--- G2L["62"]["FontFace"] = ;
-G2L["62"]["TextSize"] = 14;
-G2L["62"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["62"]["Size"] = UDim2.new(0, 200, 0, 50);
-G2L["62"]["Text"] = [[I have no idea what to put here]];
-G2L["62"]["Font"] = Enum.Font.SourceSans;
-G2L["62"]["BackgroundTransparency"] = 1;
-G2L["62"]["Position"] = UDim2.new(0.3502993881702423, 0, 0.41853034496307373, 0);
+-- StarterGui.backdoor.exe v8.Main.BodyClipping.Games.InnerBody.Title
+G2L["5f"] = Instance.new("TextLabel", G2L["5e"]);
+G2L["5f"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+-- G2L["5f"]["FontFace"] = ;
+G2L["5f"]["TextSize"] = 23;
+G2L["5f"]["TextColor3"] = Color3.fromRGB(233, 233, 233);
+G2L["5f"]["Size"] = UDim2.new(0, 100, 0, 40);
+G2L["5f"]["Text"] = [[Games]];
+G2L["5f"]["Name"] = [[Title]];
+G2L["5f"]["Font"] = Enum.Font.SourceSansBold;
+G2L["5f"]["BackgroundTransparency"] = 1;
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Settings
-G2L["63"] = Instance.new("ImageLabel", G2L["23"]);
-G2L["63"]["ZIndex"] = 2;
-G2L["63"]["SliceCenter"] = Rect.new(100, 100, 100, 100);
-G2L["63"]["ScaleType"] = Enum.ScaleType.Slice;
-G2L["63"]["BackgroundColor3"] = Color3.fromRGB(16, 16, 16);
-G2L["63"]["ImageColor3"] = Color3.fromRGB(14, 14, 14);
-G2L["63"]["SliceScale"] = 0.029999999329447746;
-G2L["63"]["Image"] = [[rbxassetid://3570695787]];
-G2L["63"]["Size"] = UDim2.new(1, 0, 1, 0);
-G2L["63"]["Name"] = [[Settings]];
-G2L["63"]["BackgroundTransparency"] = 1;
-G2L["63"]["Position"] = UDim2.new(0, 0, -0.003000000026077032, 0);
+G2L["60"] = Instance.new("ImageLabel", G2L["23"]);
+G2L["60"]["ZIndex"] = 2;
+G2L["60"]["SliceCenter"] = Rect.new(100, 100, 100, 100);
+G2L["60"]["ScaleType"] = Enum.ScaleType.Slice;
+G2L["60"]["BackgroundColor3"] = Color3.fromRGB(16, 16, 16);
+G2L["60"]["ImageColor3"] = Color3.fromRGB(14, 14, 14);
+G2L["60"]["SliceScale"] = 0.029999999329447746;
+G2L["60"]["Visible"] = false;
+G2L["60"]["Image"] = [[rbxassetid://3570695787]];
+G2L["60"]["Size"] = UDim2.new(1, 0, 1, 0);
+G2L["60"]["Name"] = [[Settings]];
+G2L["60"]["BackgroundTransparency"] = 1;
+G2L["60"]["Position"] = UDim2.new(0, 0, -0.003000000026077032, 0);
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Settings.Borders
-G2L["64"] = Instance.new("Folder", G2L["63"]);
-G2L["64"]["Name"] = [[Borders]];
+G2L["61"] = Instance.new("Folder", G2L["60"]);
+G2L["61"]["Name"] = [[Borders]];
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Settings.Borders.Frame
-G2L["65"] = Instance.new("Frame", G2L["64"]);
-G2L["65"]["BorderSizePixel"] = 0;
-G2L["65"]["BackgroundColor3"] = Color3.fromRGB(14, 14, 14);
-G2L["65"]["Size"] = UDim2.new(0, 9, 0, 313);
-G2L["65"]["Position"] = UDim2.new(-9.136999779002508e-08, 0, 0, 0);
+G2L["62"] = Instance.new("Frame", G2L["61"]);
+G2L["62"]["BorderSizePixel"] = 0;
+G2L["62"]["BackgroundColor3"] = Color3.fromRGB(14, 14, 14);
+G2L["62"]["Size"] = UDim2.new(0, 9, 0, 313);
+G2L["62"]["Position"] = UDim2.new(-9.136999779002508e-08, 0, 0, 0);
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Settings.Borders.Frame
-G2L["66"] = Instance.new("Frame", G2L["64"]);
-G2L["66"]["BorderSizePixel"] = 0;
-G2L["66"]["BackgroundColor3"] = Color3.fromRGB(14, 14, 14);
-G2L["66"]["Size"] = UDim2.new(0, 663, 0, 6);
-G2L["66"]["Position"] = UDim2.new(-4.5963965078499314e-08, 0, 0, 0);
+G2L["63"] = Instance.new("Frame", G2L["61"]);
+G2L["63"]["BorderSizePixel"] = 0;
+G2L["63"]["BackgroundColor3"] = Color3.fromRGB(14, 14, 14);
+G2L["63"]["Size"] = UDim2.new(0, 663, 0, 6);
+G2L["63"]["Position"] = UDim2.new(-4.5963965078499314e-08, 0, 0, 0);
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Settings.InnerBody
-G2L["67"] = Instance.new("Frame", G2L["63"]);
-G2L["67"]["ZIndex"] = 2;
-G2L["67"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["67"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-G2L["67"]["BackgroundTransparency"] = 1;
-G2L["67"]["LayoutOrder"] = 5;
-G2L["67"]["Size"] = UDim2.new(1, 0, 1, 0);
-G2L["67"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
-G2L["67"]["Name"] = [[InnerBody]];
+G2L["64"] = Instance.new("Frame", G2L["60"]);
+G2L["64"]["ZIndex"] = 2;
+G2L["64"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["64"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["64"]["BackgroundTransparency"] = 1;
+G2L["64"]["LayoutOrder"] = 5;
+G2L["64"]["Size"] = UDim2.new(1, 0, 1, 0);
+G2L["64"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
+G2L["64"]["Name"] = [[InnerBody]];
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Settings.InnerBody.Title
-G2L["68"] = Instance.new("TextLabel", G2L["67"]);
-G2L["68"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
--- G2L["68"]["FontFace"] = ;
-G2L["68"]["TextSize"] = 23;
-G2L["68"]["TextColor3"] = Color3.fromRGB(233, 233, 233);
-G2L["68"]["Size"] = UDim2.new(0, 100, 0, 40);
-G2L["68"]["Text"] = [[Settings]];
-G2L["68"]["Name"] = [[Title]];
-G2L["68"]["Font"] = Enum.Font.SourceSansBold;
-G2L["68"]["BackgroundTransparency"] = 1;
+G2L["65"] = Instance.new("TextLabel", G2L["64"]);
+G2L["65"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+-- G2L["65"]["FontFace"] = ;
+G2L["65"]["TextSize"] = 23;
+G2L["65"]["TextColor3"] = Color3.fromRGB(233, 233, 233);
+G2L["65"]["Size"] = UDim2.new(0, 100, 0, 40);
+G2L["65"]["Text"] = [[Settings]];
+G2L["65"]["Name"] = [[Title]];
+G2L["65"]["Font"] = Enum.Font.SourceSansBold;
+G2L["65"]["BackgroundTransparency"] = 1;
 
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Settings.InnerBody.ScrollingFrame
-G2L["69"] = Instance.new("ScrollingFrame", G2L["67"]);
-G2L["69"]["Active"] = true;
-G2L["69"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
-G2L["69"]["BackgroundColor3"] = Color3.fromRGB(14, 14, 14);
-G2L["69"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-G2L["69"]["Size"] = UDim2.new(0.949999988079071, 0, 0.8999999761581421, -40);
-G2L["69"]["ScrollBarImageColor3"] = Color3.fromRGB(0, 0, 0);
-G2L["69"]["BorderColor3"] = Color3.fromRGB(215, 215, 215);
-G2L["69"]["Position"] = UDim2.new(0.5, 0, 0.5, 10);
+G2L["66"] = Instance.new("ScrollingFrame", G2L["64"]);
+G2L["66"]["Active"] = true;
+G2L["66"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+G2L["66"]["BackgroundColor3"] = Color3.fromRGB(14, 14, 14);
+G2L["66"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["66"]["Size"] = UDim2.new(0.949999988079071, 0, 0.8999999761581421, -40);
+G2L["66"]["ScrollBarImageColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["66"]["BorderColor3"] = Color3.fromRGB(215, 215, 215);
+G2L["66"]["Position"] = UDim2.new(0.5, 0, 0.5, 10);
 
 -- StarterGui.backdoor.exe v8.Main.drag
-G2L["6a"] = Instance.new("LocalScript", G2L["2"]);
-G2L["6a"]["Name"] = [[drag]];
+G2L["67"] = Instance.new("LocalScript", G2L["2"]);
+G2L["67"]["Name"] = [[drag]];
 
 -- StarterGui.backdoor.exe v8.Main.Resize
-G2L["6b"] = Instance.new("TextButton", G2L["2"]);
-G2L["6b"]["Active"] = false;
-G2L["6b"]["TextSize"] = 14;
-G2L["6b"]["TextTransparency"] = 1;
-G2L["6b"]["BackgroundColor3"] = Color3.fromRGB(199, 199, 199);
-G2L["6b"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
--- G2L["6b"]["FontFace"] = ;
-G2L["6b"]["AnchorPoint"] = Vector2.new(1, 1);
-G2L["6b"]["Size"] = UDim2.new(0, 10, 0, 10);
-G2L["6b"]["Name"] = [[Resize]];
-G2L["6b"]["Font"] = Enum.Font.SourceSans;
-G2L["6b"]["Position"] = UDim2.new(1, 0, 1, 0);
+G2L["68"] = Instance.new("TextButton", G2L["2"]);
+G2L["68"]["Active"] = false;
+G2L["68"]["TextSize"] = 14;
+G2L["68"]["TextTransparency"] = 1;
+G2L["68"]["BackgroundColor3"] = Color3.fromRGB(199, 199, 199);
+G2L["68"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+-- G2L["68"]["FontFace"] = ;
+G2L["68"]["AnchorPoint"] = Vector2.new(1, 1);
+G2L["68"]["Size"] = UDim2.new(0, 10, 0, 10);
+G2L["68"]["Name"] = [[Resize]];
+G2L["68"]["Font"] = Enum.Font.SourceSans;
+G2L["68"]["Position"] = UDim2.new(1, 0, 1, 0);
 
 -- StarterGui.backdoor.exe v8.Main.Resize.UICorner
-G2L["6c"] = Instance.new("UICorner", G2L["6b"]);
-G2L["6c"]["CornerRadius"] = UDim.new(0, 2);
+G2L["69"] = Instance.new("UICorner", G2L["68"]);
+G2L["69"]["CornerRadius"] = UDim.new(0, 2);
 
 -- StarterGui.backdoor.exe v8.Main.Resize.handler
-G2L["6d"] = Instance.new("LocalScript", G2L["6b"]);
-G2L["6d"]["Name"] = [[handler]];
+G2L["6a"] = Instance.new("LocalScript", G2L["68"]);
+G2L["6a"]["Name"] = [[handler]];
 
 -- StarterGui.backdoor.exe v8.utils
-G2L["6e"] = Instance.new("ModuleScript", G2L["1"]);
-G2L["6e"]["Name"] = [[utils]];
+G2L["6b"] = Instance.new("ModuleScript", G2L["1"]);
+G2L["6b"]["Name"] = [[utils]];
 
 -- StarterGui.backdoor.exe v8.main
-G2L["6f"] = Instance.new("ModuleScript", G2L["1"]);
-G2L["6f"]["Name"] = [[main]];
+G2L["6c"] = Instance.new("ModuleScript", G2L["1"]);
+G2L["6c"]["Name"] = [[main]];
 
 -- StarterGui.backdoor.exe v8.intro
-G2L["70"] = Instance.new("LocalScript", G2L["1"]);
-G2L["70"]["Name"] = [[intro]];
+G2L["6d"] = Instance.new("LocalScript", G2L["1"]);
+G2L["6d"]["Name"] = [[intro]];
 
 -- StarterGui.backdoor.exe v8.scripthub
-G2L["71"] = Instance.new("ModuleScript", G2L["1"]);
-G2L["71"]["Name"] = [[scripthub]];
+G2L["6e"] = Instance.new("ModuleScript", G2L["1"]);
+G2L["6e"]["Name"] = [[scripthub]];
 
 -- StarterGui.backdoor.exe v8.scripthub.scripts
-G2L["72"] = Instance.new("ModuleScript", G2L["71"]);
-G2L["72"]["Name"] = [[scripts]];
+G2L["6f"] = Instance.new("ModuleScript", G2L["6e"]);
+G2L["6f"]["Name"] = [[scripts]];
 
 -- Require G2L wrapper
 local G2L_REQUIRE = require;
@@ -2351,9 +2332,9 @@ return {
 };
 end;
 };
-G2L_MODULES[G2L["6e"]] = {
+G2L_MODULES[G2L["6b"]] = {
 Closure = function()
-    local script = G2L["6e"];
+    local script = G2L["6b"];
 -- services
 local players = game:GetService("Players");
 
@@ -2461,9 +2442,9 @@ return utils;
 
 end;
 };
-G2L_MODULES[G2L["6f"]] = {
+G2L_MODULES[G2L["6c"]] = {
 Closure = function()
-    local script = G2L["6f"];
+    local script = G2L["6c"];
 
 -- uis
 local executor = script.Parent.Main.BodyClipping.Executor;
@@ -2484,9 +2465,9 @@ return {
 }
 end;
 };
-G2L_MODULES[G2L["71"]] = {
+G2L_MODULES[G2L["6e"]] = {
 Closure = function()
-    local script = G2L["71"];
+    local script = G2L["6e"];
 local verifiedScripts = require(script:WaitForChild("scripts"));
 local editor = require(script.Parent.Main.BodyClipping.Executor.InnerBody.OpenScripts.editor);
 
@@ -2548,9 +2529,9 @@ addScripts(verifiedScripts, true);
 return {};
 end;
 };
-G2L_MODULES[G2L["72"]] = {
+G2L_MODULES[G2L["6f"]] = {
 Closure = function()
-    local script = G2L["72"];
+    local script = G2L["6f"];
 return {
 	Dex = "require(4786706026):dex('%username%')",
 	Minecraft = "require(5820669639)('%username%')",
@@ -2712,6 +2693,7 @@ local script = G2L["3d"];
 	
 	-- ui
 	local textbox = script.Parent.TextBox;
+	local scripts = script.Parent.Parent.Scripts;
 	
 	-- colors
 	local hoverColor = utils.modernColors.ElectricBlue;
@@ -2761,6 +2743,23 @@ local script = G2L["3d"];
 	textbox:GetPropertyChangedSignal("TextColor3"):Connect(function()
 		script.Parent.ImageLabel.ImageColor3 = textbox.TextColor3;
 	end);
+	
+	
+	-- search system
+	textbox:GetPropertyChangedSignal("Text"):Connect(function()
+		local text = textbox.Text:lower(); -- key insensitive search
+		for i, v in next, scripts:GetChildren() do
+			if not v:IsA("ImageLabel") then
+				continue;
+			end
+			if v.Name:lower():find(text) then
+				v.Visible = true;
+			else
+				v.Visible = false;
+			end;
+		end
+	end)
+	
 end;
 task.spawn(C_3d);
 -- StarterGui.backdoor.exe v8.Main.BodyClipping.Executor.InnerBody.BottomButtons.ClearBtn.handler
@@ -2852,8 +2851,8 @@ local script = G2L["53"];
 end;
 task.spawn(C_53);
 -- StarterGui.backdoor.exe v8.Main.drag
-local function C_6a()
-local script = G2L["6a"];
+local function C_67()
+local script = G2L["67"];
 	-- services
 	local runService = game:GetService("RunService");
 	local tweenService = game:GetService("TweenService");
@@ -2912,10 +2911,10 @@ local script = G2L["6a"];
 		end
 	);
 end;
-task.spawn(C_6a);
+task.spawn(C_67);
 -- StarterGui.backdoor.exe v8.Main.Resize.handler
-local function C_6d()
-local script = G2L["6d"];
+local function C_6a()
+local script = G2L["6a"];
 	-- require
 	local utils = require(script.Parent.Parent.Parent.utils);
 	
@@ -2978,10 +2977,10 @@ local script = G2L["6d"];
 		end
 	);
 end;
-task.spawn(C_6d);
+task.spawn(C_6a);
 -- StarterGui.backdoor.exe v8.intro
-local function C_70()
-local script = G2L["70"];
+local function C_6d()
+local script = G2L["6d"];
 	
 	-- service
 	local tweenService = game:GetService("TweenService");
@@ -3084,6 +3083,6 @@ local script = G2L["70"];
 	sidebar.Visible = true;
 	topbar.Visible = true;
 end;
-task.spawn(C_70);
+task.spawn(C_6d);
 
 return G2L["1"], require;
