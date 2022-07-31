@@ -1325,7 +1325,7 @@ local function SanitizeControl(s: string): string
 	return string.gsub(s, "[\0\1\2\3\4\5\6\7\8\11\12\13\14\15\16\17\18\19\20\21\22\23\24\25\26\27\28\29\30\31]+", "")
 end
 
-local function highlight(textObject: TextBox|Instance, src: string?)
+local function highlight(textObject: TextBox, src: string?)
 	src = SanitizeTabs(SanitizeControl(src or textObject.Text))
 
 	textObject.RichText = false
