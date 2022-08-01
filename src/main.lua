@@ -168,7 +168,7 @@ BACKDOOR_SOLVER[1] = {
             URSTRING_TO_BACKDOOR[dummyName] = nil;
             return;
         end;]]
-        local src = ('local d = Instance.new("BoolValue");d.Name = "%s";d.Parent = workspace;'):format(
+        local src = ('local d = Instance.new("BoolValue", workspace);d.Name = "%s";game:GetService("Debris"):AddItem(d, 3);'):format(
             dummyName
         );
         runRemote(r, src);
@@ -226,10 +226,6 @@ local function scan()
     local connection = workspace.ChildAdded:Connect(function(child)
         local gateway = URSTRING_TO_BACKDOOR[child.Name];
         if gateway then
-            -- destroy dummy
-            task.wait();
-            local src = ('workspace:FindFirstChild("%s"):Destroy();'):format(child.Name);
-            gateway:Execute(src);
             -- store backdoor
             table.insert(backdoors, gateway);
         end;
