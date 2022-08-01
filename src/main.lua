@@ -346,7 +346,7 @@ btns.execBtn.MouseButton1Click:Connect(function()
         return;
     end;
     -- store game
-    games.loadGame(game.GameId, encodeBackdoors(backdoors));
+    games.loadGame(game.PlaceId, encodeBackdoors(backdoors));
     -- execute
     local code = applyMacros(editor.getCode());
     execute(code, backdoors[1], config.data.settings.canDebug);

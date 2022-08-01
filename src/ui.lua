@@ -2839,27 +2839,27 @@ local dateFormat = dummy.Date.Text;
 local ID_CARD = {};
 
 
-local function loadGame(gameId, backdoors, timestamp)
-	gameId = tonumber(gameId); -- make sure json string index is converted to number
+local function loadGame(placeId, backdoors, timestamp)
+	placeId = tonumber(placeId); -- make sure json string index is converted to number
 	timestamp = timestamp or os.time();
 	-- check backdoors
 	if type(backdoors) ~= "table" or backdoors[1] == nil then
 		return;
 	end
 	-- retrive game info
-	local integrity, gameProduct = pcall(marketService.GetProductInfo, marketService, gameId);
+	local integrity, gameProduct = pcall(marketService.GetProductInfo, marketService, placeId);
 	-- check integrity
 	if not integrity then
 		return; -- skip game
 	end
 	-- update settings
-	config.data.games[gameId] = {
+	config.data.games[placeId] = {
 		backdoors = backdoors,
 		timestamp = timestamp
 	};
 	config.save();
 	-- check if card is already instanciated
-	local card = ID_CARD[gameId];
+	local card = ID_CARD[placeId];
 	if not card then
 		local gameIcon = gameProduct.IconImageAssetId;
 		local gameName = gameProduct.Name;
@@ -2893,14 +2893,14 @@ local function loadGame(gameId, backdoors, timestamp)
 			}
 		):Play();
 	end);
-	ID_CARD[gameId] = card;
+	ID_CARD[placeId] = card;
 	-- make text info not visible
 	container.info.Visible = false;
 end
 
 local function loadGames(games)
-	for gameId, gameObj in next, games do
-		loadGame(gameId, gameObj.backdoors, gameObj.timestamp);
+	for placeId, gameObj in next, games do
+		loadGame(placeId, gameObj.backdoors, gameObj.timestamp);
 	end
 end
 
@@ -3043,7 +3043,7 @@ local function saveConfigs()
 	local toSave = table.clone(config);
 	
 	-- convert Color3 to a decodable object
-	for name, color in ipairs(toSave.settings.codeColors) do
+	for name, color in next, toSave.settings.codeColors do
 		toSave.settings.codeColors[name] = {
 			R = color.R,
 			G = color.G,
