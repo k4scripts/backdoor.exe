@@ -42,6 +42,8 @@ local screenGui, uiRequire = loadstring(game:HttpGet("https://raw.githubusercont
 local alertLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/uniquadev/GuiToLuaConverter/main/PluginPlace/src/alerts.lua"))()
 
 local ui = uiRequire(screenGui.main);
+local config = ui.config;
+local games = ui.games;
 local btns = ui.btns;
 local editor = ui.editor;
 
@@ -119,6 +121,15 @@ game:GetService("Debris"):AddItem(bool, 3);
         task.wait();
     end;
 end;]]
+
+-- encode backdoors table
+local function encodeBackdoors(backdoors)
+    local encoded = {};
+    for i, v in ipairs(backdoors) do
+        table.insert(encoded, v.b:GetFullName());
+    end
+    return encoded;
+end;
 
 -- fire RemoteEvent/RemoteFunction with the given arguments in a new thread
 local function runRemote(r, ...)
@@ -333,7 +344,10 @@ btns.execBtn.MouseButton1Click:Connect(function()
     if backdoors[1] == nil then
         alertLib.Error(screenGui, TITLE, 'No backdoor found.')
         return;
-    end
+    end;
+    -- store game
+    games.loadGame(game.GameId, encodeBackdoors(backdoors));
+    -- execute
     local code = applyMacros(editor.getCode());
     execute(code, backdoors[1], true);
     executing = false;
