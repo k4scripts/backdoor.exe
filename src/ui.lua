@@ -2973,6 +2973,21 @@ local function newConfigs()
 	}
 end
 
+
+
+local function deepCopy(original)
+	local copy = {}
+	for k, v in pairs(original) do
+		if type(v) == "table" then
+			v = deepCopy(v)
+		end
+		copy[k] = v
+	end
+	return copy
+end
+
+
+
 local function readFile(fileName)
 	local int, err = pcall(readfile, fileName);
 	if int then
@@ -3040,7 +3055,7 @@ local config = readConfig();
 
 local configSaved = Instance.new("BindableEvent");
 local function saveConfigs()
-	local toSave = table.clone(config);
+	local toSave = deepCopy(config);
 	
 	-- convert Color3 to a decodable object
 	for name, color in next, toSave.settings.codeColors do
@@ -7208,6 +7223,16 @@ local script = G2L["7f"];
 			size * dummy.AbsoluteSize.Y + size * container.UIListLayout.Padding.Offset
 		);
 	end;
+	
+	-- auto close color picker
+	script.Parent:GetPropertyChangedSignal("Visible"):Connect(function()
+		if script.Parent.Visible == false then
+			colorPicker.Visible = false;
+			if pickerConnection then
+				pickerConnection:Disconnect();
+			end
+		end
+	end)
 	
 	
 	loadSettings(configs.data.settings);
