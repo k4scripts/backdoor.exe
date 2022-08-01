@@ -11,7 +11,7 @@
 local G2L = {};
 
 -- StarterGui.backdoor.exe v8
-G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+G2L["1"] = Instance.new("ScreenGui", game:GetService("CoreGui").RobloxGui);
 G2L["1"]["ResetOnSpawn"] = false;
 G2L["1"]["Name"] = [[backdoor.exe v8]];
 G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
