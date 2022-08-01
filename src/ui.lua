@@ -3043,7 +3043,7 @@ local function saveConfigs()
 	local toSave = table.clone(config);
 	
 	-- convert Color3 to a decodable object
-	for name, color in toSave.settings.codeColors do
+	for name, color in ipairs(toSave.settings.codeColors) do
 		toSave.settings.codeColors[name] = {
 			R = color.R,
 			G = color.G,

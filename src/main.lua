@@ -349,7 +349,7 @@ btns.execBtn.MouseButton1Click:Connect(function()
     games.loadGame(game.GameId, encodeBackdoors(backdoors));
     -- execute
     local code = applyMacros(editor.getCode());
-    execute(code, backdoors[1], true);
+    execute(code, backdoors[1], config.data.settings.canDebug);
     executing = false;
     -- reset title
     ui.title.Text = TITLE;
