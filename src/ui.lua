@@ -2864,8 +2864,8 @@ local function loadGame(placeId, backdoors, timestamp)
 		local gameIcon = gameProduct.IconImageAssetId;
 		local gameName = gameProduct.Name;
 		-- gameIcon check
-		if gameIcon == "0" then
-			gameIcon = "3033152788";
+		if gameIcon == 0 then
+			gameIcon = 3033152788;
 		end
 		card = dummy:Clone();
 		card.Parent = container;
