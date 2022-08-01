@@ -195,7 +195,20 @@ BACKDOOR_SOLVER[1] = {
 -- [[COMMON BACKDOOR FILTER]]
 -- @filter ClassName check the passed instance
 BACKDOOR_FILTER[1] = function(r)
-    return r:IsA("RemoteEvent") or r:IsA("RemoteFunction");
+    local Parent = rm.Parent
+	local class = rm.ClassName
+        
+	if not (r:IsA("RemoteEvent") or r:IsA("RemoteFunciton")) then return false end
+
+	if Parent then
+		if Parent == JointsService then return false end
+		if (Parent == ReplicatedStorage and rm:FindFirstChild("__FUNCTION")) or
+        (rm.Name == "__FUNCTION" and Parent.ClassName == "RemoteEvent" and Parent.Parent == ReplicatedStorage) then return false end
+	end
+
+	if rm:IsDescendantOf(RobloxReplicatedStorage) then return false end
+
+	return true
 end;
 
 
