@@ -197,6 +197,13 @@ BACKDOOR_SOLVER[1] = {
 BACKDOOR_FILTER[1] = function(r)
     return r:IsA("RemoteEvent") or r:IsA("RemoteFunction");
 end;
+BACKDOOR_FILTER[2] = function(r)
+        return not (r.Parent == game:GetService("ReplicatedStorage") and r:FindFirstChild("__FUNCTION")) or
+            (r.Name == "__FUNCTION" and r.Parent:IsA("RemoteEvent") and r.Parent.Parent == game:GetService("ReplicatedStorage"));
+end;
+BACKDOOR_FILTER[3] = function(r)
+        return not r:IsDescendantOf(game:GetService("RobloxReplicatedStorage")
+end;
 
 
 --// CORE \\--
