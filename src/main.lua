@@ -38,6 +38,10 @@ export type BackdoorGateway = {
 };]]
 
 --// UI \\--
+if game:GetService("CoreGui").RobloxGui:FindFirstChild("backdoor.exe v8") then 
+        game:GetService("CoreGui").RobloxGui:FindFirstChild("backdoor.exe v8"):Destroy()
+end
+        
 local screenGui, uiRequire = loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/v8/src/ui.lua"))()
 local alertLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/uniquadev/GuiToLuaConverter/main/PluginPlace/src/alerts.lua"))()
 
@@ -195,7 +199,20 @@ BACKDOOR_SOLVER[1] = {
 -- [[COMMON BACKDOOR FILTER]]
 -- @filter ClassName check the passed instance
 BACKDOOR_FILTER[1] = function(r)
-    return r:IsA("RemoteEvent") or r:IsA("RemoteFunction");
+    local Parent = rm.Parent
+	local class = rm.ClassName
+        
+	if not (r:IsA("RemoteEvent") or r:IsA("RemoteFunciton")) then return false end
+
+	if Parent then
+		if Parent == JointsService then return false end
+		if (Parent == ReplicatedStorage and rm:FindFirstChild("__FUNCTION")) or
+        (rm.Name == "__FUNCTION" and Parent.ClassName == "RemoteEvent" and Parent.Parent == ReplicatedStorage) then return false end
+	end
+
+	if rm:IsDescendantOf(RobloxReplicatedStorage) then return false end
+
+	return true
 end;
 
 
