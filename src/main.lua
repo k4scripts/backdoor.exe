@@ -198,7 +198,7 @@ BACKDOOR_FILTER[1] = function(r)
     return r:IsA("RemoteEvent") or r:IsA("RemoteFunction");
 end;
 BACKDOOR_FILTER[2] = function(r)
-        return not (r.Parent == game:GetService("ReplicatedStorage") and r:FindFirstChild("__FUNCTION")) or
+        return not (r.Parent == game:GetService("ReplicatedStorage") and r:FindFirstChild("__FUNCTION")) or not
             (r.Name == "__FUNCTION" and r.Parent:IsA("RemoteEvent") and r.Parent.Parent == game:GetService("ReplicatedStorage"));
 end;
 BACKDOOR_FILTER[3] = function(r)
