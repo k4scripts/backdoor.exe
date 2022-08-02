@@ -11,7 +11,7 @@
 local G2L = {};
 
 -- StarterGui.backdoor.exe v8
-G2L["1"] = Instance.new("ScreenGui", game:GetService("CoreGui").RobloxGui);
+G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
 G2L["1"]["ResetOnSpawn"] = false;
 G2L["1"]["Name"] = [[backdoor.exe v8]];
 G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
@@ -360,7 +360,6 @@ G2L["24"]["ScaleType"] = Enum.ScaleType.Slice;
 G2L["24"]["BackgroundColor3"] = Color3.fromRGB(16, 16, 16);
 G2L["24"]["ImageColor3"] = Color3.fromRGB(14, 14, 14);
 G2L["24"]["SliceScale"] = 0.029999999329447746;
-G2L["24"]["Visible"] = false;
 G2L["24"]["Image"] = [[rbxassetid://3570695787]];
 G2L["24"]["Size"] = UDim2.new(1, 0, 1, 0);
 G2L["24"]["Name"] = [[Executor]];
@@ -1048,6 +1047,7 @@ G2L["5e"]["ScaleType"] = Enum.ScaleType.Slice;
 G2L["5e"]["BackgroundColor3"] = Color3.fromRGB(16, 16, 16);
 G2L["5e"]["ImageColor3"] = Color3.fromRGB(14, 14, 14);
 G2L["5e"]["SliceScale"] = 0.029999999329447746;
+G2L["5e"]["Visible"] = false;
 G2L["5e"]["Image"] = [[rbxassetid://3570695787]];
 G2L["5e"]["Size"] = UDim2.new(1, 0, 1, 0);
 G2L["5e"]["Name"] = [[Games]];
@@ -7429,6 +7429,7 @@ local script = G2L["86"];
 		scriptshub.addScript(name, code, true);
 		-- save to config
 		config.data.scripts[name] = code;
+		config.save();
 		script.Parent.Visible = false;
 	end)
 	

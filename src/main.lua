@@ -131,7 +131,7 @@ local roRoots = {
 
 local function solveRobloxPath(path)
     local path = stringSplit(path, ".");
-    local inst = roRoots[path[1]];
+    local inst = roRoots[path[1]] or game:GetService(path[1]);
     if not inst then
         return nil;
     end;
@@ -223,10 +223,6 @@ BACKDOOR_FILTER[2] = function(r)
         return not (r.Parent == game:GetService("ReplicatedStorage") and r:FindFirstChild("__FUNCTION")) or not
             (r.Name == "__FUNCTION" and r.Parent:IsA("RemoteEvent") and r.Parent.Parent == game:GetService("ReplicatedStorage"));
 end;
-BACKDOOR_FILTER[3] = function(r)
-        return not r:IsDescendantOf(game:GetService("RobloxReplicatedStorage")
-end;
-
 
 --// CORE \\--
 
@@ -285,7 +281,7 @@ local function scan(remotes)
             s.makeDummy(r, dummyName);
         end;
     end;
-    task.wait(localPlayer:GetNetworkPing() * #remotes); -- wait latency product in seconds for safe detections
+    task.wait((localPlayer:GetNetworkPing() * 2) * #remotes); -- wait latency product in seconds for safe detections
     connection:Disconnect();
     table.clear(URSTRING_TO_BACKDOOR); -- clear URSTRING_TO_BACKDOOR
     -- return
@@ -362,13 +358,14 @@ end;
 
 -- retrive backdoors from config
 local function getConfigBackdoors()
-    if config.games[game.PlaceId] then
-        local gameBackdoors = config.games[game.PlaceId].backdoors;
+    if config.data.games[game.PlaceId] then
+        local gameBackdoors = config.data.games[game.PlaceId].backdoors;
         local remotes = {};
         for i, path in next, gameBackdoors do
             local remote = solveRobloxPath(path);
-            print(path, remote);
-            filterRemote(remote, remotes);
+            if remote then
+                filterRemote(remote, remotes);
+            end;
         end
         return scan(remotes);
     end;
