@@ -2819,10 +2819,10 @@ end;
 G2L_MODULES[G2L["91"]] = {
 Closure = function()
     local script = G2L["91"];
-
 -- services
 local tweenService = game:GetService("TweenService");
 local marketService = game:GetService('MarketplaceService');
+local teleportService = game:GetService("TeleportService");
 
 -- ui
 local utils = require(script.Parent.utils)
@@ -2835,6 +2835,7 @@ dummy.Parent = nil;
 -- vars
 local backFormat = dummy.Backdoors.Text;
 local dateFormat = dummy.Date.Text;
+local teleporting = false;
 
 local ID_CARD = {};
 
@@ -2893,6 +2894,14 @@ local function loadGame(placeId, backdoors, timestamp)
 			}
 		):Play();
 	end);
+	-- teleport function
+	card.Play.Hitbox.MouseButton1Click:Connect(function()
+		if teleporting then
+			return;
+		end
+		teleporting = true;
+		teleportService:Teleport(placeId);
+	end)
 	ID_CARD[placeId] = card;
 	-- make text info not visible
 	container.info.Visible = false;
@@ -3002,43 +3011,50 @@ local function readConfig()
 	local integrity, parsed = pcall(httpService.JSONDecode, httpService, data);
 	
 	if integrity then
-		local settings = {};
-		configs = {settings = settings};
+		local settings = {
+			codeColors = {}	
+		};
+		configs = {};
 		configs.games = type(parsed.games) == "table" and parsed.games or {};
 		configs.scripts = type(parsed.scripts) == "table" and parsed.scripts or {};
-		
-		settings.codeColors = type(parsed.codeColors) == "table" and parsed.codeColors or {};
+		-- canDebug
 		if parsed.canDebug == nil then
 			settings.canDebug = canDebug;
 		else
-			settings.canDebug = parsed.canDebug;
+			settings.canDebug = parsed.settings.canDebug;
 		end
-		
-		-- decode color3
-		for name, colorObj in next, settings.codeColors do
-			if typeof(colorObj) ~= "table" then
-				settings.codeColors[name] = nil;
-				continue;
+		-- load colors
+		if type(parsed.settings) == "table" then
+			-- decode color3
+			for name, colorObj in next, parsed.settings.codeColors do
+				if typeof(colorObj) ~= "table" then
+					settings.codeColors[name] = nil;
+					continue;
+				end
+				-- ceck
+				colorObj.R = type(colorObj.R) == "number" and colorObj.R or 1;
+				colorObj.G = type(colorObj.G) == "number" and colorObj.G or 1;
+				colorObj.B = type(colorObj.B) == "number" and colorObj.B or 1;
+				
+				settings.codeColors[name] = Color3.new(colorObj.R, colorObj.G, colorObj.B);
 			end
-			-- ceck
-			colorObj.R = type(colorObj.R) == "number" and colorObj.R or 1;
-			colorObj.G = type(colorObj.G) == "number" and colorObj.G or 1;
-			colorObj.B = type(colorObj.B) == "number" and colorObj.B or 1;
-			
-			settings.codeColors = Color3.new(colorObj.R, colorObj.G, colorObj.B);
-		end
-		
+		else
+			settings.codeColors = codeColors;
+		end;
+		configs.settings = settings;
 		-- sanitize tables
 		for name, color in next, settings.codeColors do
 			if typeof(color) ~= "Color3" or codeColors[name] == nil then
 				configs.codeColors[name] = nil;
 			end
 		end
+		-- load defaults
 		for name, default in next, codeColors do
 			if settings.codeColors[name] == nil then
 				settings.codeColors[name] = default;
 			end
 		end
+		-- sanitize scripts
 		for name, src in next, configs.scripts do
 			if type(name) ~= "string" or type(src) ~= "string" then
 				configs.scripts[name] = nil;

@@ -112,15 +112,37 @@ game:GetService("Debris"):AddItem(bool, 3);
 
 --// UTILS \\--
 
--- task.spawn with a max timeout in msc
---[[local function taskSpawnWithTimeout(func, timeout, ...)
-    local thread = coroutine.create(func);
-    local start = tick();
-    coroutine.resume(thread, ...);
-    while coroutine.status(thread) == "running" and (timeout > tick() - start) do
-        task.wait();
+local function stringSplit (inputstr, sep)
+    if sep == nil then
+        sep = "%s"
+    end
+    local t={}
+    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+        table.insert(t, str)
+    end
+    return t
+end
+
+-- solve roblox path
+local roRoots = {
+    workspace = workspace,
+    game = game
+}
+
+local function solveRobloxPath(path)
+    local path = stringSplit(path, ".");
+    local inst = roRoots[path[1]];
+    if not inst then
+        return nil;
     end;
-end;]]
+    for i = 2, #path do
+        inst = inst:FindFirstChild(path[i]);
+        if not inst then
+            return nil;
+        end;
+    end;
+    return inst;
+end;
 
 -- encode backdoors table
 local function encodeBackdoors(backdoors)
@@ -227,11 +249,11 @@ local function getRemotes()
 end;
 
 -- scan all game remotes and return all backdoors found
-local function scan()
+local function scan(remotes)
     alertLib.Info(screenGui, TITLE, 'Scan started.', 4);
     ui.title.Text = TITLE .. " [Scanning]";
     -- retrive remotes
-    local remotes = getRemotes();
+    remotes = remotes or getRemotes();
     local backdoors = {};
     -- listen workspace new instances
     local connection = workspace.ChildAdded:Connect(function(child)
@@ -331,6 +353,21 @@ local function applyMacros(code:string)
     );
 end;
 
+-- retrive backdoors from config
+local function getConfigBackdoors()
+    if config.games[game.PlaceId] then
+        local gameBackdoors = config.games[game.PlaceId].backdoors;
+        local remotes = {};
+        for i, path in next, gameBackdoors do
+            local remote = solveRobloxPath(path);
+            print(path, remote);
+            filterRemote(remote, remotes);
+        end
+        return scan(remotes);
+    end;
+    return {};
+end;
+
 local backdoors;
 btns.execBtn.MouseButton1Click:Connect(function()
     -- avoid multiple executions
@@ -338,8 +375,16 @@ btns.execBtn.MouseButton1Click:Connect(function()
         return;
     end
     executing = true;
+    -- try scanning for backdoors
     if backdoors == nil or #backdoors == 0 then
-        backdoors = debugScan();
+        -- check if config.games has found backdoors
+        local configBackdoors = getConfigBackdoors();
+        if configBackdoors[1] then
+            backdoors = configBackdoors;
+        else
+            -- search backdoors
+            backdoors = debugScan();
+        end
     end;
     if backdoors[1] == nil then
         alertLib.Error(screenGui, TITLE, 'No backdoor found.')
