@@ -37,6 +37,12 @@ export type BackdoorGateway = {
     Execute: (BackdoorGateway, ...any) -> any
 };]]
 
+-- // CHECK IF RUNNING \\ --
+local genv = getgenv();
+if genv.backdoorexe then
+    genv.backdoorexe.screenGui:Destroy();
+end
+
 --// UI \\--
 local screenGui, uiRequire = loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/v8/src/ui.lua"))()
 local alertLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/uniquadev/GuiToLuaConverter/main/PluginPlace/src/alerts.lua"))()
@@ -46,12 +52,6 @@ local config = ui.config;
 local games = ui.games;
 local btns = ui.btns;
 local editor = ui.editor;
-
--- // CHECK IF RUNNING \\ --
-local genv = getgenv();
-if genv.backdoorexe then
-    genv.backdoorexe.screenGui:Destroy();
-end
 
 -- // START SESSION \\ --
 genv.backdoorexe = {
@@ -252,7 +252,8 @@ local function getRemotes()
 end;
 
 -- scan all game remotes and return all backdoors found
-local function scan(remotes)
+local function scan(remotes, delayFactor)
+    delayFactor = delayFactor or 1;
     alertLib.Info(screenGui, TITLE, 'Scan started.', 4);
     ui.title.Text = TITLE .. " [Scanning]";
     -- retrive remotes
@@ -281,7 +282,7 @@ local function scan(remotes)
             s.makeDummy(r, dummyName);
         end;
     end;
-    task.wait((localPlayer:GetNetworkPing() * 2) * #remotes); -- wait latency product in seconds for safe detections
+    task.wait((localPlayer:GetNetworkPing() * delayFactor) * #remotes); -- wait latency product in seconds for safe detections
     connection:Disconnect();
     table.clear(URSTRING_TO_BACKDOOR); -- clear URSTRING_TO_BACKDOOR
     -- return
@@ -367,7 +368,7 @@ local function getConfigBackdoors()
                 filterRemote(remote, remotes);
             end;
         end
-        return scan(remotes);
+        return scan(remotes, 3);
     end;
     return {};
 end;
