@@ -217,11 +217,13 @@ BACKDOOR_SOLVER[1] = {
 -- [[COMMON BACKDOOR FILTER]]
 -- @filter ClassName check the passed instance
 BACKDOOR_FILTER[1] = function(r)
+        -- Checking the class
     return r:IsA("RemoteEvent") or r:IsA("RemoteFunction");
 end;
 BACKDOOR_FILTER[2] = function(r)
-        return not (r.Parent == game:GetService("ReplicatedStorage") and r:FindFirstChild("__FUNCTION")) or not
-            (r.Name == "__FUNCTION" and r.Parent:IsA("RemoteEvent") and r.Parent.Parent == game:GetService("ReplicatedStorage"));
+        -- Anti-Addonis Filter
+        return not ((r.Parent == game:GetService("ReplicatedStorage") and r:FindFirstChild("__FUNCTION")) or
+            (r.Name == "__FUNCTION" and r.Parent:IsA("RemoteEvent") and r.Parent.Parent == game:GetService("ReplicatedStorage")));
 end;
 
 --// CORE \\--
