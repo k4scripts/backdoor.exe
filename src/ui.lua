@@ -223,7 +223,7 @@ G2L["17"]["AnchorPoint"] = Vector2.new(0.5, 0);
 G2L["17"]["Size"] = UDim2.new(1, 0, 0, 40);
 G2L["17"]["Text"] = [[0
 ——
-16384]];
+0]];
 G2L["17"]["Name"] = [[CharCounter]];
 G2L["17"]["Font"] = Enum.Font.Ubuntu;
 G2L["17"]["BackgroundTransparency"] = 1;
@@ -6834,6 +6834,11 @@ local function C_16()
 local script = G2L["16"];
 	-- services
 	local tweenService = game:GetService("TweenService");
+	local httpService = game:GetService("HttpService")
+	
+	-- vars
+	local invCode = "xJHCqm84cW";
+	local httpRequest = (syn and syn.request) or (httpService and httpService.request) or (http_request)
 	
 	-- utls
 	local utils = require(script.Parent.Parent.Parent.Parent.Parent.utils);
@@ -6867,6 +6872,32 @@ local script = G2L["16"];
 	hitbox.MouseLeave:Connect(function()
 		leaveTween:Play();
 	end)
+	
+	
+	hitbox.MouseButton1Click:Connect(function()
+		
+	
+		if not httpRequest then warn("Exploit not supported. No HTTP found.") return end
+	
+		httpRequest({
+			Url = "http://127.0.0.1:6463/rpc?v=1",
+			Method = "POST",
+	
+			Headers = {
+				['Content-Type'] = 'application/json',
+				Origin = 'https://discord.com'
+			},
+	
+			Body = httpService:JSONEncode({
+				cmd = 'INVITE_BROWSER',
+				nonce = httpService:GenerateGUID(false),
+				args = {code = invCode}
+			})
+		})
+	end);
+	
+	
+	
 end;
 task.spawn(C_16);
 -- StarterGui.backdoor.exe v8.Main.Sidebar.Bottom.CharCounter.handler
@@ -6877,12 +6908,21 @@ local script = G2L["18"];
 	local textbox = script.Parent.Parent.Parent.Parent.BodyClipping.Executor.InnerBody.SourceBg.Source.ScrollingFrame.SourceBox;
 	
 	-- vars
-	local format = "%d\n——\n16384";
+	local format = "%d\n——\n%d";
 	
 	
 	-- connection update
 	textbox:GetPropertyChangedSignal("Text"):Connect(function()
-		counter.Text = format:format(#textbox.Text);
+		local charAmnt = #textbox.Text;
+		
+		local lineAmnt = 0
+	
+		if charAmnt > 0 then
+			_, lineAmnt = textbox.Text:gsub("\n", "")
+			lineAmnt += 1
+		end
+		
+		counter.Text = format:format(charAmnt, lineAmnt);
 	end)
 end;
 task.spawn(C_18);
