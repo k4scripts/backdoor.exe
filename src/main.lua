@@ -398,6 +398,11 @@ local function getConfigBackdoors()
     return {};
 end;
 
+local function resetExecutionState()
+    executing = false;
+    ui.title.Text = TITLE;
+end;
+
 local backdoors;
 local firstExecution = true;
 btns.execBtn.MouseButton1Click:Connect(function()
@@ -419,8 +424,7 @@ btns.execBtn.MouseButton1Click:Connect(function()
     end;
     if backdoors[1] == nil then
         alertLib.Error(screenGui, TITLE, 'No backdoor found.');
-        ui.title.Text = TITLE;
-        executing = false;
+        resetExecutionState();
         return;
     end;
     if firstExecution then
@@ -435,9 +439,7 @@ btns.execBtn.MouseButton1Click:Connect(function()
     -- execute
     local code = applyMacros(editor.getCode());
     execute(code, backdoors[1], config.data.settings.canDebug);
-    executing = false;
-    -- reset title
-    ui.title.Text = TITLE;
+    resetExecutionState();
 end);
 
 -- set title
