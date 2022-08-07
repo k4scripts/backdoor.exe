@@ -1,4 +1,4 @@
-StarterGui:SetCore(
+game.StarterGui:SetCore(
 		"SendNotification",
 		{
 			Title = "backdoor.exe",
@@ -6,7 +6,7 @@ StarterGui:SetCore(
 			Text = "Loading v8"
 		}
 	)
-StarterGui:SetCore(
+game.StarterGui:SetCore(
 		"SendNotification",
 		{
 			Title = "backdoor.exe",
