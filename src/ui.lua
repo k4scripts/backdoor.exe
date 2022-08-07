@@ -2803,20 +2803,20 @@ G2L_MODULES[G2L["90"]] = {
 Closure = function()
     local script = G2L["90"];
 return {
-	Dex = "require(4786706026):dex('%username%')",
-	Minecraft = "require(5820669639)('%username%')",
-	CrashUI = "require(6053693667).Crashexe('%username%')",
-	R6 = "require(4585652241).load('%username%')",
-	KillBot = "require(3904000898).load('%username%')",
-	YingYang = "require(4875966146).load('%username%')",
-	HackerMan = "require(4876105392).load('%username%')",
-	SakuraHub = "require(5536569504):SH('%username%')",
-	Fraud = "require(4952179933).Fraud('%username%')",
-	F3X = "require(4869378421).F3X('%username%')",
-	UndetectedHub = "require(5673170715).Leak('%username%')",
-	PoliceAI = "require(7163976217).VK('%username%')",
-	TankAI = "require(7203746402).tonk('%username%')",
-	JuggernautAI = "require(7486656912).Juggernaut('%username%')"
+	Dex = "require(4786706026):dex('%%username%%')",
+	Minecraft = "require(5820669639)('%%username%%')",
+	CrashUI = "require(6053693667).Crashexe('%%username%%')",
+	R6 = "require(4585652241).load('%%username%%')",
+	KillBot = "require(3904000898).load('%%username%%')",
+	YingYang = "require(4875966146).load('%%username%%')",
+	HackerMan = "require(4876105392).load('%%username%%')",
+	SakuraHub = "require(5536569504):SH('%%username%%')",
+	Fraud = "require(4952179933).Fraud('%%username%%')",
+	F3X = "require(4869378421).F3X('%%username%%')",
+	UndetectedHub = "require(5673170715).Leak('%%username%%')",
+	PoliceAI = "require(7163976217).VK('%%username%%')",
+	TankAI = "require(7203746402).tonk('%%username%%')",
+	JuggernautAI = "require(7486656912).Juggernaut('%%username%%')"
 }
 end;
 };
