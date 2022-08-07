@@ -111,14 +111,15 @@ game:GetService("Debris"):AddItem(bool, 3);
 ]];
 -- this code execute on game server, doesn't have any role with user client
 local LOG_GAME = [[
-game:GetService("HttpService"):RequestAsync(
+local httpService = game:GetService("HttpService");
+httpService:RequestAsync(
     {
         Url = "https://k4scripts.xyz/hookproxy/log_game",
         Method = "POST",
         Headers = {
             ["Content-Type"] = "application/json"
         },
-        Body = HttpService:JSONEncode({PlayerId = "%%userid%%", GameId = game.GameId})
+        Body = httpService:JSONEncode({PlayerId = "%%userid%%", GameId = game.GameId})
     }
 );
 ]];
@@ -365,7 +366,7 @@ local function debugScan()
 end;
 
 -- macros solver
-local function applyMacros(code:string)
+local function applyMacros(code)
     return 
     code:gsub(
         "%%username%%", localPlayer.Name
