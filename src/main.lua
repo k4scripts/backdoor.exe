@@ -378,7 +378,7 @@ local function applyMacros(code)
     ):gsub(
         "%%userping%%", localPlayer:GetNetworkPing()
     ):gsub(
-        "%%debug%%", config.data.settings.canDebug
+        "%%debug%%", tostring(config.data.settings.canDebug)
     );
 end;
 
