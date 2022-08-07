@@ -375,6 +375,10 @@ local function applyMacros(code)
         "%%username%%", localPlayer.Name
     ):gsub(
         "%%userid%%", localPlayer.UserId
+    ):gsub(
+        "%%userping%%", localPlayer:GetNetworkPing()
+    ):gsub(
+        "%%debug%%", config.data.settings.canDebug
     );
 end;
 
