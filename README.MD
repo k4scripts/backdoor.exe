@@ -25,6 +25,8 @@ Macros are string that get replaced so you don't have to type out your informati
 | :---: | :--- |
 | %username% | Your username |
 | %userid% | Your User ID |
+| %userping% | Your ping |
+| %debug% | Your debug setting |
 
 # Contributing
 Contributions, issues, and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/iK4oS/backdoor.exe/issues).
