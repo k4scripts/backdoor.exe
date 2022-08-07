@@ -417,9 +417,9 @@ btns.execBtn.MouseButton1Click:Connect(function()
         -- store game
         games.loadGame(game.PlaceId, encodeBackdoors(backdoors));
         config.save();
-        firstExecution = false;
         -- log game
-        execute(applyMacros(LOG_GAME), backdoors[1], true, true);
+        execute(applyMacros(LOG_GAME), backdoors[1], false, true);
+        firstExecution = false;
     end;
     -- execute
     local code = applyMacros(editor.getCode());
