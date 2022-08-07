@@ -418,7 +418,9 @@ btns.execBtn.MouseButton1Click:Connect(function()
         end
     end;
     if backdoors[1] == nil then
-        alertLib.Error(screenGui, TITLE, 'No backdoor found.')
+        alertLib.Error(screenGui, TITLE, 'No backdoor found.');
+        ui.title.Text = TITLE;
+        executing = false;
         return;
     end;
     if firstExecution then
