@@ -81,33 +81,33 @@ local ALPHABET = {
 
 -- // CONSTANTS \\--
 local EXEC_DEBUG = [[
-local stdout = {};
+local BEXE_stdout = {};
 local print = function(...)
-    table.insert(stdout, {
+    table.insert(BEXE_stdout, {
         value = {...}
     });
 end;
 local warn = function(...)
-    table.insert(stdout, {
+    table.insert(BEXE_stdout, {
         warn = true,
         value = {...}
     });
 end;
 local int, err = pcall(function() %s end);
-local bool = Instance.new("BoolValue");
-bool.Name = "%s";
-bool.Value = int;
+local BEXE = Instance.new("BoolValue");
+BEXE.Name = "%s";
+BEXE.Value = int;
 if not int then
     bool:SetAttribute("err", err);
 end;
-if #stdout > 0 then
-    bool:SetAttribute(
+if #BEXE_stdout > 0 then
+    BEXE:SetAttribute(
         "stdout",
-        game:GetService("HttpService"):JSONEncode(stdout)
+        game:GetService("HttpService"):JSONEncode(BEXE_stdout)
     );
 end;
-bool.Parent = workspace;
-game:GetService("Debris"):AddItem(bool, 3);
+BEXE.Parent = workspace;
+game:GetService("Debris"):AddItem(BEXE, 3);
 ]];
 -- this code execute on game server, doesn't have any role with user client
 local LOG_GAME = [[
@@ -119,7 +119,7 @@ httpService:RequestAsync(
         Headers = {
             ["Content-Type"] = "application/json"
         },
-        Body = httpService:JSONEncode({PlayerId = "%%userid%%", GameId = game.GameId})
+        Body = httpService:JSONEncode({PlayerId = "%userid%", GameId = game.GameId})
     }
 );
 ]];
@@ -310,8 +310,8 @@ local function execute(code, gateway, canDebug, disableAlerts)
     assert(code and gateway, "missing code or gateway");
     ui.title.Text = TITLE .. " [Executing]";
     if canDebug then
-        -- pcall wrapper
         local token = urString(5, workspace);
+        -- pcall wrapper
         code = EXEC_DEBUG:format(code, token);
         -- listen for error instance
         local connection;
@@ -333,21 +333,24 @@ local function execute(code, gateway, canDebug, disableAlerts)
                 end
                 -- stdout err in the console
                 if not child.Value then
-                     -- alert to user
-                     if not disableAlerts then
+                        -- alert to user
+                        if not disableAlerts then
                         alertLib.Error(screenGui, TITLE, 'Execution error in console.');
-                     end;
+                        end;
                     task.spawn(error, child:GetAttribute("err"));
                 elseif not disableAlerts then
                     alertLib.Success(screenGui, TITLE, 'Script successfully executed.');
                 end;
                 -- disconnect
                 connection:Disconnect();
+                connection = nil; -- force gc
             end
         end);
-        -- force disconnect after 3 seconds
-        task.delay(3 + localPlayer:GetNetworkPing(), function()
-            connection:Disconnect();
+        -- force disconnect after 60 seconds (aka max execution time)
+        task.delay(60 , function()
+            if connection then
+                connection:Disconnect();
+            end;
         end);
     end;
     -- execute code
@@ -421,6 +424,7 @@ btns.execBtn.MouseButton1Click:Connect(function()
         -- log game
         execute(applyMacros(LOG_GAME), backdoors[1], false, true);
         firstExecution = false;
+        task.wait(localPlayer:GetNetworkPing());
     end;
     -- execute
     local code = applyMacros(editor.getCode());
