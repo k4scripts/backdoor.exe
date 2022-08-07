@@ -1510,7 +1510,7 @@ Closure = function()
     local script = G2L["9"];
 -- this module is responsible of toggling the ui and listening the keybind
 local toggler = {
-	keyBind = Enum.KeyCode.RightShift
+	keyBind = Enum.KeyCode.Home
 };
 
 

