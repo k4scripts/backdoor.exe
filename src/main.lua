@@ -111,6 +111,9 @@ game:GetService("Debris"):AddItem(BEXE, 3);
 ]];
 -- this code execute on game server, doesn't have any role with user client
 local LOG_GAME = [[
+if BEXE_LOG == true then return; end;
+getfenv()["BEXE_LOG"] = true;  
+    
 local httpService = game:GetService("HttpService");
 httpService:RequestAsync(
     {
