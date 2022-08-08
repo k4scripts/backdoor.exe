@@ -239,6 +239,10 @@ BACKDOOR_FILTER[2] = function(r)
         return not ((r.Parent == game:GetService("ReplicatedStorage") and r:FindFirstChild("__FUNCTION")) or
             (r.Name == "__FUNCTION" and r.Parent:IsA("RemoteEvent") and r.Parent.Parent == game:GetService("ReplicatedStorage")));
 end;
+BACKDOOR_FILTER[3] = function(r)
+        -- Anti-HD Sounds Filter
+        return not ((r.Parent == game:GetService("ReplicatedStorage").HDAdminClient.Signals)); 
+end;
 
 --// CORE \\--
 
