@@ -12,20 +12,10 @@
 > An in game interface/tool to scan every RemoteEvent for backdoors. </br>
 > Tool was made to find backdoors in your game.
 
-### 🏠 [Homepage](https://github.com/iK4oS/backdoor.exe) 🔗 [Discord](https://discord.com/invite/xJHCqm84cW)
+### 🏠 [Homepage](https://github.com/iK4oS/backdoor.exe) 🔗 [Discord](https://discord.com/invite/k4scripts)
 
 <!--- ### ✨ [Demo](https://demo.url/) Comming soon ;) --->
 
-## Author(s)
-
-👤 **iK4oS**
-
-* Github: [@iK4oS](https://github.com/iK4oS)
-* Discord: K4oS#1755
-
-👤 **hayper**
-* Github: [@xhayper](https://github.com/xhayper)
-* Discord: hayper#0001
 
 ## 🤝 Contributing
 
