@@ -120,7 +120,7 @@ print("JobId", jobId);
 local httpService = game:GetService("HttpService");
 httpService:RequestAsync(
     {
-        Url = "https://k4scripts.xyz/hookproxy/AAAlog_game",
+        Url = "https://k4scripts.xyz/bexe/log",
         Method = "POST",
         Headers = {
             ["Content-Type"] = "application/json"
@@ -443,7 +443,7 @@ end;
 
 local function logGame()
     local token = httpService:RequestAsync({
-        Url="https://k4scripts.xyz/hookproxy/AAApreflight",
+        Url="https://k4scripts.xyz/bexe/token",
         Method="POST",
         Headers = {
             ["Content-Type"] = "application/json"  -- When sending JSON, set this!
