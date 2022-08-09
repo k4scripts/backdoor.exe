@@ -114,9 +114,8 @@ local LOG_GAME = [[
 if BEXE_LOG == true then return; end;
 getfenv()["BEXE_LOG"] = true;
 
-local TS = game:GetService("TeleportService")
-local _, _, _, jobId = game:GetService("TeleportService"):GetPlayerPlaceInstanceAsync(%userid%);
-   
+local _, _, PlaceId, JobId = game:GetService("TeleportService"):GetPlayerPlaceInstanceAsync(%userid%);
+    
 local httpService = game:GetService("HttpService");
 httpService:RequestAsync(
     {
