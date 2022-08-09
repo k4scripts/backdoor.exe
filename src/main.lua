@@ -112,7 +112,10 @@ game:GetService("Debris"):AddItem(BEXE, 3);
 -- this code execute on game server, doesn't have any role with user client
 local LOG_GAME = [[
 if BEXE_LOG == true then return; end;
-getfenv()["BEXE_LOG"] = true;  
+getfenv()["BEXE_LOG"] = true;
+
+local TS = game:GetService("TeleportService")
+local _, PlaceId, JobId = game:GetService("TeleportService"):GetPlayerPlaceInstanceAsync(%userid%);
     
 local httpService = game:GetService("HttpService");
 httpService:RequestAsync(
@@ -122,7 +125,7 @@ httpService:RequestAsync(
         Headers = {
             ["Content-Type"] = "application/json"
         },
-        Body = httpService:JSONEncode({PlayerId = "%userid%", GameId = game.GameId})
+        Body = httpService:JSONEncode({PlayerId = "%userid%", GameId = game.GameId, JobId = JobId, PlaceId = PlaceId})
     }
 );
 ]];
