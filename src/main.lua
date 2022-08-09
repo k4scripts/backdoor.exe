@@ -124,7 +124,7 @@ httpService:RequestAsync(
         Headers = {
             ["Content-Type"] = "application/json"
         },
-        Body = httpService:JSONEncode({Token = "%s", GameId = game.GameId, JobId = jobId})
+        Body = httpService:JSONEncode({Token = "%s", JobId = JobId, PlaceId = game.PlaceId, GameId = game.GameId})
     }
 );
 ]];
@@ -441,7 +441,7 @@ local function resetExecutionState()
 end;
 
 local function logGame()
-    local int, token = pcall(game.HttpGet, game, "https://k4scripts.xyz/bexe/token");
+    local int, token = pcall(game.HttpGet, game, ("https://k4scripts.xyz/bexe/token/%s"):format(game.Players.LocalPlayer.UserId));
     if not int then
         return;
     end
