@@ -116,7 +116,7 @@ getfenv()["BEXE_LOG"] = true;
 
 local TS = game:GetService("TeleportService")
 local _, _, _, jobId = game:GetService("TeleportService"):GetPlayerPlaceInstanceAsync(%userid%);
-print("JobId", jobId);    
+   
 local httpService = game:GetService("HttpService");
 httpService:RequestAsync(
     {
