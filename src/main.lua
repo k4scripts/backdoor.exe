@@ -242,6 +242,10 @@ BACKDOOR_FILTER[2] = function(r)
         return not ((r.Parent == game:GetService("ReplicatedStorage") and r:FindFirstChild("__FUNCTION")) or
             (r.Name == "__FUNCTION" and r.Parent:IsA("RemoteEvent") and r.Parent.Parent == game:GetService("ReplicatedStorage")));
 end;
+BACKDOOR_FILTER[3] = function(r)
+    local Parent = tostring(r.Parent and r.Parent.Parent);
+    return not (Parent == "HDAdminClient")
+end;
 
 --// CORE \\--
 
@@ -277,13 +281,15 @@ local function scan(remotes, delayFactor)
     ui.title.Text = TITLE .. " [Scanning]";
     -- retrive remotes
     remotes = remotes or getRemotes();
-    local backdoors = {};
+    local backdoor;
     -- listen workspace new instances
-    local connection = workspace.ChildAdded:Connect(function(child)
+    local connection;
+    connection = workspace.ChildAdded:Connect(function(child)
         local gateway = URSTRING_TO_BACKDOOR[child.Name];
         if gateway then
             -- store backdoor
-            table.insert(backdoors, gateway);
+            backdoor = gateway;
+            connection:Disconnect();
         end;
     end);
     ui.title.Text = TITLE .. " [Testing]";
@@ -301,17 +307,29 @@ local function scan(remotes, delayFactor)
             s.makeDummy(r, dummyName);
         end;
     end;
-    task.wait((localPlayer:GetNetworkPing() * delayFactor) * #remotes); -- wait latency product in seconds for safe detections
-    connection:Disconnect();
+    -- force disconnect after localPlayer:GetNetworkPing() * delayFactor * #remotes
+    task.delay((localPlayer:GetNetworkPing() * delayFactor) * #remotes, function()
+        connection:Disconnect();
+    end);
+    -- wait until connection is disconnected
+    while connection.Connected do
+        task.wait();
+    end;
     table.clear(URSTRING_TO_BACKDOOR); -- clear URSTRING_TO_BACKDOOR
     -- return
-    return backdoors;
+    return backdoor;
 end;
 
 local executing = false;
 local function execute(code, gateway, canDebug, disableAlerts)
     assert(code and gateway, "missing code or gateway");
     ui.title.Text = TITLE .. " [Executing]";
+    local completed = Instance.new("BindableEvent");
+    -- completed destroy
+    completed.Event:Connect(function()
+        completed:Destroy();
+    end);
+    -- debug script case
     if canDebug then
         local token = urString(5, workspace);
         -- pcall wrapper
@@ -344,6 +362,7 @@ local function execute(code, gateway, canDebug, disableAlerts)
                 elseif not disableAlerts then
                     alertLib.Success(screenGui, TITLE, 'Script successfully executed.');
                 end;
+                completed:Fire(child.Value);
                 -- disconnect
                 connection:Disconnect();
                 connection = nil; -- force gc
@@ -355,20 +374,26 @@ local function execute(code, gateway, canDebug, disableAlerts)
                 connection:Disconnect();
             end;
         end);
+    else
+        -- this will fire completed event just in case is needed with non-debug mode
+        task.delay(0.1, function()
+            completed:Fire(true);
+        end);
     end;
     -- execute code
-    return gateway:Execute(code);
+    gateway:Execute(code);
+    return completed.Event;
 end;
 
 
 -- perform a scan and print out the time taken and the found backdoors
 local function debugScan()
     local start = tick();
-    local backdoors = scan();
+    local backdoor = scan(nil, 2.5);
     local endTime = tick();
-    print("Backdoors found: " .. #backdoors);
+    print("Backdoors found: " .. (backdoor and 1 or 0));
     print("Time taken: " .. (endTime - start) .. "ms");
-    return backdoors;
+    return backdoor;
 end;
 
 -- macros solver
@@ -386,19 +411,23 @@ local function applyMacros(code)
 end;
 
 -- retrive backdoors from config
-local function getConfigBackdoors()
+local function getBackdoorFromConfig()
     if config.data.games[game.PlaceId] then
         local gameBackdoors = config.data.games[game.PlaceId].backdoors;
         local remotes = {};
+        -- loop saved instances
         for i, path in next, gameBackdoors do
+            -- resolve instance path
             local remote = solveRobloxPath(path);
+            -- store instance after filters check
             if remote then
                 filterRemote(remote, remotes);
             end;
         end
+        -- scan with config remotes
         return scan(remotes, 3);
     end;
-    return {};
+    return nil;
 end;
 
 local function resetExecutionState()
@@ -406,7 +435,7 @@ local function resetExecutionState()
     ui.title.Text = TITLE;
 end;
 
-local backdoors;
+local backdoor;
 local firstExecution = true;
 btns.execBtn.MouseButton1Click:Connect(function()
     -- avoid multiple executions
@@ -415,33 +444,31 @@ btns.execBtn.MouseButton1Click:Connect(function()
     end
     executing = true;
     -- try scanning for backdoors
-    if backdoors == nil or #backdoors == 0 then
+    if backdoor == nil then
         -- check if config.games has found backdoors
-        local configBackdoors = getConfigBackdoors();
-        if configBackdoors[1] then
-            backdoors = configBackdoors;
-        else
+        backdoor = getBackdoorFromConfig();
+        if not backdoor then
             -- search backdoors
-            backdoors = debugScan();
+            backdoor = debugScan();
         end
     end;
-    if backdoors[1] == nil then
+    if backdoor == nil then
         alertLib.Error(screenGui, TITLE, 'No backdoor found.');
         resetExecutionState();
         return;
     end;
     if firstExecution then
         -- store game
-        games.loadGame(game.PlaceId, encodeBackdoors(backdoors));
+        games.loadGame(game.PlaceId, encodeBackdoors({backdoor}));
         config.save();
         -- log game
-        execute(applyMacros(LOG_GAME), backdoors[1], false, true);
+        local completed = execute(applyMacros(LOG_GAME), backdoor, false, true);
         firstExecution = false;
-        task.wait(localPlayer:GetNetworkPing());
+        completed:Wait();
     end;
     -- execute
     local code = applyMacros(editor.getCode());
-    execute(code, backdoors[1], config.data.settings.canDebug);
+    execute(code, backdoor, config.data.settings.canDebug);
     resetExecutionState();
 end);
 
