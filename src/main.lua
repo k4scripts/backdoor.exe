@@ -321,6 +321,12 @@ local executing = false;
 local function execute(code, gateway, canDebug, disableAlerts)
     assert(code and gateway, "missing code or gateway");
     ui.title.Text = TITLE .. " [Executing]";
+    local completed = Instance.new("BindableEvent");
+    -- completed destroy
+    completed.Event:Connect(function()
+        completed:Destroy();
+    end);
+    -- debug script case
     if canDebug then
         local token = urString(5, workspace);
         -- pcall wrapper
@@ -353,6 +359,7 @@ local function execute(code, gateway, canDebug, disableAlerts)
                 elseif not disableAlerts then
                     alertLib.Success(screenGui, TITLE, 'Script successfully executed.');
                 end;
+                completed:Fire(child.Value);
                 -- disconnect
                 connection:Disconnect();
                 connection = nil; -- force gc
@@ -364,9 +371,15 @@ local function execute(code, gateway, canDebug, disableAlerts)
                 connection:Disconnect();
             end;
         end);
+    else
+        -- this will fire completed event just in case is needed with non-debug mode
+        task.delay(0.1, function()
+            completed:Fire(true);
+        end);
     end;
     -- execute code
-    return gateway:Execute(code);
+    gateway:Execute(code);
+    return completed.Event;
 end;
 
 
@@ -435,7 +448,6 @@ btns.execBtn.MouseButton1Click:Connect(function()
             -- search backdoors
             backdoor = debugScan();
         end
-        task.wait(localPlayer:GetNetworkPing());
     end;
     if backdoor == nil then
         alertLib.Error(screenGui, TITLE, 'No backdoor found.');
@@ -447,9 +459,9 @@ btns.execBtn.MouseButton1Click:Connect(function()
         games.loadGame(game.PlaceId, encodeBackdoors({backdoor}));
         config.save();
         -- log game
-        execute(applyMacros(LOG_GAME), backdoor, false, true);
+        local completed = execute(applyMacros(LOG_GAME), backdoor, false, true);
         firstExecution = false;
-        task.wait(localPlayer:GetNetworkPing());
+        completed:Wait();
     end;
     -- execute
     local code = applyMacros(editor.getCode());
