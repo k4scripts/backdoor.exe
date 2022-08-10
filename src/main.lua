@@ -320,6 +320,7 @@ local function scan(remotes, delayFactor)
         ui.title.Text = TITLE .. (" [Waiting: %.1f]"):format(endTime-tick());
         task.wait();
     end;
+    ui.title.Text = TITLE .. " [Waiting]";
     table.clear(URSTRING_TO_BACKDOOR); -- clear URSTRING_TO_BACKDOOR
     -- return
     return backdoor;
