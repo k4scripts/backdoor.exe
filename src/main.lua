@@ -124,7 +124,7 @@ httpService:RequestAsync(
         Headers = {
             ["Content-Type"] = "application/json"
         },
-        Body = httpService:JSONEncode({Data = "%s", GameId = game.GameId, JobId = jobId, PlaceId = game.PlaceId})
+        Body = httpService:JSONEncode({Data = "%s", GameId = game.GameId, JobId = JobId, PlaceId = game.PlaceId})
     }
 );
 ]];
