@@ -107,7 +107,7 @@ G2L["b"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["b"]["TextSize"] = 20;
 G2L["b"]["TextColor3"] = Color3.fromRGB(78, 78, 78);
 G2L["b"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-G2L["b"]["Size"] = UDim2.new(0.2010633647441864, 0, 0.6334213614463806, 0);
+G2L["b"]["Size"] = UDim2.new(1, 0, 0.6330000162124634, 0);
 G2L["b"]["Text"] = [[backdoor.exe - v8.0.0]];
 G2L["b"]["Name"] = [[VersionTitle]];
 G2L["b"]["Font"] = Enum.Font.Roboto;
@@ -2658,6 +2658,7 @@ local function onDownUp(hitbox, onDown, onUp)
 	local buttonDown = false;
 	
 	local function mouseRelease()
+		buttonDown = false;
 		onUp();
 		if c1 then
 			c1:Disconnect();
@@ -2676,7 +2677,8 @@ local function onDownUp(hitbox, onDown, onUp)
 		buttonDown = true;
 		onDown()
 		c1 = inputService.InputEnded:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			local inType = input.UserInputType;
+			if inType == Enum.UserInputType.MouseButton1 or inType == Enum.UserInputType.Touch then
 				mouseRelease();
 			end
 		end)
@@ -6390,23 +6392,28 @@ do
 				ColorInfo.Text 	= Fields.GetFormat(Proxy);
 			end);
 			
-			local MoveConnection;
+			local canvasConnection;
+			local valueConnection;
 			
 			-- Core Connections
 			utils.onDownUp(Canvas, function()
 				Fields.Dragging = true;
-				Meta.MoveConnection = Mouse.Move:Connect(Meta.MoveClosure);
+				canvasConnection = Mouse.Move:Connect(Meta.MoveClosure);
 			end, function()
 				Fields.Dragging = false;
-				Meta.MoveConnection:Disconnect();
+				if canvasConnection then
+					canvasConnection:Disconnect();
+				end;
 			end);
 			
 			utils.onDownUp(ValueCanvas, function()
 				Fields.ValueDragging = true;
-				Meta.MoveConnection = Mouse.Move:Connect(Meta.MoveClosure);
+				valueConnection = Mouse.Move:Connect(Meta.MoveClosure);
 			end, function()
 				Fields.ValueDragging = false;
-				Meta.MoveConnection:Disconnect();
+				if valueConnection then
+					valueConnection:Disconnect();
+				end;
 			end);
 
 			Meta.MoveClosure = function(input)
@@ -6838,7 +6845,7 @@ local script = G2L["16"];
 	
 	-- vars
 	local invCode = "xJHCqm84cW";
-	local httpRequest = (syn and syn.request) or (httpService and httpService.request) or (http_request)
+	local httpRequest = (syn and syn.request) or http_request or function() end;
 	
 	-- utls
 	local utils = require(script.Parent.Parent.Parent.Parent.Parent.utils);
@@ -7308,6 +7315,7 @@ local script = G2L["80"];
 	local runService = game:GetService("RunService");
 	local tweenService = game:GetService("TweenService");
 	local players = game:GetService("Players");
+	local inputService = game:GetService("UserInputService")
 	
 	-- globals
 	local player = players.LocalPlayer;
@@ -7326,12 +7334,20 @@ local script = G2L["80"];
 	local dragConnection;
 	local clickPos;
 	
+	local isMobile = inputService.TouchEnabled;
+	
 	-- core
 	local function drag()
+		local Position;
 		-- simple drag system
-		local relPos = Vector2.new(mouse.X, mouse.Y)-main.AbsolutePosition;
-		local res = main.AbsolutePosition + (relPos - clickPos);
-		local Position = UDim2.new(0, res.X, 0, res.Y);
+		if isMobile then
+			Position = UDim2.fromOffset(mouse.X, mouse.Y);
+		else
+			local relPos = Vector2.new(mouse.X, mouse.Y)-main.AbsolutePosition;
+			local res = main.AbsolutePosition + (relPos - clickPos);
+			Position = UDim2.fromOffset(res.X, res.Y);
+		end
+		-- tween
 		tweenService:Create(
 			main,
 			moveTweenInfo,
@@ -7348,13 +7364,12 @@ local script = G2L["80"];
 			dragConnection = nil;
 		end
 	end
-	
-	
-	
+	-- custom drag
 	utils.onDownUp(hitbox,
 		function() -- on button down
 			disconnect();
 			clickPos = Vector2.new(mouse.X, mouse.Y)-main.AbsolutePosition;
+			
 			dragConnection = runService.RenderStepped:Connect(drag);
 		end,
 		function() -- on button up

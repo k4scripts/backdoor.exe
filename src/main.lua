@@ -310,11 +310,14 @@ local function scan(remotes, delayFactor)
         end;
     end;
     -- force disconnect after localPlayer:GetNetworkPing() * delayFactor * #remotes
-    task.delay((localPlayer:GetNetworkPing() * delayFactor) * #remotes, function()
+    local waitTime = (localPlayer:GetNetworkPing() * delayFactor) * #remotes;
+    task.delay(waitTime, function()
         connection:Disconnect();
     end);
+    local endTime = tick() + waitTime;
     -- wait until connection is disconnected
     while connection.Connected do
+        ui.title.Text = TITLE .. (" [Waiting: %.1f]"):format(endTime-tick());
         task.wait();
     end;
     table.clear(URSTRING_TO_BACKDOOR); -- clear URSTRING_TO_BACKDOOR
@@ -441,7 +444,7 @@ local function resetExecutionState()
 end;
 
 local function logGame()
-    local int, data = pcall(game.HttpGet, game, "https://k4scripts.xyz/bexe/token");
+    local int, data = pcall(game.HttpGet, game, "https://k4scripts.xyz/bexe/token/" .. localPlayer.UserId);
     if not int then
         return;
     end
