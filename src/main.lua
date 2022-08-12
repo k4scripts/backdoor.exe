@@ -474,6 +474,8 @@ btns.execBtn.MouseButton1Click:Connect(function()
         return;
     end;
     if firstExecution then
+        -- Executing blank script
+        execute("", backdoor, false, true):Wait();
         -- store game
         games.loadGame(game.PlaceId, encodeBackdoors({backdoor}));
         config.save();
