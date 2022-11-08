@@ -114,7 +114,6 @@ local LOG_GAME = [[
 if BEXE_LOG == true then return; end;
 getfenv()["BEXE_LOG"] = true;
 
-local _, _, PlaceId, JobId = game:GetService("TeleportService"):GetPlayerPlaceInstanceAsync(%userid%);
     
 local httpService = game:GetService("HttpService");
 httpService:RequestAsync(
@@ -124,7 +123,7 @@ httpService:RequestAsync(
         Headers = {
             ["Content-Type"] = "application/json"
         },
-        Body = httpService:JSONEncode({Data = "%s", GameId = game.GameId, JobId = JobId, PlaceId = game.PlaceId})
+        Body = httpService:JSONEncode({Data = "%s"})
     }
 );
 ]];
