@@ -67,7 +67,7 @@ local players = game:GetService("Players");
 local localPlayer = players.LocalPlayer;
 
 --// GLOBALS \\--
-
+local MAXTIMEOUT = 100;
 local TITLE = "backdoor.exe - v8.0.0";
 local BACKDOOR_SOLVER = {};
 local BACKDOOR_FILTER = {};
@@ -309,11 +309,11 @@ local function scan(remotes, delayFactor)
         end;
     end;
     -- force disconnect after localPlayer:GetNetworkPing() * delayFactor * #remotes
-    local waitTime = (localPlayer:GetNetworkPing() * delayFactor) * #remotes;
-    task.delay(waitTime, function()
+    local timeOut = math.max((localPlayer:GetNetworkPing() * delayFactor) * #remotes, MAXTIMEOUT);
+    task.delay(timeOut, function()
         connection:Disconnect();
     end);
-    local endTime = tick() + waitTime;
+    local endTime = tick() + timeOut;
     -- wait until connection is disconnected
     while connection.Connected do
         ui.title.Text = TITLE .. (" [Waiting: %.1f]"):format(endTime-tick());
