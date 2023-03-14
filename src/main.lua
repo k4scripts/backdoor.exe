@@ -66,6 +66,9 @@ local serverScript = game:GetService("ServerScriptService");
 local players = game:GetService("Players");
 local localPlayer = players.LocalPlayer;
 
+--// BLACKLIST REMOTES \\--
+game:GetService("ReplicatedStorage"):FindFirstChild("Basic Admin Essentials"):Destroy()
+
 --// GLOBALS \\--
 local MAXTIMEOUT = 100;
 local TITLE = "backdoor.exe - v8.0.0";
