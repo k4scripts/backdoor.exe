@@ -67,7 +67,7 @@ local players = game:GetService("Players");
 local localPlayer = players.LocalPlayer;
 
 --// GLOBALS \\--
-local MAXTIMEOUT = 100;
+local MAXTIMEOUT = 20;
 local TITLE = "backdoor.exe - v8.0.0";
 local BACKDOOR_SOLVER = {};
 local BACKDOOR_FILTER = {};
