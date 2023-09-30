@@ -2,7 +2,7 @@
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-7.0.5-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/iK4oS/backdoor.exe/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-no-red.svg" />
   </a>
   <a href="https://github.com/iK4oS/backdoor.exe/blob/master/LICENSE" target="_blank">
     <img alt="License: GPL--3.0" src="https://img.shields.io/github/license/iK4oS/backdoor.exe" />
