@@ -29,6 +29,8 @@
 > An in game interface/tool to scan every RemoteEvent for backdoors. </br>
 > Tool was made to find backdoors in your game.
 
+As you might already know, the original FraktureSS code got deleted so this is just a reupload of the original code.
+
 ### 🏠 [Homepage](https://github.com/L1ghtingBolt/FraktureSS) 🔗 [Discord](https://discord.gg/w8SkzPz9qQ)
 
 <!--- ### ✨ [Demo](https://demo.url/) Comming soon ;) --->
