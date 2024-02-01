@@ -13,7 +13,7 @@
     <img alt="License: GPL--3.0" src="https://img.shields.io/github/license/iK4oS/backdoor.exe" />
   </a>
   <div align="center">
-  <p>🚨 THIS HAS BEEN ARCHIVED/DISCONTINUED UNTIL FUTHER NOTICE 🚨</p>
+  <h1>🚨 THIS HAS BEEN ARCHIVED/DISCONTINUED UNTIL FUTHER NOTICE 🚨</h1>
 </div>
 </p>
 
