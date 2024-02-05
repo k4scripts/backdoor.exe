@@ -52,7 +52,7 @@ Contributions, issues, and feature requests are welcome!<br />Feel free to check
 * Undetected backdoors reports are appreciated as contribute to providing the best-updated backdoor scanner out there.
 
 # Show your support
-Give a ⭐️ if this project helped you or join our [Discord](https://discord.com/invite/xJHCqm84cW) !
+Give a ⭐️ if this project helped you or join our [Discord](https://discord.gg/k4scripts-731881028573986874) !
 
 # 📝 License
 
