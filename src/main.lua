@@ -493,3 +493,4 @@ ui.title.Text = TITLE;
 
 alertLib.Success(screenGui, TITLE, 'Backdoor scanner successfully loaded.');
 alertLib.Info(screenGui, TITLE, 'Home to toggle ui.', 4);
+alertLib.Info(screenGui, TITLE, 'THIS HAS BEEN DISCONTINUED', 4);
